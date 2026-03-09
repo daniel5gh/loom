@@ -22,7 +22,14 @@ Loom evolves a flat collection of 15 tagged markdown research documents into a n
   3. The document index page lists all documents, browsable by directory category
   4. Site is live on Cloudflare Pages — a git push to main triggers a build and publishes the updated site
   5. Dark background with neon accent colors and monospace font renders consistently across all pages
-**Plans**: TBD
+**Plans**: 5 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Fix frontmatter bugs and normalize tags in source files
+- [ ] 01-02-PLAN.md — Initialize Astro project and configure content collections
+- [ ] 01-03-PLAN.md — Build page routes, layouts, components, and output validator
+- [ ] 01-04-PLAN.md — Create dark/neon CSS theme
+- [ ] 01-05-PLAN.md — Deploy to Cloudflare Pages and verify live site
 
 ### Phase 2: Graph Visualization and Relationship Engine
 **Goal**: An interactive force-directed graph shows all documents as nodes with edges representing shared tag relationships; each document page surfaces its most-related documents
@@ -97,6 +104,6 @@ Every v1 requirement maps to exactly one phase. No orphans.
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Content Pipeline and Site Foundation | 0/TBD | Not started | - |
+| 1. Content Pipeline and Site Foundation | 0/5 | Not started | - |
 | 2. Graph Visualization and Relationship Engine | 0/TBD | Not started | - |
 | 3. Claude Code Skills and Polish | 0/TBD | Not started | - |
