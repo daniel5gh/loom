@@ -77,6 +77,28 @@ if (!tagLinkCheckPassed) {
   errors.push('No tag links (href="/tags/...") found in sampled document pages');
 }
 
+// Check that at least one built document page contains Shiki markup
+let shikiCheckPassed = false;
+for (const cat of CATEGORY_DIRS) {
+  const catPath = join(DIST, cat);
+  if (!existsSync(catPath)) continue;
+  const entries = readdirSync(catPath, { withFileTypes: true }).filter(e => e.isDirectory());
+  if (entries.length === 0) continue;
+  const sampleHtml = join(catPath, entries[0].name, 'index.html');
+  if (!existsSync(sampleHtml)) continue;
+  const html = readFileSync(sampleHtml, 'utf8');
+  if (html.includes('astro-code')) {
+    console.log(`OK: Shiki markup (astro-code) found in dist/${cat}/${entries[0].name}/index.html`);
+    shikiCheckPassed = true;
+    passed++;
+    break;
+  }
+}
+if (!shikiCheckPassed) {
+  // Only warn — document may not have code blocks; check graph page as fallback
+  console.log('INFO: No astro-code markup in sampled doc pages (may not have code blocks — acceptable)');
+}
+
 // Summary
 console.log(`\nValidation: ${passed} checks passed, ${errors.length} errors`);
 if (errors.length > 0) {

@@ -155,11 +155,14 @@ main {
   border: 1px solid var(--bg-elevated);
   border-radius: 6px;
   padding: 1rem;
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .doc-card:hover {
   border-color: var(--neon-cyan);
+  box-shadow:
+    0 0  4px var(--neon-cyan),
+    0 0 12px rgba(0, 229, 255, 0.2);
 }
 
 .doc-card-link {
@@ -206,13 +209,19 @@ main {
   font-size: 0.75rem;
   font-family: var(--font-mono);
   text-decoration: none;
-  transition: background 0.1s ease, color 0.1s ease;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
 }
 
-.tag-pill:hover {
+.tag-pill:hover,
+a.tag-pill:focus {
   background: var(--neon-cyan);
   color: var(--bg-base);
   text-decoration: none;
+  box-shadow:
+    0 0  3px var(--neon-cyan),
+    0 0  8px var(--neon-cyan),
+    0 0 16px rgba(0, 229, 255, 0.25);
+  outline: none;
 }
 
 /* 9. Document Page
