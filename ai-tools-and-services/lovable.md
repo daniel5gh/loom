@@ -1,7 +1,7 @@
 ---
 title: Lovable
 date: 2026-03-09
-tags: [AI, app-builder, website-builder, no-code, chat, SaaS]
+tags: [ai, app-builder, website-builder, no-code, chat, saas]
 ---
 
 # Lovable

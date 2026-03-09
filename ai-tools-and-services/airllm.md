@@ -1,7 +1,7 @@
 ---
 title: AirLLM
 date: 2026-03-04
-tags: [AI, LLM, inference, optimization, open source]
+tags: [ai, llm, inference, optimization, open-source]
 ---
 
 # AirLLM

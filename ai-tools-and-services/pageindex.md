@@ -1,7 +1,7 @@
 ---
 title: PageIndex
 date: 2026-03-04
-tags: [AI, RAG, retrieval, LLM, document-analysis, open source]
+tags: [ai, rag, retrieval, llm, document-analysis, open-source]
 ---
 
 # PageIndex

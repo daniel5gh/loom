@@ -1,7 +1,7 @@
 ---
 title: Langflow
 date: 2026-03-03
-tags: [AI, orchestration, workflow, LLM, open source]
+tags: [ai, orchestration, workflow, llm, open-source]
 ---
 
 # Langflow
