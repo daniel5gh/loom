@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 02-03-PLAN.md
-last_updated: "2026-03-09T16:34:39.710Z"
+stopped_at: Completed 02-04-PLAN.md
+last_updated: "2026-03-09T16:37:13.138Z"
 last_activity: 2026-03-09 — Roadmap created
 progress:
   total_phases: 3
   completed_phases: 1
   total_plans: 10
-  completed_plans: 8
+  completed_plans: 9
   percent: 20
 ---
 
@@ -58,6 +58,7 @@ Progress: [██░░░░░░░░] 20%
 | Phase 02-graph-visualization-and-relationship-engine P01 | 3 | 2 tasks | 2 files |
 | Phase 02-graph-visualization-and-relationship-engine P02 | 2 | 2 tasks | 6 files |
 | Phase 02-graph-visualization-and-relationship-engine P03 | 2 | 2 tasks | 3 files |
+| Phase 02-graph-visualization-and-relationship-engine P04 | 5 | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -84,6 +85,7 @@ Recent decisions affecting current work:
 - [Phase 02-graph-visualization-and-relationship-engine]: Each slug page fetches all three collections to build allDocs — Astro caches per build so no duplication penalty
 - [Phase 02-graph-visualization-and-relationship-engine]: Used data island pattern (<script type='application/json' id='graph-data' set:html={json}>) instead of define:vars to avoid Astro ESM import breakage (bug #12343)
 - [Phase 02-graph-visualization-and-relationship-engine]: Graph page full-width: main:has(.graph-page) override removes max-width without touching Base.astro for other pages
+- [Phase 02-graph-visualization-and-relationship-engine]: Build linkedByIndex before simulation call to capture string IDs before forceLink mutation
 
 ### Pending Todos
 
@@ -97,6 +99,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-09T16:34:39.706Z
-Stopped at: Completed 02-03-PLAN.md
+Last session: 2026-03-09T16:37:13.134Z
+Stopped at: Completed 02-04-PLAN.md
 Resume file: None
