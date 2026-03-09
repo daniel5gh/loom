@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import DocCard from '../../components/DocCard.astro';
+
+export async function getStaticPaths() {
+  const [aiTools, cloudPlatforms, companies] = await Promise.all([
+    getCollection('aiTools'),
+    getCollection('cloudPlatforms'),
+    getCollection('companies'),
+  ]);
+
+  const allDocs = [
+    ...aiTools.map(d => ({ ...d, category: 'ai-tools-and-services' })),
+    ...cloudPlatforms.map(d => ({ ...d, category: 'cloud-ai-platforms' })),
+    ...companies.map(d => ({ ...d, category: 'companies' })),
+  ];
+
+  const tagIndex: Record<string, typeof allDocs> = {};
+  for (const doc of allDocs) {
+    for (const tag of doc.data.tags) {
+      if (!tagIndex[tag]) tagIndex[tag] = [];
+      tagIndex[tag].push(doc);
+    }
+  }
+
+  return Object.entries(tagIndex).map(([tag, docs]) => ({
+    params: { tag },
+    props: { tag, docs },
+  }));
+}
+
+const { tag, docs } = Astro.props;
+---
+<Base title={`Tag: ${tag}`}>
+  <h1>#{tag}</h1>
+  <p>{docs.length} document{docs.length !== 1 ? 's' : ''}</p>
+  <div class="doc-grid">
+    {docs.map(doc => (
+      <DocCard
+        title={doc.data.title}
+        slug={doc.id}
+        category={doc.category}
+        date={doc.data.date}
+        tags={doc.data.tags}
+      />
+    ))}
+  </div>
+</Base>

@@ -1,12 +1,37 @@
 ---
-// Placeholder index — page templates are added in Plan 03
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import DocCard from '../components/DocCard.astro';
+
+const aiTools = await getCollection('aiTools');
+const cloudPlatforms = await getCollection('cloudPlatforms');
+const companies = await getCollection('companies');
+
+const categories = [
+  { label: 'AI Tools and Services', slug: 'ai-tools-and-services', docs: aiTools },
+  { label: 'Cloud AI Platforms', slug: 'cloud-ai-platforms', docs: cloudPlatforms },
+  { label: 'Companies', slug: 'companies', docs: companies },
+];
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Loom</title>
-  </head>
-  <body>
-    <h1>Loom</h1>
-  </body>
-</html>
+<Base title="Loom — Knowledge Graph">
+  <section class="index-hero">
+    <h1 class="index-title">Loom</h1>
+    <p class="index-subtitle">AI research knowledge graph — {aiTools.length + cloudPlatforms.length + companies.length} documents</p>
+  </section>
+  {categories.map(({ label, slug, docs }) => (
+    <section class="category-section">
+      <h2 class="category-heading">{label}</h2>
+      <div class="doc-grid">
+        {docs.map(doc => (
+          <DocCard
+            title={doc.data.title}
+            slug={doc.id}
+            category={slug}
+            date={doc.data.date}
+            tags={doc.data.tags}
+          />
+        ))}
+      </div>
+    </section>
+  ))}
+</Base>

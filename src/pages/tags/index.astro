@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const [aiTools, cloudPlatforms, companies] = await Promise.all([
+  getCollection('aiTools'),
+  getCollection('cloudPlatforms'),
+  getCollection('companies'),
+]);
+
+const allDocs = [...aiTools, ...cloudPlatforms, ...companies];
+const tagCounts: Record<string, number> = {};
+for (const doc of allDocs) {
+  for (const tag of doc.data.tags) {
+    tagCounts[tag] = (tagCounts[tag] ?? 0) + 1;
+  }
+}
+const sortedTags = Object.entries(tagCounts).sort(([a], [b]) => a.localeCompare(b));
+---
+<Base title="All Tags">
+  <h1>All Tags</h1>
+  <ul class="tag-list">
+    {sortedTags.map(([tag, count]) => (
+      <li>
+        <a href={`/tags/${tag}/`} class="tag-pill">{tag}</a>
+        <span class="tag-count">({count})</span>
+      </li>
+    ))}
+  </ul>
+</Base>
