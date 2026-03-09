@@ -1,3 +1,19 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: planning
+stopped_at: Completed 01-content-pipeline-and-site-foundation/01-01-PLAN.md
+last_updated: "2026-03-09T14:30:43.228Z"
+last_activity: 2026-03-09 — Roadmap created
+progress:
+  total_phases: 3
+  completed_phases: 0
+  total_plans: 5
+  completed_plans: 1
+  percent: 20
+---
+
 # Project State
 
 ## Project Reference
@@ -14,7 +30,7 @@ Plan: 0 of TBD in current phase
 Status: Ready to plan
 Last activity: 2026-03-09 — Roadmap created
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [██░░░░░░░░] 20%
 
 ## Performance Metrics
 
@@ -34,6 +50,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: -
 
 *Updated after each plan completion*
+| Phase 01-content-pipeline-and-site-foundation P01 | 1 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -45,6 +62,8 @@ Recent decisions affecting current work:
 - Stack: Astro ^5.x + D3.js ^7.x + vanilla CSS + Shiki + Cloudflare Pages (no React, no Tailwind, no TypeScript)
 - Phase 1 priority: Fix airllm.md and langflow.md frontmatter bugs BEFORE Astro setup
 - Graph rendering: Start with SVG-based D3, add edge weight thresholds (2+ shared tags) to control density; benchmark at 50+ nodes before considering Canvas
+- [Phase 01-content-pipeline-and-site-foundation]: Tags normalized in source files (not at transform layer) so Phase 3 skills reading raw frontmatter see canonical values
+- [Phase 01-content-pipeline-and-site-foundation]: Full lowercase applied to all tag values including acronyms (LLM->llm, RAG->rag) to match Zod z.coerce behavior
 
 ### Pending Todos
 
@@ -58,6 +77,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-09
-Stopped at: Roadmap created, STATE.md initialized. No plans exist yet.
+Last session: 2026-03-09T14:30:43.224Z
+Stopped at: Completed 01-content-pipeline-and-site-foundation/01-01-PLAN.md
 Resume file: None

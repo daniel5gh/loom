@@ -61,8 +61,7 @@ Every v1 requirement maps to exactly one phase. No orphans.
 
 | Requirement | Description (abbreviated) | Phase |
 |-------------|---------------------------|-------|
-| REQ-001 | Parse markdown with YAML frontmatter | 1 |
-| REQ-002 | Fix malformed frontmatter in airllm.md and langflow.md | 1 |
+| REQ-001 | Parse markdown with YAML frontmatter | 1 | 1/5 | In Progress|  | 1 |
 | REQ-003 | Validate frontmatter at build time — fail on missing fields | 1 |
 | REQ-004 | Normalize tags at build time | 1 |
 | REQ-005 | Generate build-time tag index | 1 |

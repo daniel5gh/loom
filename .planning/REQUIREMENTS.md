@@ -119,9 +119,9 @@ Existing non-conforming documents (`pageindex.md`, `lovable.md`, `airllm.md`, `l
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | REQ-001 | Phase 1 | Pending |
-| REQ-002 | Phase 1 | Pending |
+| REQ-002 | Phase 1 | Complete |
 | REQ-003 | Phase 1 | Pending |
-| REQ-004 | Phase 1 | Pending |
+| REQ-004 | Phase 1 | Complete |
 | REQ-005 | Phase 1 | Pending |
 | REQ-006 | Phase 2 | Pending |
 | REQ-007 | Phase 2 | Pending |
