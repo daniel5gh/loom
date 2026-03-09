@@ -139,3 +139,20 @@ None - no external service configuration required.
 ---
 *Phase: 01-content-pipeline-and-site-foundation*
 *Completed: 2026-03-09*
+
+## Self-Check: PASSED
+
+- FOUND: src/layouts/Base.astro
+- FOUND: src/layouts/Document.astro
+- FOUND: src/components/TagPill.astro
+- FOUND: src/components/DocCard.astro
+- FOUND: src/pages/ai-tools-and-services/[slug].astro
+- FOUND: src/pages/cloud-ai-platforms/[slug].astro
+- FOUND: src/pages/companies/[slug].astro
+- FOUND: src/pages/index.astro
+- FOUND: src/pages/tags/index.astro
+- FOUND: src/pages/tags/[tag].astro
+- FOUND: scripts/validate-output.mjs
+- FOUND: 01-03-SUMMARY.md
+- FOUND: commit 6284077 (feat(01-03): layouts, components, and document routes)
+- FOUND: commit 8946c35 (feat(01-03): index page, tag pages, and output validator)
