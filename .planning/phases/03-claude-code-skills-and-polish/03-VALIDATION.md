@@ -17,20 +17,20 @@ created: 2026-03-09
 
 | Property | Value |
 |----------|-------|
-| **Framework** | vitest (already in devDependencies) |
-| **Config file** | vitest.config.ts or inline in vite config |
-| **Quick run command** | `npm run build` (Astro build catches Shiki/config errors) |
-| **Full suite command** | `npm run build && npx wrangler pages dev dist/ --port 8788 --once` |
-| **Estimated runtime** | ~15 seconds (build) |
+| **Framework** | Node.js built-in `assert` (no test runner) |
+| **Config file** | none — tests run directly with `node` |
+| **Quick run command** | `node src/lib/graph.test.mjs` |
+| **Full suite command** | `npm run build && node src/lib/graph.test.mjs && node scripts/validate-output.mjs` |
+| **Estimated runtime** | ~15 seconds |
 
 ---
 
 ## Sampling Rate
 
-- **After every task commit:** Run `npm run build`
-- **After every plan wave:** Run `npm run build && npx wrangler pages dev dist/ --port 8788 --once`
+- **After every task commit:** Run `node src/lib/graph.test.mjs`
+- **After every plan wave:** Run `npm run build && node src/lib/graph.test.mjs && node scripts/validate-output.mjs`
 - **Before `/gsd:verify-work`:** Full suite must be green
-- **Max feedback latency:** 30 seconds
+- **Max feedback latency:** 15 seconds
 
 ---
 
@@ -38,13 +38,13 @@ created: 2026-03-09
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 3-01-01 | 01 | 1 | REQ-016 | build | `npm run build` | ✅ | ⬜ pending |
-| 3-01-02 | 01 | 1 | REQ-033 | build | `npm run build` | ✅ | ⬜ pending |
+| 3-01-01 | 01 | 1 | REQ-016 | smoke | `node scripts/validate-output.mjs` (check for `astro-code` in HTML) | ❌ W0 | ⬜ pending |
+| 3-01-02 | 01 | 1 | REQ-033 | smoke | `grep "box-shadow" public/styles/global.css` | manual-only | ⬜ pending |
 | 3-01-03 | 01 | 1 | REQ-043 | manual | see manual table | N/A | ⬜ pending |
-| 3-02-01 | 02 | 2 | REQ-050 | manual | see manual table | ❌ W0 | ⬜ pending |
-| 3-02-02 | 02 | 2 | REQ-051 | manual | see manual table | ❌ W0 | ⬜ pending |
-| 3-02-03 | 02 | 2 | REQ-052 | manual | see manual table | ❌ W0 | ⬜ pending |
-| 3-02-04 | 02 | 2 | REQ-053 | build | `npm run build` | ❌ W0 | ⬜ pending |
+| 3-02-01 | 02 | 2 | REQ-050 | unit | `grep "name: loom:research" .claude/skills/research/SKILL.md` | ❌ W0 | ⬜ pending |
+| 3-02-02 | 02 | 2 | REQ-051 | unit | `grep "name: loom:organize" .claude/skills/organize/SKILL.md` | ❌ W0 | ⬜ pending |
+| 3-02-03 | 02 | 2 | REQ-052 | unit | `grep "name: loom:validate" .claude/skills/validate/SKILL.md` | ❌ W0 | ⬜ pending |
+| 3-02-04 | 02 | 2 | REQ-053 | unit | `grep "toLowerCase" .claude/skills/*/SKILL.md` | ❌ W0 | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -52,11 +52,10 @@ created: 2026-03-09
 
 ## Wave 0 Requirements
 
-- [ ] `.claude/skills/research/SKILL.md` — stub for REQ-050
-- [ ] `.claude/skills/organize/SKILL.md` — stub for REQ-051
-- [ ] `.claude/skills/validate/SKILL.md` — stub for REQ-052
+- [ ] Extend `scripts/validate-output.mjs` to check for `<pre class="astro-code">` in at least one built document page — covers REQ-016
+- [ ] Skill file existence and `name:` field checks are fast shell commands; no new test framework needed
 
-*Wave 0 creates the skill files that later tasks will populate with full instructions.*
+*If none: "Existing infrastructure covers all phase requirements."*
 
 ---
 
@@ -64,12 +63,12 @@ created: 2026-03-09
 
 | Behavior | Requirement | Why Manual | Test Instructions |
 |----------|-------------|------------|-------------------|
-| `/research <topic>` creates valid document | REQ-050 | Claude Code skill invocation, no programmatic test | Run `/research "test topic"` in Claude Code; verify file created in correct dir with proper frontmatter and normalized tags |
-| `/organize` reports tag issues | REQ-051 | LLM output evaluation required | Run `/organize` in Claude Code; verify it lists actual tag inconsistencies in sample docs |
-| `/validate` reports frontmatter errors | REQ-052 | LLM output evaluation required | Run `/validate` in Claude Code; introduce a doc with missing `title` field; verify it appears in report |
-| Wrangler local preview | REQ-043 | Requires local server + browser | Run `npm run build && npx wrangler pages dev dist/`; open browser at localhost:8787; verify site loads |
-| Syntax highlighting renders | REQ-016 | Visual check required | Load any doc with code blocks in local preview; verify tokens are colored matching neon theme |
-| Glow effects on accent elements | REQ-033 | Visual check required | Hover tag pills, doc cards, nav links in browser; verify glow/bloom without WCAG contrast degradation |
+| `/loom:research <topic>` creates valid document | REQ-050 | Claude Code skill invocation, no programmatic test | Run `/loom:research "test topic"` in Claude Code; verify file created in correct dir with proper frontmatter and normalized tags |
+| `/loom:organize` reports tag issues | REQ-051 | LLM output evaluation required | Run `/loom:organize` in Claude Code; verify it lists actual tag inconsistencies in sample docs |
+| `/loom:validate` reports frontmatter errors | REQ-052 | LLM output evaluation required | Run `/loom:validate` in Claude Code; introduce a doc with missing `title` field; verify it appears in report |
+| Wrangler local preview | REQ-043 | Requires local server + browser | Run `npm run build && npx wrangler pages dev dist/`; open browser at localhost:8788; verify site loads |
+| Syntax highlighting renders | REQ-016 | Visual check required | Load any doc with code blocks in local preview; verify tokens are colored matching neon theme (cyan keywords, green strings, magenta functions) |
+| Glow effects on accent elements | REQ-033 | Visual check required | Hover tag pills and doc cards in browser; verify glow/bloom visible without WCAG contrast degradation on body text |
 
 ---
 
@@ -79,7 +78,7 @@ created: 2026-03-09
 - [ ] Sampling continuity: no 3 consecutive tasks without automated verify
 - [ ] Wave 0 covers all MISSING references
 - [ ] No watch-mode flags
-- [ ] Feedback latency < 30s
+- [ ] Feedback latency < 15s
 - [ ] `nyquist_compliant: true` set in frontmatter
 
 **Approval:** pending
