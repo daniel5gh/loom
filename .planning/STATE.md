@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 01-content-pipeline-and-site-foundation/01-02-PLAN.md
-last_updated: "2026-03-09T14:38:04.108Z"
+stopped_at: Completed 01-content-pipeline-and-site-foundation/01-03-PLAN.md
+last_updated: "2026-03-09T14:44:21.862Z"
 last_activity: 2026-03-09 — Roadmap created
 progress:
   total_phases: 3
   completed_phases: 0
   total_plans: 5
-  completed_plans: 2
+  completed_plans: 3
   percent: 20
 ---
 
@@ -52,6 +52,7 @@ Progress: [██░░░░░░░░] 20%
 *Updated after each plan completion*
 | Phase 01-content-pipeline-and-site-foundation P01 | 1 | 2 tasks | 4 files |
 | Phase 01-content-pipeline-and-site-foundation P02 | 5 | 2 tasks | 7 files |
+| Phase 01-content-pipeline-and-site-foundation P03 | 3 | 2 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -68,6 +69,8 @@ Recent decisions affecting current work:
 - [Phase 01-content-pipeline-and-site-foundation]: Created Astro project files manually (not via npm create astro) because the interactive CLI cannot handle non-empty directories without stdin interaction
 - [Phase 01-content-pipeline-and-site-foundation]: Node 22 installed via fnm since Astro 5 requires >=18.20.8 and system had 18.19.1; .node-version pins 22 for Cloudflare Pages
 - [Phase 01-content-pipeline-and-site-foundation]: src/pages/index.astro placeholder created as minimal build target — full templates come in Plan 03
+- [Phase 01-content-pipeline-and-site-foundation]: Used doc.id (not doc.slug) in all getStaticPaths() per Astro 5 pattern
+- [Phase 01-content-pipeline-and-site-foundation]: Base layout references /styles/global.css so Plan 04 can add the file without touching layout files
 
 ### Pending Todos
 
@@ -81,6 +84,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-09T14:38:04.104Z
-Stopped at: Completed 01-content-pipeline-and-site-foundation/01-02-PLAN.md
+Last session: 2026-03-09T14:44:21.858Z
+Stopped at: Completed 01-content-pipeline-and-site-foundation/01-03-PLAN.md
 Resume file: None
