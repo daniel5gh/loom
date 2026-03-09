@@ -476,3 +476,32 @@ main:has(.graph-page) {
   height: 100%;
   display: block;
 }
+
+/* Shiki css-variables theme — token colors mapped to neon palette */
+:root {
+  --astro-code-color-background:        var(--bg-elevated);
+  --astro-code-color-text:              var(--text-primary);
+  --astro-code-token-keyword:           var(--neon-cyan);
+  --astro-code-token-string:            var(--neon-green);
+  --astro-code-token-string-expression: var(--neon-green);
+  --astro-code-token-comment:           var(--text-secondary);
+  --astro-code-token-function:          var(--neon-magenta);
+  --astro-code-token-constant:          #FFD700;
+  --astro-code-token-parameter:         var(--text-primary);
+  --astro-code-token-punctuation:       var(--text-secondary);
+  --astro-code-token-link:              var(--neon-cyan);
+}
+
+/* Shiki code block container */
+.doc-content .astro-code {
+  background: var(--bg-elevated) !important;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+.doc-content .astro-code code {
+  background: transparent;
+  padding: 0;
+  font-size: 0.875rem;
+}
