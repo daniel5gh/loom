@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 02-01-PLAN.md
-last_updated: "2026-03-09T16:26:11.760Z"
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-03-09T16:29:57.734Z"
 last_activity: 2026-03-09 — Roadmap created
 progress:
   total_phases: 3
   completed_phases: 1
   total_plans: 10
-  completed_plans: 6
+  completed_plans: 7
   percent: 20
 ---
 
@@ -56,6 +56,7 @@ Progress: [██░░░░░░░░] 20%
 | Phase 01-content-pipeline-and-site-foundation P04 | 8 | 1 tasks | 3 files |
 | Phase 01-content-pipeline-and-site-foundation P05 | 15 | 3 tasks | 1 files |
 | Phase 02-graph-visualization-and-relationship-engine P01 | 3 | 2 tasks | 2 files |
+| Phase 02-graph-visualization-and-relationship-engine P02 | 2 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -78,6 +79,8 @@ Recent decisions affecting current work:
 - [Phase 01-content-pipeline-and-site-foundation]: Cloudflare Pages project URL resolved to https://loom-7kv.pages.dev; astro.config.mjs site field updated to canonical production URL
 - [Phase 02-graph-visualization-and-relationship-engine]: getRelatedDocs filters to sharedTags.length > 0 (returns all matching docs, not just weight >= 2)
 - [Phase 02-graph-visualization-and-relationship-engine]: src/lib/ established as pure JS build-time utility directory (no Astro imports, Node.js testable)
+- [Phase 02-graph-visualization-and-relationship-engine]: Removed max-width/margin from .doc-page — moved to .doc-layout wrapper to avoid double-centering conflict in two-column grid
+- [Phase 02-graph-visualization-and-relationship-engine]: Each slug page fetches all three collections to build allDocs — Astro caches per build so no duplication penalty
 
 ### Pending Todos
 
@@ -91,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-09T16:26:11.756Z
-Stopped at: Completed 02-01-PLAN.md
+Last session: 2026-03-09T16:29:52.843Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None
