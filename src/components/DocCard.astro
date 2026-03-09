@@ -1,0 +1,15 @@
+---
+import TagPill from './TagPill.astro';
+interface Props { title: string; slug: string; category: string; date: Date; tags: string[]; }
+const { title, slug, category, date, tags } = Astro.props;
+const dateStr = date.toISOString().slice(0, 10);
+---
+<article class="doc-card">
+  <a href={`/${category}/${slug}/`} class="doc-card-link">
+    <h3 class="doc-card-title">{title}</h3>
+  </a>
+  <time class="doc-card-date" datetime={dateStr}>{dateStr}</time>
+  <div class="doc-card-tags">
+    {tags.map(tag => <TagPill tag={tag} />)}
+  </div>
+</article>

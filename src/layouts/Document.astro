@@ -1,0 +1,21 @@
+---
+import Base from './Base.astro';
+import TagPill from '../components/TagPill.astro';
+interface Props { title: string; date: Date; tags: string[]; }
+const { title, date, tags } = Astro.props;
+const dateStr = date.toISOString().slice(0, 10);
+---
+<Base title={title}>
+  <article class="doc-page">
+    <header class="doc-header">
+      <h1 class="doc-title">{title}</h1>
+      <time class="doc-date" datetime={dateStr}>{dateStr}</time>
+      <div class="doc-tags">
+        {tags.map(tag => <TagPill tag={tag} />)}
+      </div>
+    </header>
+    <div class="doc-content">
+      <slot />
+    </div>
+  </article>
+</Base>
