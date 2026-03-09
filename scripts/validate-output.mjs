@@ -56,6 +56,14 @@ if (!existsSync(join(DIST, 'index.html'))) {
   passed++;
 }
 
+// Check graph page exists
+if (!existsSync(join(DIST, 'graph', 'index.html'))) {
+  errors.push('Missing dist/graph/index.html');
+} else {
+  console.log('OK: dist/graph/index.html exists');
+  passed++;
+}
+
 // Spot-check a document page for tag links to /tags/
 let tagLinkCheckPassed = false;
 for (const cat of CATEGORY_DIRS) {
