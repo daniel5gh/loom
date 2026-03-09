@@ -1,0 +1,26 @@
+# Build output
+dist/
+.output/
+
+# Node
+node_modules/
+.npm/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+.idea/
+*.swp
+
+# Environment
+.env
+.env.local
+
+# Astro
+.astro/
+
+# Wrangler
+.wrangler/
