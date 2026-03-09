@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 03-claude-code-skills-and-polish-03-03-PLAN.md
-last_updated: "2026-03-09T18:53:31.859Z"
+stopped_at: Completed 04-cleanup-and-polish-04-01-PLAN.md
+last_updated: "2026-03-09T20:05:57.646Z"
 last_activity: 2026-03-09 — Roadmap created
 progress:
-  total_phases: 3
-  completed_phases: 3
-  total_plans: 13
-  completed_plans: 13
+  total_phases: 4
+  completed_phases: 4
+  total_plans: 14
+  completed_plans: 14
   percent: 20
 ---
 
@@ -63,6 +63,7 @@ Progress: [██░░░░░░░░] 20%
 | Phase 03-claude-code-skills-and-polish P02 | 2 | 2 tasks | 4 files |
 | Phase 03-claude-code-skills-and-polish P01 | 2 | 2 tasks | 3 files |
 | Phase 03-claude-code-skills-and-polish P03 | 5 | 2 tasks | 0 files |
+| Phase 04-cleanup-and-polish P01 | 25 | 4 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -95,6 +96,7 @@ Recent decisions affecting current work:
 - [Phase 03-claude-code-skills-and-polish]: /loom:organize and /loom:validate are report-only with explicit 'DO NOT modify files' instructions to preserve user control over knowledge base
 - [Phase 03-claude-code-skills-and-polish]: Used --astro-code-* CSS variable prefix (not --shiki-token-*) — Astro 5 Shiki wraps output in <pre class='astro-code'> and only reads --astro-code-* vars
 - [Phase 03-claude-code-skills-and-polish]: Shiki smoke check in validator is INFO-level not ERROR-level because documents without code blocks are valid
+- [Phase 04-cleanup-and-polish]: Only set padding:0 on main:has(.doc-layout) — no max-width or margin changes to avoid conflicting with .doc-layout centering rules
 
 ### Pending Todos
 
@@ -108,6 +110,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-09T18:08:03.909Z
-Stopped at: Completed 03-claude-code-skills-and-polish-03-03-PLAN.md
+Last session: 2026-03-09T20:05:57.641Z
+Stopped at: Completed 04-cleanup-and-polish-04-01-PLAN.md
 Resume file: None

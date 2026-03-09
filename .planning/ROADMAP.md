@@ -9,7 +9,7 @@ Loom evolves a flat collection of 15 tagged markdown research documents into a n
 - [x] **Phase 1: Content Pipeline and Site Foundation** - Fix frontmatter bugs, build Astro site with dark/neon theme, tag navigation, deploy to Cloudflare Pages (completed 2026-03-09)
 - [x] **Phase 2: Graph Visualization and Relationship Engine** - Interactive D3 force-directed graph, tag-based edges with weight thresholds, related documents (completed 2026-03-09)
 - [x] **Phase 3: Claude Code Skills and Polish** - AI document management slash commands, glow effects, tag filtering, syntax highlighting (completed 2026-03-09)
-- [ ] **Phase 4: Cleanup and Polish** - Close minor tech debt items from v1.0 audit: validator coverage, layout fix, Wrangler config
+- [x] **Phase 4: Cleanup and Polish** - Close minor tech debt items from v1.0 audit: validator coverage, layout fix, Wrangler config (completed 2026-03-09)
 
 ## Phase Details
 
@@ -132,4 +132,4 @@ Every v1 requirement maps to exactly one phase. No orphans.
 | 1. Content Pipeline and Site Foundation | 5/5 | Complete | 2026-03-09 |
 | 2. Graph Visualization and Relationship Engine | 5/5 | Complete | 2026-03-09 |
 | 3. Claude Code Skills and Polish | 3/3 | Complete | 2026-03-09 |
-| 4. Cleanup and Polish | 0/1 | Not started | - |
+| 4. Cleanup and Polish | 1/1 | Complete   | 2026-03-09 |
