@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Phase 3 context gathered
-last_updated: "2026-03-09T17:37:31.006Z"
+stopped_at: Completed 03-claude-code-skills-and-polish-03-01-PLAN.md
+last_updated: "2026-03-09T18:00:05.248Z"
 last_activity: 2026-03-09 — Roadmap created
 progress:
   total_phases: 3
   completed_phases: 2
   total_plans: 13
-  completed_plans: 10
+  completed_plans: 12
   percent: 20
 ---
 
@@ -60,6 +60,8 @@ Progress: [██░░░░░░░░] 20%
 | Phase 02-graph-visualization-and-relationship-engine P03 | 2 | 2 tasks | 3 files |
 | Phase 02-graph-visualization-and-relationship-engine P04 | 5 | 1 tasks | 1 files |
 | Phase 02-graph-visualization-and-relationship-engine P05 | 2 | 1 tasks | 0 files |
+| Phase 03-claude-code-skills-and-polish P02 | 2 | 2 tasks | 4 files |
+| Phase 03-claude-code-skills-and-polish P01 | 2 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -88,6 +90,10 @@ Recent decisions affecting current work:
 - [Phase 02-graph-visualization-and-relationship-engine]: Graph page full-width: main:has(.graph-page) override removes max-width without touching Base.astro for other pages
 - [Phase 02-graph-visualization-and-relationship-engine]: Build linkedByIndex before simulation call to capture string IDs before forceLink mutation
 - [Phase 02-graph-visualization-and-relationship-engine]: Phase 2 interactive features verified by human in browser — graph hover/click/pan/zoom and Related Documents sidebar all confirmed working
+- [Phase 03-claude-code-skills-and-polish]: All three /loom: skills enforce identical tag normalization rule from src/content/config.ts Zod transform so skills and build pipeline stay in sync
+- [Phase 03-claude-code-skills-and-polish]: /loom:organize and /loom:validate are report-only with explicit 'DO NOT modify files' instructions to preserve user control over knowledge base
+- [Phase 03-claude-code-skills-and-polish]: Used --astro-code-* CSS variable prefix (not --shiki-token-*) — Astro 5 Shiki wraps output in <pre class='astro-code'> and only reads --astro-code-* vars
+- [Phase 03-claude-code-skills-and-polish]: Shiki smoke check in validator is INFO-level not ERROR-level because documents without code blocks are valid
 
 ### Pending Todos
 
@@ -101,6 +107,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-09T17:37:31.002Z
-Stopped at: Phase 3 context gathered
-Resume file: .planning/phases/03-claude-code-skills-and-polish/03-CONTEXT.md
+Last session: 2026-03-09T18:00:05.243Z
+Stopped at: Completed 03-claude-code-skills-and-polish-03-01-PLAN.md
+Resume file: None
