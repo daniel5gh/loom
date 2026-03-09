@@ -8,7 +8,7 @@ Loom evolves a flat collection of 15 tagged markdown research documents into a n
 
 - [x] **Phase 1: Content Pipeline and Site Foundation** - Fix frontmatter bugs, build Astro site with dark/neon theme, tag navigation, deploy to Cloudflare Pages (completed 2026-03-09)
 - [ ] **Phase 2: Graph Visualization and Relationship Engine** - Interactive D3 force-directed graph, tag-based edges with weight thresholds, related documents
-- [ ] **Phase 3: Claude Code Skills and Polish** - AI document management slash commands, glow effects, tag filtering, syntax highlighting
+- [x] **Phase 3: Claude Code Skills and Polish** - AI document management slash commands, glow effects, tag filtering, syntax highlighting (completed 2026-03-09)
 
 ## Phase Details
 
@@ -85,7 +85,7 @@ Every v1 requirement maps to exactly one phase. No orphans.
 | REQ-013 | Display tags as clickable links on document pages | 1 |
 | REQ-014 | Show related documents section (tag overlap) | 2 |
 | REQ-015 | Site structure navigable from directory categories | 1 |
-| REQ-016 | Syntax highlighting (Shiki, build-time) | 3 | 2/3 | In Progress|  | 2 |
+| REQ-016 | Syntax highlighting (Shiki, build-time) | 3 | 3/3 | Complete   | 2026-03-09 | 2 |
 | REQ-021 | Clicking a node navigates to that document | 2 |
 | REQ-022 | Hovering a node highlights it and direct connections | 2 |
 | REQ-023 | Graph supports zoom and pan | 2 |
