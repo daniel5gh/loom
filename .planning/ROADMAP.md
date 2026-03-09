@@ -60,7 +60,12 @@ Plans:
   3. `/validate` reports all frontmatter errors and template non-conformance without modifying files
   4. Code blocks in document pages render with syntax highlighting
   5. Graph nodes and accent elements display glow/bloom effects consistent with the neon aesthetic
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Shiki syntax highlighting, CSS neon glow effects, validate-output extension
+- [ ] 03-02-PLAN.md — Claude Code skills: /research, /organize, /validate
+- [ ] 03-03-PLAN.md — Build verification and human visual checkpoint
 
 ## Coverage Validation
 
@@ -112,4 +117,4 @@ Every v1 requirement maps to exactly one phase. No orphans.
 |-------|----------------|--------|-----------|
 | 1. Content Pipeline and Site Foundation | 5/5 | Complete | 2026-03-09 |
 | 2. Graph Visualization and Relationship Engine | 0/5 | Not started | - |
-| 3. Claude Code Skills and Polish | 0/TBD | Not started | - |
+| 3. Claude Code Skills and Polish | 0/3 | Not started | - |
