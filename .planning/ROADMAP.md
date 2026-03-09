@@ -55,16 +55,16 @@ Plans:
 **Depends on**: Phase 1 (skills use tag normalization rules established there); Phase 2 for graph polish
 **Requirements**: REQ-016, REQ-033, REQ-043, REQ-050, REQ-051, REQ-052, REQ-053
 **Success Criteria** (what must be TRUE):
-  1. `/research` creates a valid new document following TEMPLATE.md from a topic prompt, with normalized tags
-  2. `/organize` audits all documents and reports missing or inconsistent tags with suggested canonical fixes
-  3. `/validate` reports all frontmatter errors and template non-conformance without modifying files
+  1. `/loom:research` creates a valid new document following TEMPLATE.md from a topic prompt, with normalized tags
+  2. `/loom:organize` audits all documents and reports missing or inconsistent tags with suggested canonical fixes
+  3. `/loom:validate` reports all frontmatter errors and template non-conformance without modifying files
   4. Code blocks in document pages render with syntax highlighting
   5. Graph nodes and accent elements display glow/bloom effects consistent with the neon aesthetic
 **Plans**: 3 plans
 
 Plans:
 - [ ] 03-01-PLAN.md — Shiki syntax highlighting, CSS neon glow effects, validate-output extension
-- [ ] 03-02-PLAN.md — Claude Code skills: /research, /organize, /validate
+- [ ] 03-02-PLAN.md — Claude Code skills: /loom:research, /loom:organize, /loom:validate
 - [ ] 03-03-PLAN.md — Build verification and human visual checkpoint
 
 ## Coverage Validation
@@ -102,9 +102,9 @@ Every v1 requirement maps to exactly one phase. No orphans.
 | REQ-041 | Git-based auto-deploy to Cloudflare Pages | 1 |
 | REQ-042 | .gitignore covering OS, editor, build output | 1 |
 | REQ-043 | Local preview via Wrangler | 3 |
-| REQ-050 | /research skill: create new document from topic | 3 |
-| REQ-051 | /organize skill: audit tags and suggest fixes | 3 |
-| REQ-052 | /validate skill: check frontmatter and template conformance | 3 |
+| REQ-050 | /loom:research skill: create new document from topic | 3 |
+| REQ-051 | /loom:organize skill: audit tags and suggest fixes | 3 |
+| REQ-052 | /loom:validate skill: check frontmatter and template conformance | 3 |
 | REQ-053 | Skills enforce tag normalization | 3 |
 
 **Total v1 requirements:** 33
