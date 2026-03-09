@@ -1,0 +1,330 @@
+/* =============================================================
+   Loom — Global Stylesheet
+   Dark/neon aesthetic: deep dark background, monospace font,
+   neon accents on interactive elements only.
+   ============================================================= */
+
+/* 1. Font: Fira Code (self-hosted, latin subset)
+   fira-code font-weight 400 and 600
+   ============================================================= */
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('/fonts/fira-code-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url('/fonts/fira-code-latin-600-normal.woff2') format('woff2');
+}
+
+/* 2. CSS Custom Properties
+   ============================================================= */
+:root {
+  /* Backgrounds */
+  --bg-base:        #0D0D1A;   /* Deep dark — main background */
+  --bg-surface:     #13132A;   /* Cards, sidebar */
+  --bg-elevated:    #1A1A3A;   /* Code blocks, hover states */
+
+  /* Text — WCAG AA compliant on --bg-base */
+  --text-primary:   #D0D0D0;   /* Body text — ~10:1 contrast on --bg-base */
+  --text-secondary: #8888AA;   /* Metadata, dates, secondary labels */
+  --text-dim:       #555577;   /* Disabled, placeholder */
+
+  /* Neon accents — interactive elements only, NOT body text */
+  --neon-cyan:      #00E5FF;   /* Primary: tag pills, links, active states */
+  --neon-magenta:   #FF2D78;   /* Secondary: hover states, highlights */
+  --neon-green:     #39FF14;   /* Tertiary: category labels */
+
+  /* Typography */
+  --font-mono: 'Fira Code', 'Cascadia Code', monospace;
+}
+
+/* 3. CSS Reset / Base
+   ============================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--neon-cyan);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 4. Navigation (.site-nav)
+   ============================================================= */
+.site-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--bg-elevated);
+}
+
+.nav-home {
+  font-weight: 600;
+  color: var(--neon-cyan);
+  text-decoration: none;
+}
+
+.nav-home:hover {
+  text-decoration: underline;
+}
+
+.nav-tags {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.nav-tags:hover {
+  color: var(--neon-cyan);
+  text-decoration: underline;
+}
+
+/* 5. Main Content Area
+   ============================================================= */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* 6. Index Page
+   ============================================================= */
+.index-hero {
+  padding: 2rem 0;
+}
+
+.index-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.index-subtitle {
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+.category-section {
+  margin-top: 3rem;
+}
+
+.category-heading {
+  font-size: 1.25rem;
+  color: var(--neon-green);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--bg-elevated);
+  margin-bottom: 1rem;
+}
+
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+/* 7. DocCard (.doc-card)
+   ============================================================= */
+.doc-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-elevated);
+  border-radius: 6px;
+  padding: 1rem;
+  transition: border-color 0.15s ease;
+}
+
+.doc-card:hover {
+  border-color: var(--neon-cyan);
+}
+
+.doc-card-link {
+  text-decoration: none;
+  display: block;
+}
+
+.doc-card-title {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.doc-card-link:hover .doc-card-title {
+  color: var(--neon-cyan);
+}
+
+.doc-card-date {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.doc-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+/* 8. Tag Pill (.tag-pill)
+   Interactive element — neon border/background is correct here.
+   Do NOT use neon as body text color.
+   ============================================================= */
+.tag-pill {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  background: transparent;
+  border: 1px solid var(--neon-cyan);
+  border-radius: 3px;
+  color: var(--neon-cyan);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  text-decoration: none;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+.tag-pill:hover {
+  background: var(--neon-cyan);
+  color: var(--bg-base);
+  text-decoration: none;
+}
+
+/* 9. Document Page
+   ============================================================= */
+.doc-page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.doc-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--bg-elevated);
+}
+
+.doc-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.doc-date {
+  color: var(--neon-magenta);
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.doc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.doc-content {
+  line-height: 1.8;
+}
+
+.doc-content h1,
+.doc-content h2,
+.doc-content h3 {
+  color: var(--text-primary);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.doc-content p {
+  margin-bottom: 1rem;
+}
+
+.doc-content code {
+  background: var(--bg-elevated);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.doc-content pre {
+  background: var(--bg-elevated);
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.doc-content pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.doc-content a {
+  color: var(--neon-cyan);
+}
+
+.doc-content ul,
+.doc-content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.doc-content li {
+  margin-bottom: 0.25rem;
+}
+
+.doc-content blockquote {
+  border-left: 3px solid var(--bg-elevated);
+  padding-left: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+/* 10. Tag Pages
+   ============================================================= */
+.tag-page-heading {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--neon-cyan);
+  margin-bottom: 1.5rem;
+}
+
+.tag-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.tag-count {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-left: 0.25rem;
+}
