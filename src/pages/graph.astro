@@ -1,0 +1,161 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { buildGraphData } from '../lib/graph.js';
+
+const aiTools = await getCollection('aiTools');
+const cloudPlatforms = await getCollection('cloudPlatforms');
+const companies = await getCollection('companies');
+
+const allDocs = [
+  ...aiTools.map(d => ({ ...d, category: 'ai-tools-and-services' })),
+  ...cloudPlatforms.map(d => ({ ...d, category: 'cloud-ai-platforms' })),
+  ...companies.map(d => ({ ...d, category: 'companies' })),
+];
+
+const { nodes, edges } = buildGraphData(allDocs);
+const graphData = JSON.stringify({ nodes, edges });
+
+// Build tag list for filter sidebar (sorted by frequency descending)
+const tagFreq: Record<string, number> = {};
+for (const node of nodes) {
+  for (const tag of node.tags) {
+    tagFreq[tag] = (tagFreq[tag] || 0) + 1;
+  }
+}
+const allTags = Object.entries(tagFreq)
+  .sort((a, b) => b[1] - a[1])
+  .map(([tag, count]) => ({ tag, count }));
+---
+
+<Base title="Graph">
+  <div class="graph-page">
+    <!-- Tag filter sidebar (left) -->
+    <aside class="graph-sidebar">
+      <h2 class="graph-sidebar-heading">Filter by tag</h2>
+      <ul class="tag-filter-list">
+        {allTags.map(({ tag, count }) => (
+          <li>
+            <button class="tag-filter-btn" data-tag={tag}>
+              {tag} <span class="tag-count">({count})</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </aside>
+
+    <!-- Graph canvas area (right) -->
+    <div class="graph-canvas-wrap" id="graph-canvas-wrap">
+      <svg id="graph-svg"></svg>
+    </div>
+  </div>
+
+  <!-- Data island: pass build-time graph data to client script -->
+  <script type="application/json" id="graph-data" set:html={graphData}></script>
+
+  <!-- D3 client script: must be is:inline type="module" for CDN ESM import -->
+  <script is:inline type="module">
+    import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+    const graphData = JSON.parse(document.getElementById('graph-data').textContent);
+    const nodes = graphData.nodes;
+    const edges = graphData.edges;
+
+    const wrap = document.getElementById('graph-canvas-wrap');
+    const width = wrap.clientWidth || 800;
+    const height = wrap.clientHeight || 600;
+
+    const svg = d3.select('#graph-svg')
+      .attr('width', width)
+      .attr('height', height);
+
+    // SVG glow filter for neon node circles
+    const defs = svg.append('defs');
+    const filter = defs.append('filter').attr('id', 'glow');
+    filter.append('feGaussianBlur')
+      .attr('stdDeviation', '2.5')
+      .attr('result', 'coloredBlur');
+    const feMerge = filter.append('feMerge');
+    feMerge.append('feMergeNode').attr('in', 'coloredBlur');
+    feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
+    // Inner group — zoom transforms applied here
+    const g = svg.append('g');
+
+    // Zoom + pan
+    const zoom = d3.zoom()
+      .scaleExtent([0.3, 4])
+      .on('zoom', (event) => {
+        g.attr('transform', event.transform);
+        const k = event.transform.k;
+        g.selectAll('.node-label')
+          .style('display', k < 0.6 ? 'none' : null);
+      });
+    svg.call(zoom);
+    svg.on('dblclick.zoom', null); // disable double-click zoom
+
+    // Force simulation
+    const simulation = d3.forceSimulation(nodes)
+      .force('charge', d3.forceManyBody().strength(-250))
+      .force('link', d3.forceLink(edges).id(d => d.id).distance(90))
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('collide', d3.forceCollide(d => Math.sqrt(d.tagCount) * 8 + 12));
+
+    // Draw edges (before nodes so nodes appear on top)
+    const link = g.append('g')
+      .selectAll('line')
+      .data(edges)
+      .join('line')
+      .attr('class', 'graph-edge')
+      .attr('stroke', '#1A1A3A')
+      .attr('stroke-width', d => Math.max(1, Math.sqrt(d.weight)));
+
+    // Draw node groups (circle + label)
+    const node = g.append('g')
+      .selectAll('g')
+      .data(nodes)
+      .join('g')
+      .attr('class', 'graph-node')
+      .style('cursor', 'pointer')
+      .call(d3.drag()
+        .on('start', (event, d) => {
+          if (!event.active) simulation.alphaTarget(0.3).restart();
+          d.fx = d.x; d.fy = d.y;
+        })
+        .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+        .on('end', (event, d) => {
+          if (!event.active) simulation.alphaTarget(0);
+          d.fx = null; d.fy = null;
+        })
+      );
+
+    const radius = d => Math.sqrt(d.tagCount) * 5 + 6;
+
+    node.append('circle')
+      .attr('r', radius)
+      .attr('fill', d => d.color)
+      .attr('stroke', '#0D0D1A')
+      .attr('stroke-width', 1.5)
+      .style('filter', 'url(#glow)');
+
+    node.append('text')
+      .text(d => d.title)
+      .attr('class', 'node-label')
+      .attr('x', 0)
+      .attr('y', d => radius(d) + 12)
+      .attr('text-anchor', 'middle')
+      .attr('fill', 'var(--text-primary)')
+      .attr('font-size', '0.6rem')
+      .attr('font-family', 'var(--font-mono)');
+
+    // Tick handler
+    simulation.on('tick', () => {
+      link
+        .attr('x1', d => d.source.x)
+        .attr('y1', d => d.source.y)
+        .attr('x2', d => d.target.x)
+        .attr('y2', d => d.target.y);
+      node.attr('transform', d => `translate(${d.x},${d.y})`);
+    });
+  </script>
+</Base>
