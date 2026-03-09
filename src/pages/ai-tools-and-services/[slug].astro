@@ -1,18 +1,29 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Document from '../../layouts/Document.astro';
+import { getRelatedDocs } from '../../lib/graph.js';
 
 export async function getStaticPaths() {
   const docs = await getCollection('aiTools');
-  return docs.map(doc => ({
-    params: { slug: doc.id },
-    props: { doc },
-  }));
+  return docs.map(doc => ({ params: { slug: doc.id }, props: { doc } }));
 }
 
 const { doc } = Astro.props;
 const { Content } = await render(doc);
+
+const aiTools = await getCollection('aiTools');
+const cloudPlatforms = await getCollection('cloudPlatforms');
+const companies = await getCollection('companies');
+
+const allDocs = [
+  ...aiTools.map(d => ({ ...d, category: 'ai-tools-and-services' })),
+  ...cloudPlatforms.map(d => ({ ...d, category: 'cloud-ai-platforms' })),
+  ...companies.map(d => ({ ...d, category: 'companies' })),
+];
+
+const currentDoc = { ...doc, category: 'ai-tools-and-services' };
+const relatedDocs = getRelatedDocs(currentDoc, allDocs);
 ---
-<Document title={doc.data.title} date={doc.data.date} tags={doc.data.tags}>
+<Document title={doc.data.title} date={doc.data.date} tags={doc.data.tags} relatedDocs={relatedDocs}>
   <Content />
 </Document>
