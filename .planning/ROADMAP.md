@@ -41,7 +41,14 @@ Plans:
   3. Hovering a node highlights it and dims all non-adjacent nodes and edges
   4. Graph supports zoom and pan without losing node labels or edge visibility
   5. Each document page shows a "Related Documents" section with 3-5 documents that share the most tags
-**Plans**: TBD
+**Plans**: 5 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Build-time graph data library (buildGraphData + getRelatedDocs in src/lib/graph.js)
+- [ ] 02-02-PLAN.md — Related Documents sidebar component and two-column document layout
+- [ ] 02-03-PLAN.md — Graph page scaffold with D3 force simulation, zoom/pan, neon styling
+- [ ] 02-04-PLAN.md — Graph page interactions: hover highlight, click navigation, tag filter
+- [ ] 02-05-PLAN.md — Human visual checkpoint for all interactive behaviors
 
 ### Phase 3: Claude Code Skills and Polish
 **Goal**: Three working Claude Code slash commands enable AI-assisted document creation, organization, and validation; visual polish completes the neon aesthetic
@@ -103,6 +110,6 @@ Every v1 requirement maps to exactly one phase. No orphans.
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Content Pipeline and Site Foundation | 0/5 | Not started | - |
-| 2. Graph Visualization and Relationship Engine | 0/TBD | Not started | - |
+| 1. Content Pipeline and Site Foundation | 5/5 | Complete | 2026-03-09 |
+| 2. Graph Visualization and Relationship Engine | 0/5 | Not started | - |
 | 3. Claude Code Skills and Polish | 0/TBD | Not started | - |
