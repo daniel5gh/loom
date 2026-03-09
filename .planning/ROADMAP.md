@@ -6,7 +6,7 @@ Loom evolves a flat collection of 15 tagged markdown research documents into a n
 
 ## Phases
 
-- [ ] **Phase 1: Content Pipeline and Site Foundation** - Fix frontmatter bugs, build Astro site with dark/neon theme, tag navigation, deploy to Cloudflare Pages
+- [x] **Phase 1: Content Pipeline and Site Foundation** - Fix frontmatter bugs, build Astro site with dark/neon theme, tag navigation, deploy to Cloudflare Pages (completed 2026-03-09)
 - [ ] **Phase 2: Graph Visualization and Relationship Engine** - Interactive D3 force-directed graph, tag-based edges with weight thresholds, related documents
 - [ ] **Phase 3: Claude Code Skills and Polish** - AI document management slash commands, glow effects, tag filtering, syntax highlighting
 
@@ -61,7 +61,7 @@ Every v1 requirement maps to exactly one phase. No orphans.
 
 | Requirement | Description (abbreviated) | Phase |
 |-------------|---------------------------|-------|
-| REQ-001 | Parse markdown with YAML frontmatter | 1 | 4/5 | In Progress|  | 1 |
+| REQ-001 | Parse markdown with YAML frontmatter | 1 | 5/5 | Complete   | 2026-03-09 | 1 |
 | REQ-003 | Validate frontmatter at build time — fail on missing fields | 1 |
 | REQ-004 | Normalize tags at build time | 1 |
 | REQ-005 | Generate build-time tag index | 1 |
