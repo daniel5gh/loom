@@ -94,6 +94,17 @@ const allTags = Object.entries(tagFreq)
     svg.call(zoom);
     svg.on('dblclick.zoom', null); // disable double-click zoom
 
+    // Build adjacency lookup BEFORE simulation mutates source/target to node objects
+    const linkedByIndex = {};
+    edges.forEach(d => {
+      linkedByIndex[`${d.source},${d.target}`] = true;
+      linkedByIndex[`${d.target},${d.source}`] = true;
+    });
+
+    function isNeighbor(a, b) {
+      return a.id === b.id || linkedByIndex[`${a.id},${b.id}`];
+    }
+
     // Force simulation
     const simulation = d3.forceSimulation(nodes)
       .force('charge', d3.forceManyBody().strength(-250))
@@ -148,6 +159,21 @@ const allTags = Object.entries(tagFreq)
       .attr('font-size', '0.6rem')
       .attr('font-family', 'var(--font-mono)');
 
+    // Node interaction handlers
+    node
+      .on('mouseover', (event, d) => {
+        node.style('opacity', n => isNeighbor(d, n) ? 1 : 0.15);
+        link.style('opacity', l =>
+          (l.source.id === d.id || l.target.id === d.id) ? 1 : 0.05);
+      })
+      .on('mouseout', () => {
+        node.style('opacity', 1);
+        link.style('opacity', 1);
+      })
+      .on('click', (event, d) => {
+        window.location.href = d.url;
+      });
+
     // Tick handler
     simulation.on('tick', () => {
       link
@@ -156,6 +182,27 @@ const allTags = Object.entries(tagFreq)
         .attr('x2', d => d.target.x)
         .attr('y2', d => d.target.y);
       node.attr('transform', d => `translate(${d.x},${d.y})`);
+    });
+
+    // Tag filter sidebar interaction
+    let activeTag = null;
+
+    d3.selectAll('.tag-filter-btn').on('click', function() {
+      const tag = this.dataset.tag;
+      if (activeTag === tag) {
+        // Toggle off — restore all
+        activeTag = null;
+        node.style('opacity', 1);
+        link.style('opacity', 1);
+        d3.selectAll('.tag-filter-btn').classed('active', false);
+      } else {
+        activeTag = tag;
+        node.style('opacity', n => n.tags.includes(tag) ? 1 : 0.1);
+        link.style('opacity', l =>
+          l.source.tags.includes(tag) && l.target.tags.includes(tag) ? 1 : 0.05);
+        d3.selectAll('.tag-filter-btn').classed('active', false);
+        d3.select(this).classed('active', true);
+      }
     });
   </script>
 </Base>
