@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 01-content-pipeline-and-site-foundation/01-01-PLAN.md
-last_updated: "2026-03-09T14:30:43.228Z"
+stopped_at: Completed 01-content-pipeline-and-site-foundation/01-02-PLAN.md
+last_updated: "2026-03-09T14:38:04.108Z"
 last_activity: 2026-03-09 — Roadmap created
 progress:
   total_phases: 3
   completed_phases: 0
   total_plans: 5
-  completed_plans: 1
+  completed_plans: 2
   percent: 20
 ---
 
@@ -51,6 +51,7 @@ Progress: [██░░░░░░░░] 20%
 
 *Updated after each plan completion*
 | Phase 01-content-pipeline-and-site-foundation P01 | 1 | 2 tasks | 4 files |
+| Phase 01-content-pipeline-and-site-foundation P02 | 5 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -64,6 +65,9 @@ Recent decisions affecting current work:
 - Graph rendering: Start with SVG-based D3, add edge weight thresholds (2+ shared tags) to control density; benchmark at 50+ nodes before considering Canvas
 - [Phase 01-content-pipeline-and-site-foundation]: Tags normalized in source files (not at transform layer) so Phase 3 skills reading raw frontmatter see canonical values
 - [Phase 01-content-pipeline-and-site-foundation]: Full lowercase applied to all tag values including acronyms (LLM->llm, RAG->rag) to match Zod z.coerce behavior
+- [Phase 01-content-pipeline-and-site-foundation]: Created Astro project files manually (not via npm create astro) because the interactive CLI cannot handle non-empty directories without stdin interaction
+- [Phase 01-content-pipeline-and-site-foundation]: Node 22 installed via fnm since Astro 5 requires >=18.20.8 and system had 18.19.1; .node-version pins 22 for Cloudflare Pages
+- [Phase 01-content-pipeline-and-site-foundation]: src/pages/index.astro placeholder created as minimal build target — full templates come in Plan 03
 
 ### Pending Todos
 
@@ -77,6 +81,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-09T14:30:43.224Z
-Stopped at: Completed 01-content-pipeline-and-site-foundation/01-01-PLAN.md
+Last session: 2026-03-09T14:38:04.104Z
+Stopped at: Completed 01-content-pipeline-and-site-foundation/01-02-PLAN.md
 Resume file: None
