@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 02-02-PLAN.md
-last_updated: "2026-03-09T16:29:57.734Z"
+stopped_at: Completed 02-03-PLAN.md
+last_updated: "2026-03-09T16:34:39.710Z"
 last_activity: 2026-03-09 — Roadmap created
 progress:
   total_phases: 3
   completed_phases: 1
   total_plans: 10
-  completed_plans: 7
+  completed_plans: 8
   percent: 20
 ---
 
@@ -57,6 +57,7 @@ Progress: [██░░░░░░░░] 20%
 | Phase 01-content-pipeline-and-site-foundation P05 | 15 | 3 tasks | 1 files |
 | Phase 02-graph-visualization-and-relationship-engine P01 | 3 | 2 tasks | 2 files |
 | Phase 02-graph-visualization-and-relationship-engine P02 | 2 | 2 tasks | 6 files |
+| Phase 02-graph-visualization-and-relationship-engine P03 | 2 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -81,6 +82,8 @@ Recent decisions affecting current work:
 - [Phase 02-graph-visualization-and-relationship-engine]: src/lib/ established as pure JS build-time utility directory (no Astro imports, Node.js testable)
 - [Phase 02-graph-visualization-and-relationship-engine]: Removed max-width/margin from .doc-page — moved to .doc-layout wrapper to avoid double-centering conflict in two-column grid
 - [Phase 02-graph-visualization-and-relationship-engine]: Each slug page fetches all three collections to build allDocs — Astro caches per build so no duplication penalty
+- [Phase 02-graph-visualization-and-relationship-engine]: Used data island pattern (<script type='application/json' id='graph-data' set:html={json}>) instead of define:vars to avoid Astro ESM import breakage (bug #12343)
+- [Phase 02-graph-visualization-and-relationship-engine]: Graph page full-width: main:has(.graph-page) override removes max-width without touching Base.astro for other pages
 
 ### Pending Todos
 
@@ -94,6 +97,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-09T16:29:52.843Z
-Stopped at: Completed 02-02-PLAN.md
+Last session: 2026-03-09T16:34:39.706Z
+Stopped at: Completed 02-03-PLAN.md
 Resume file: None

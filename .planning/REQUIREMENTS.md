@@ -132,12 +132,12 @@ Existing non-conforming documents (`pageindex.md`, `lovable.md`, `airllm.md`, `l
 | REQ-014 | Phase 2 | Complete |
 | REQ-015 | Phase 1 | Complete |
 | REQ-016 | Phase 3 | Pending |
-| REQ-020 | Phase 2 | Pending |
+| REQ-020 | Phase 2 | Complete |
 | REQ-021 | Phase 2 | Pending |
 | REQ-022 | Phase 2 | Pending |
-| REQ-023 | Phase 2 | Pending |
+| REQ-023 | Phase 2 | Complete |
 | REQ-024 | Phase 2 | Complete |
-| REQ-025 | Phase 2 | Pending |
+| REQ-025 | Phase 2 | Complete |
 | REQ-026 | Phase 2 | Pending |
 | REQ-030 | Phase 1 | Complete |
 | REQ-031 | Phase 1 | Complete |
