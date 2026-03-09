@@ -7,8 +7,9 @@ Loom evolves a flat collection of 15 tagged markdown research documents into a n
 ## Phases
 
 - [x] **Phase 1: Content Pipeline and Site Foundation** - Fix frontmatter bugs, build Astro site with dark/neon theme, tag navigation, deploy to Cloudflare Pages (completed 2026-03-09)
-- [ ] **Phase 2: Graph Visualization and Relationship Engine** - Interactive D3 force-directed graph, tag-based edges with weight thresholds, related documents
+- [x] **Phase 2: Graph Visualization and Relationship Engine** - Interactive D3 force-directed graph, tag-based edges with weight thresholds, related documents (completed 2026-03-09)
 - [x] **Phase 3: Claude Code Skills and Polish** - AI document management slash commands, glow effects, tag filtering, syntax highlighting (completed 2026-03-09)
+- [ ] **Phase 4: Cleanup and Polish** - Close minor tech debt items from v1.0 audit: validator coverage, layout fix, Wrangler config
 
 ## Phase Details
 
@@ -63,9 +64,23 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Shiki syntax highlighting, CSS neon glow effects, validate-output extension
-- [ ] 03-02-PLAN.md — Claude Code skills: /loom:research, /loom:organize, /loom:validate
-- [ ] 03-03-PLAN.md — Build verification and human visual checkpoint
+- [x] 03-01-PLAN.md — Shiki syntax highlighting, CSS neon glow effects, validate-output extension
+- [x] 03-02-PLAN.md — Claude Code skills: /loom:research, /loom:organize, /loom:validate
+- [x] 03-03-PLAN.md — Build verification and human visual checkpoint
+
+### Phase 4: Cleanup and Polish
+**Goal**: Close 3 minor tech debt items identified in the v1.0 milestone audit — validator coverage for the graph page, document layout double-padding fix, and Wrangler config completeness
+**Depends on**: Phase 3
+**Requirements**: (tech debt — no new requirement IDs; references REQ-006, REQ-030, REQ-043)
+**Gap Closure**: Closes MC-01, MC-02, MC-04 from v1.0-MILESTONE-AUDIT.md
+**Success Criteria** (what must be TRUE):
+  1. `node scripts/validate-output.mjs` checks for `dist/graph/index.html` and fails if absent
+  2. Document pages have no double padding — `main:has(.doc-layout)` reset mirrors the existing graph page reset
+  3. `npx wrangler pages dev` (without `dist/` argument) starts correctly using `pages_build_output_dir` from `wrangler.toml`
+**Plans**: 1 plan
+
+Plans:
+- [ ] 04-01-PLAN.md — Validator graph check, layout padding fix, wrangler.toml pages_build_output_dir
 
 ## Coverage Validation
 
@@ -115,5 +130,6 @@ Every v1 requirement maps to exactly one phase. No orphans.
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Content Pipeline and Site Foundation | 5/5 | Complete | 2026-03-09 |
-| 2. Graph Visualization and Relationship Engine | 0/5 | Not started | - |
-| 3. Claude Code Skills and Polish | 0/3 | Not started | - |
+| 2. Graph Visualization and Relationship Engine | 5/5 | Complete | 2026-03-09 |
+| 3. Claude Code Skills and Polish | 3/3 | Complete | 2026-03-09 |
+| 4. Cleanup and Polish | 0/1 | Not started | - |
