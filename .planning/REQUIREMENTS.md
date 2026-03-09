@@ -131,7 +131,7 @@ Existing non-conforming documents (`pageindex.md`, `lovable.md`, `airllm.md`, `l
 | REQ-013 | Phase 1 | Complete |
 | REQ-014 | Phase 2 | Complete |
 | REQ-015 | Phase 1 | Complete |
-| REQ-016 | Phase 3 | Pending |
+| REQ-016 | Phase 3 | Complete |
 | REQ-020 | Phase 2 | Complete |
 | REQ-021 | Phase 2 | Complete |
 | REQ-022 | Phase 2 | Complete |
@@ -142,12 +142,12 @@ Existing non-conforming documents (`pageindex.md`, `lovable.md`, `airllm.md`, `l
 | REQ-030 | Phase 1 | Complete |
 | REQ-031 | Phase 1 | Complete |
 | REQ-032 | Phase 1 | Complete |
-| REQ-033 | Phase 3 | Pending |
+| REQ-033 | Phase 3 | Complete |
 | REQ-034 | Phase 1 | Complete |
 | REQ-040 | Phase 1 | Complete |
 | REQ-041 | Phase 1 | Complete |
 | REQ-042 | Phase 1 | Complete |
-| REQ-043 | Phase 3 | Pending |
+| REQ-043 | Phase 3 | Complete |
 | REQ-050 | Phase 3 | Complete |
 | REQ-051 | Phase 3 | Complete |
 | REQ-052 | Phase 3 | Complete |
