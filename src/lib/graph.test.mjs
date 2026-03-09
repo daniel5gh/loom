@@ -45,8 +45,10 @@ assert.ok(validColors.includes(nodeA.color), `color should be one of ${validColo
 // --- getRelatedDocs tests ---
 
 const related = getRelatedDocs(docs[0], docs);
-assert.equal(related.length, 1, 'related: expected 1 result (doc-b only, doc-c has only 1 shared tag)');
-assert.equal(related[0].sharedTags.length, 2, 'related: expected 2 shared tags');
+// doc-b shares 2 tags ('llm','python'), doc-c shares 1 tag ('api') — both have > 0 shared tags
+assert.equal(related.length, 2, 'related: expected 2 results (doc-b with 2 tags, doc-c with 1 tag)');
+// First result should be the one with most shared tags (doc-b)
+assert.equal(related[0].sharedTags.length, 2, 'related: first result should have 2 shared tags');
 assert.ok(related[0].sharedTags.includes('llm'), 'related: sharedTags should include llm');
 assert.equal(related[0].category, 'ai-tools-and-services', 'related: category should be present');
 assert.ok('doc' in related[0], 'related item should have doc field');
