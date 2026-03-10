@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Visualization
 status: planning
-stopped_at: Completed 08-04-PLAN.md
-last_updated: "2026-03-10T20:11:57.510Z"
+stopped_at: Completed 08-05-PLAN.md
+last_updated: "2026-03-10T21:25:26.118Z"
 last_activity: 2026-03-10 — Phase 7 map interactions complete; all MAP-03 through MAP-10 verified by human
 progress:
   total_phases: 10
-  completed_phases: 7
+  completed_phases: 8
   total_plans: 29
-  completed_plans: 28
+  completed_plans: 29
   percent: 40
 ---
 
@@ -60,6 +60,7 @@ Progress: [████░░░░░░] 40% (4 of 10 phases complete)
 | Phase 08-global-shell P02 | 5min | 2 tasks | 4 files |
 | Phase 08-global-shell P03 | 3min | 2 tasks | 2 files |
 | Phase 08-global-shell P04 | 8min | 2 tasks | 6 files |
+| Phase 08-global-shell P05 | checkpoint | 2 tasks | 0 files |
 
 ## Accumulated Context
 
@@ -109,6 +110,7 @@ Recent decisions affecting current work:
 - [Phase 08-global-shell]: isTypingContext() guards / shortcut — overlay won't fire inside map-search input, tag filter, or any form element
 - [Phase 08-global-shell]: Second addEventListener('keydown') added for vim keys rather than consolidating into existing handler — separation of concerns
 - [Phase 08-global-shell]: data-vim-item placed on DocCard article root — every DocCard usage becomes a vim item automatically without call-site changes
+- [Phase 08-global-shell]: All 10 Phase 8 requirements verified by human in browser — no automated substitute for DOM/keyboard/visual behavior confirmation
 
 ### Pending Todos
 
@@ -122,6 +124,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-10T20:11:57.505Z
-Stopped at: Completed 08-04-PLAN.md
+Last session: 2026-03-10T21:25:26.113Z
+Stopped at: Completed 08-05-PLAN.md
 Resume file: None

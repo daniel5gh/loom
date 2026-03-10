@@ -90,7 +90,7 @@ Plans:
 - [x] **Phase 5: Embedding Pipeline** - Offline script embeds all documents via Ollama + UMAP and commits coordinates as a static JSON artifact consumed at build time (completed 2026-03-10)
 - [x] **Phase 6: Map Page Skeleton** - `/map` route renders documents as 2D dots from embeddings.json; validates data island, HiDPI canvas, and SSR boundary before any interactions are added (completed 2026-03-10)
 - [ ] **Phase 7: Map Interactions** - Filter lenses (tag + search + ANY/ALL), Gaussian timeline slider with play button, side panel, and nearest-neighbor lines wire together via CustomEvent bus
-- [ ] **Phase 8: Global Shell** - Terminal search overlay, vim-style keyboard navigation, and cyberpunk CSS layer (scanlines, CRT vignette, typewriter headings) all land in Base.astro together
+- [x] **Phase 8: Global Shell** - Terminal search overlay, vim-style keyboard navigation, and cyberpunk CSS layer (scanlines, CRT vignette, typewriter headings) all land in Base.astro together (completed 2026-03-10)
 - [ ] **Phase 9: Home Page** - Redesigned home page uses the shell's search overlay as its primary entry point and surfaces the 10 most recently added articles
 - [ ] **Phase 10: Claude Code Skills** - Four new slash commands wrap the fully functioning system: add, deploy, retag, and gaps
 
@@ -204,7 +204,7 @@ Every v1.1 requirement maps to exactly one phase. No orphans.
 | MAP-08 | Timeline slider applies Gaussian opacity by document date | 7 | 5/5 | Complete | 2026-03-10 | 7 |
 | MAP-09 | Play button auto-scrubs timeline forward through time | 7 | 5/5 | Complete | 2026-03-10 | 7 |
 | MAP-10 | Tag filter, search filter, timeline compose simultaneously | 7 | 5/5 | Complete | 2026-03-10 | 7 |
-| SHELL-01 | Press `/` from any page to open terminal search overlay | 8 | 4/5 | In Progress|  | 8 |
+| SHELL-01 | Press `/` from any page to open terminal search overlay | 8 | 5/5 | Complete   | 2026-03-10 | 8 |
 | SHELL-03 | Arrow keys navigate results; Enter opens selected result | 8 |
 | SHELL-04 | Vim-style j/k/gg/G/Enter navigation on list pages | 8 |
 | SHELL-05 | Status bar at bottom shows current mode/context | 8 |
