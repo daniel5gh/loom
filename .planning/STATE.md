@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Visualization
 status: planning
-stopped_at: Completed 08-03-PLAN.md
-last_updated: "2026-03-10T20:08:05.866Z"
+stopped_at: Completed 08-04-PLAN.md
+last_updated: "2026-03-10T20:11:57.510Z"
 last_activity: 2026-03-10 — Phase 7 map interactions complete; all MAP-03 through MAP-10 verified by human
 progress:
   total_phases: 10
   completed_phases: 7
   total_plans: 29
-  completed_plans: 27
+  completed_plans: 28
   percent: 40
 ---
 
@@ -59,6 +59,7 @@ Progress: [████░░░░░░] 40% (4 of 10 phases complete)
 | Phase 08-global-shell P01 | 4min | 2 tasks | 2 files |
 | Phase 08-global-shell P02 | 5min | 2 tasks | 4 files |
 | Phase 08-global-shell P03 | 3min | 2 tasks | 2 files |
+| Phase 08-global-shell P04 | 8min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -106,6 +107,8 @@ Recent decisions affecting current work:
 - [Phase 08-global-shell]: Bundled <script> (no is:inline) used so import Fuse from fuse.js resolves via Astro bundler
 - [Phase 08-global-shell]: JSON data island pattern: serialize build-time collection data as application/json for client script consumption in shell overlay
 - [Phase 08-global-shell]: isTypingContext() guards / shortcut — overlay won't fire inside map-search input, tag filter, or any form element
+- [Phase 08-global-shell]: Second addEventListener('keydown') added for vim keys rather than consolidating into existing handler — separation of concerns
+- [Phase 08-global-shell]: data-vim-item placed on DocCard article root — every DocCard usage becomes a vim item automatically without call-site changes
 
 ### Pending Todos
 
@@ -119,6 +122,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-10T20:08:00.404Z
-Stopped at: Completed 08-03-PLAN.md
+Last session: 2026-03-10T20:11:57.505Z
+Stopped at: Completed 08-04-PLAN.md
 Resume file: None

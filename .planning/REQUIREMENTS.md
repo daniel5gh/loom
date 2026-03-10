@@ -39,12 +39,12 @@ All v1.0 requirements validated and shipped. See ROADMAP.md phases 1-4.
 
 ### Global Shell
 
-- [ ] **SHELL-01**: User can press `/` from any page to open a terminal-style search overlay (`loom> _` with blinking cursor)
+- [x] **SHELL-01**: User can press `/` from any page to open a terminal-style search overlay (`loom> _` with blinking cursor)
 - [x] **SHELL-02**: Search overlay supports fuzzy title, tag, and keyword matching across all documents
-- [ ] **SHELL-03**: User can navigate search results with arrow keys and open selected result with Enter
-- [ ] **SHELL-04**: User can navigate list pages with vim-style keys (j/k to move, Enter to open, gg/G for top/bottom)
-- [ ] **SHELL-05**: Vim-style status bar at bottom of page shows current mode/context
-- [ ] **SHELL-06**: Esc dismisses overlays and returns to previous context
+- [x] **SHELL-03**: User can navigate search results with arrow keys and open selected result with Enter
+- [x] **SHELL-04**: User can navigate list pages with vim-style keys (j/k to move, Enter to open, gg/G for top/bottom)
+- [x] **SHELL-05**: Vim-style status bar at bottom of page shows current mode/context
+- [x] **SHELL-06**: Esc dismisses overlays and returns to previous context
 
 ### Home Page
 
@@ -103,12 +103,12 @@ Deferred to future release.
 | MAP-08 | Phase 7 | Complete |
 | MAP-09 | Phase 7 | Complete |
 | MAP-10 | Phase 7 | Complete |
-| SHELL-01 | Phase 8 | Pending |
+| SHELL-01 | Phase 8 | Complete |
 | SHELL-02 | Phase 8 | Complete |
-| SHELL-03 | Phase 8 | Pending |
-| SHELL-04 | Phase 8 | Pending |
-| SHELL-05 | Phase 8 | Pending |
-| SHELL-06 | Phase 8 | Pending |
+| SHELL-03 | Phase 8 | Complete |
+| SHELL-04 | Phase 8 | Complete |
+| SHELL-05 | Phase 8 | Complete |
+| SHELL-06 | Phase 8 | Complete |
 | AESTH-01 | Phase 8 | Complete |
 | AESTH-02 | Phase 8 | Complete |
 | AESTH-03 | Phase 8 | Complete |
