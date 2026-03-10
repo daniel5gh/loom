@@ -218,7 +218,7 @@ Every v1.1 requirement maps to exactly one phase. No orphans.
 | AESTH-02 | Headings use typewriter animation on load | 8 |
 | AESTH-03 | ASCII-art dividers in page layouts | 8 |
 | AESTH-04 | All aesthetic effects maintain WCAG AA on body text | 8 |
-| HOME-01 | Home page shows terminal search prompt as primary entry point | 9 | 1/3 | In Progress|  | 9 |
+| HOME-01 | Home page shows terminal search prompt as primary entry point | 9 | 2/3 | In Progress|  | 9 |
 | SKILL-01 | /loom:add — fetch URL, create document with inferred tags | 10 |
 | SKILL-02 | /loom:deploy — validate + re-embed + commit + push | 10 |
 | SKILL-03 | /loom:deploy refuses to deploy if validation fails | 10 |

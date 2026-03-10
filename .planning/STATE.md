@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Visualization
 status: planning
-stopped_at: Completed 09-01-PLAN.md
-last_updated: "2026-03-10T22:39:16.246Z"
+stopped_at: Completed 09-02-PLAN.md
+last_updated: "2026-03-10T22:42:22.730Z"
 last_activity: 2026-03-10 — Phase 7 map interactions complete; all MAP-03 through MAP-10 verified by human
 progress:
   total_phases: 10
   completed_phases: 8
   total_plans: 32
-  completed_plans: 30
+  completed_plans: 31
   percent: 40
 ---
 
@@ -62,6 +62,7 @@ Progress: [████░░░░░░] 40% (4 of 10 phases complete)
 | Phase 08-global-shell P04 | 8min | 2 tasks | 6 files |
 | Phase 08-global-shell P05 | checkpoint | 2 tasks | 0 files |
 | Phase 09-home-page P01 | 1min | 1 tasks | 1 files |
+| Phase 09-home-page P02 | 2min | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -113,6 +114,8 @@ Recent decisions affecting current work:
 - [Phase 08-global-shell]: data-vim-item placed on DocCard article root — every DocCard usage becomes a vim item automatically without call-site changes
 - [Phase 08-global-shell]: All 10 Phase 8 requirements verified by human in browser — no automated substitute for DOM/keyboard/visual behavior confirmation
 - [Phase 09-home-page]: getRecentDocs defined inline in test file — self-contained without Astro API dependency; Wave 1 implements same logic in index.astro
+- [Phase 09-home-page]: doc.category assigned via spread not doc.collection — prevents broken URL paths on home page recent list
+- [Phase 09-home-page]: index.astro dispatches CustomEvent('loom:open-search') — does not call openOverlay() directly across bundled script boundaries
 
 ### Pending Todos
 
@@ -126,6 +129,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-10T22:39:16.241Z
-Stopped at: Completed 09-01-PLAN.md
+Last session: 2026-03-10T22:42:22.726Z
+Stopped at: Completed 09-02-PLAN.md
 Resume file: None
