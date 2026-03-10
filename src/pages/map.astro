@@ -86,7 +86,8 @@ const mapData = JSON.stringify(enriched);
     let W, H, dotPositions = [];
 
     function initCanvas() {
-      const rect = canvas.getBoundingClientRect();
+      const wrap = canvas.parentElement;
+      const rect = wrap.getBoundingClientRect();
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
       canvas.style.width = rect.width + 'px';
