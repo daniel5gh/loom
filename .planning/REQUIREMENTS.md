@@ -30,9 +30,9 @@ All v1.0 requirements validated and shipped. See ROADMAP.md phases 1-4.
 - [x] **MAP-02**: Hovering a dot shows tooltip with title and tags
 - [x] **MAP-03**: Clicking a dot opens a side panel with title, tags, summary, and link to full article
 - [x] **MAP-04**: Clicking a dot draws lines to 5 nearest neighbors
-- [ ] **MAP-05**: User can filter map by selecting one or more tags (matching dots glow, others dim to ~20% opacity)
-- [ ] **MAP-06**: User can filter map by typing a search term (matching dots glow, others dim)
-- [ ] **MAP-07**: User can toggle ANY (union) / ALL (intersection) tag matching mode
+- [x] **MAP-05**: User can filter map by selecting one or more tags (matching dots glow, others dim to ~20% opacity)
+- [x] **MAP-06**: User can filter map by typing a search term (matching dots glow, others dim)
+- [x] **MAP-07**: User can toggle ANY (union) / ALL (intersection) tag matching mode
 - [x] **MAP-08**: User can scrub a timeline slider applying gaussian opacity to dots by document date
 - [ ] **MAP-09**: Timeline slider has a play button that auto-scrubs forward through time
 - [ ] **MAP-10**: Tag filter, search filter, and timeline compose and apply simultaneously
@@ -97,9 +97,9 @@ Deferred to future release.
 | MAP-02 | Phase 6 | Complete |
 | MAP-03 | Phase 7 | Complete |
 | MAP-04 | Phase 7 | Complete |
-| MAP-05 | Phase 7 | Pending |
-| MAP-06 | Phase 7 | Pending |
-| MAP-07 | Phase 7 | Pending |
+| MAP-05 | Phase 7 | Complete |
+| MAP-06 | Phase 7 | Complete |
+| MAP-07 | Phase 7 | Complete |
 | MAP-08 | Phase 7 | Complete |
 | MAP-09 | Phase 7 | Pending |
 | MAP-10 | Phase 7 | Pending |
