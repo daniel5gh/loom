@@ -37,6 +37,11 @@ const mapData = JSON.stringify(enriched);
       <input id="map-search" type="text" placeholder="search…" class="map-search-input" autocomplete="off" />
       <div id="map-tag-filter" class="map-tag-filter"></div>
       <button id="map-anyall-btn" class="map-anyall-btn any-mode">ANY</button>
+      <div class="map-timeline-wrap">
+        <span class="map-timeline-label">timeline</span>
+        <input id="map-timeline" type="range" class="map-timeline" min="0" max="0" step="1" value="0" />
+        <button id="map-play" class="map-play-btn" aria-label="Play timeline">&#x25B6;</button>
+      </div>
     </div>
     <div id="map-canvas-wrap" class="map-canvas-wrap">
       <canvas id="map-canvas"></canvas>

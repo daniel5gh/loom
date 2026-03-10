@@ -705,6 +705,41 @@ main:has(.map-page) {
   color: var(--neon-pink, #FF2D78);
 }
 
+/* Timeline slider */
+.map-timeline-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: auto; /* push to right side of controls bar */
+}
+.map-timeline-label {
+  color: var(--text-secondary, #888);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+}
+.map-timeline {
+  width: 140px;
+  accent-color: var(--neon-cyan, #00E5FF);
+  cursor: pointer;
+}
+.map-play-btn {
+  background: var(--bg-elevated, #1A1A2E);
+  border: 1px solid var(--text-secondary, #888);
+  color: var(--text-secondary, #888);
+  font-size: 0.7rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.map-play-btn:hover {
+  border-color: var(--neon-cyan, #00E5FF);
+  color: var(--neon-cyan, #00E5FF);
+}
+.map-play-btn.playing {
+  border-color: var(--neon-pink, #FF2D78);
+  color: var(--neon-pink, #FF2D78);
+}
+
 /* Nav map link */
 .nav-map {
   color: var(--text-secondary);
