@@ -6,18 +6,22 @@ tags: [ai, app-builder, website-builder, no-code, chat, saas]
 
 # Lovable
 
+## Summary
+
 Lovable is an AI-powered platform that enables users to create apps and websites by chatting with an AI assistant. It is designed to simplify the process of building digital products, making it accessible for both individuals and teams.
 
-## Key Features
+## Content
+
+### Key Features
 - Chat-based interface for building apps and websites
 - No-code/low-code approach
 - Designed for teams and individuals
 - Used by teams from top companies
 
-## Use Cases
+### Use Cases
 - Rapid prototyping of web and mobile apps
 - Building websites without coding
 - Collaborative app development for teams
 
-## References
+### References
 - [Lovable Website](https://lovable.dev)

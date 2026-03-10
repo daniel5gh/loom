@@ -10,7 +10,9 @@ tags: [cloud, ai, comparison, azure, aws, gcp]
 
 This document compares the leading cloud AI platforms: Azure Foundry AI, Google Vertex AI, and AWS SageMaker AI. It highlights their key features, strengths, and ideal use cases to help organizations select the best solution for their needs.
 
-## Comparison Table
+## Content
+
+### Comparison Table
 
 | Feature/Aspect         | Azure Foundry AI                | Google Vertex AI                | AWS SageMaker AI               |
 |-----------------------|---------------------------------|---------------------------------|--------------------------------|
@@ -24,12 +26,12 @@ This document compares the leading cloud AI platforms: Azure Foundry AI, Google 
 | UI/Dev Tools          | Azure Portal, SDKs              | Vertex AI Studio, Notebooks     | SageMaker Studio, Notebooks    |
 | Use Cases             | Enterprise AI agents, automation| GenAI, ML, enterprise agents    | ML, GenAI, automation          |
 
-## Key Takeaways
+### Key Takeaways
 
 - **Azure Foundry AI** excels at agent orchestration and integration with the Azure ecosystem.
 - **Google Vertex AI** offers the widest model variety and strong generative AI capabilities.
 - **AWS SageMaker AI** is highly mature for end-to-end ML lifecycle management and enterprise deployment.
 
-## References
+### References
 
 - See individual platform documents in this folder for more details.
