@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Visualization
 status: planning
-stopped_at: Completed 05-03-PLAN.md
-last_updated: "2026-03-10T16:18:09.753Z"
+stopped_at: Completed 06-01-PLAN.md
+last_updated: "2026-03-10T16:58:54.662Z"
 last_activity: 2026-03-10 — v1.1 roadmap created, 31 requirements mapped to phases 5-10
 progress:
   total_phases: 10
   completed_phases: 5
-  total_plans: 17
-  completed_plans: 17
+  total_plans: 19
+  completed_plans: 18
   percent: 40
 ---
 
@@ -49,6 +49,7 @@ Progress: [████░░░░░░] 40% (4 of 10 phases complete)
 | Phase 05-embedding-pipeline P01 | 2 | 3 tasks | 4 files |
 | Phase 05-embedding-pipeline P02 | 5min | 1 tasks | 1 files |
 | Phase 05-embedding-pipeline P03 | 30 | 2 tasks | 3 files |
+| Phase 06-map-page-skeleton P01 | 2min | 3 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -69,6 +70,9 @@ Recent decisions affecting current work:
 - [Phase 05-embedding-pipeline]: atomicWriteJSON creates parent dirs with mkdirSync recursive — avoids ENOENT on first run when .cache/ missing
 - [Phase 05-embedding-pipeline]: Ollama host set to http://10.0.1.3:11434 — project uses remote LAN Ollama instance, not localhost
 - [Phase 05-embedding-pipeline]: embeddings.json committed to git with real UMAP coordinates — EMBED-04 closed
+- [Phase 06-map-page-skeleton]: map.mjs exports buildScales and hitTest as pure ESM functions — testable with node and importable from astro
+- [Phase 06-map-page-skeleton]: HiDPI canvas reads layout dimensions from getBoundingClientRect at runtime — avoids hardcoded sizes
+- [Phase 06-map-page-skeleton]: embeddings.json consumed via data island at build time — no SSR globals, no window/document references in frontmatter
 
 ### Pending Todos
 
@@ -82,6 +86,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-10T16:14:30.077Z
-Stopped at: Completed 05-03-PLAN.md
+Last session: 2026-03-10T16:58:54.659Z
+Stopped at: Completed 06-01-PLAN.md
 Resume file: None

@@ -26,8 +26,8 @@ All v1.0 requirements validated and shipped. See ROADMAP.md phases 1-4.
 
 ### Map Visualization
 
-- [ ] **MAP-01**: User can view all documents as dots on a 2D semantic similarity map at `/map`
-- [ ] **MAP-02**: Hovering a dot shows tooltip with title and tags
+- [x] **MAP-01**: User can view all documents as dots on a 2D semantic similarity map at `/map`
+- [x] **MAP-02**: Hovering a dot shows tooltip with title and tags
 - [ ] **MAP-03**: Clicking a dot opens a side panel with title, tags, summary, and link to full article
 - [ ] **MAP-04**: Clicking a dot draws lines to 5 nearest neighbors
 - [ ] **MAP-05**: User can filter map by selecting one or more tags (matching dots glow, others dim to ~20% opacity)
@@ -93,8 +93,8 @@ Deferred to future release.
 | EMBED-02 | Phase 5 | Complete |
 | EMBED-03 | Phase 5 | Complete |
 | EMBED-04 | Phase 5 | Complete |
-| MAP-01 | Phase 6 | Pending |
-| MAP-02 | Phase 6 | Pending |
+| MAP-01 | Phase 6 | Complete |
+| MAP-02 | Phase 6 | Complete |
 | MAP-03 | Phase 7 | Pending |
 | MAP-04 | Phase 7 | Pending |
 | MAP-05 | Phase 7 | Pending |

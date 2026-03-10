@@ -182,8 +182,7 @@ Every v1.1 requirement maps to exactly one phase. No orphans.
 | EMBED-01 | Run embed.mjs to generate 2D coordinates via Ollama + UMAP | 5 | 3/3 | Complete   | 2026-03-10 | 5 |
 | EMBED-03 | Fail loudly if Ollama not running; atomic file write | 5 |
 | EMBED-04 | embeddings.json committed to git, consumed at Astro build time | 5 |
-| MAP-01 | View all documents as dots on 2D semantic map at /map | 6 |
-| MAP-02 | Hover dot shows tooltip with title and tags | 6 |
+| MAP-01 | View all documents as dots on 2D semantic map at /map | 6 | 1/2 | In Progress|  | 6 |
 | MAP-03 | Click dot opens side panel with title, tags, summary, link | 7 |
 | MAP-04 | Click dot draws lines to 5 nearest neighbors | 7 |
 | MAP-05 | Filter by tag — matching dots glow, others dim to ~20% | 7 |
