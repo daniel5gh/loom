@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Visualization
 status: planning
-stopped_at: Completed 10-01-PLAN.md
-last_updated: "2026-03-10T23:39:42.047Z"
+stopped_at: Completed 10-02-PLAN.md
+last_updated: "2026-03-10T23:42:07.190Z"
 last_activity: 2026-03-10 — Phase 9 home page complete; all HOME-01 and HOME-02 behaviors verified by human
 progress:
   total_phases: 10
   completed_phases: 9
   total_plans: 37
-  completed_plans: 33
+  completed_plans: 34
   percent: 100
 ---
 
@@ -65,6 +65,7 @@ Progress: [██████████] 100% (32 of 32 plans complete)
 | Phase 09-home-page P02 | 2min | 3 tasks | 3 files |
 | Phase 09-home-page PP03 | checkpoint | 2 tasks | 0 files |
 | Phase 10-claude-code-skills P01 | 3min | 2 tasks | 7 files |
+| Phase 10-claude-code-skills P02 | 2min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -121,6 +122,9 @@ Recent decisions affecting current work:
 - [Phase 09-home-page]: All 6 Phase 9 home page behaviors verified by human in browser — no automated substitute for DOM/keyboard/visual behavior confirmation
 - [Phase 10-claude-code-skills]: validateContent uses gray-matter instanceof Date check for date fields — gray-matter parses YYYY-MM-DD as a Date object, requiring .toISOString().slice(0,10) before regex test
 - [Phase 10-claude-code-skills]: 5 corpus documents restructured to use ## Summary + ## Content template (airllm, langflow, lovable, pageindex, cloud-ai-platforms-comparison) — predated template finalization
+- [Phase 10-claude-code-skills]: /loom:add uses WebFetch as primary with WebSearch fallback — handles paywalled content gracefully
+- [Phase 10-claude-code-skills]: Tag vocabulary is built at runtime by reading all existing *.md files — stays current automatically without manual maintenance
+- [Phase 10-claude-code-skills]: /loom:add output is disk-only (no git); /loom:deploy handles validation and push as a separate step
 
 ### Pending Todos
 
@@ -134,6 +138,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-10T23:39:42.043Z
-Stopped at: Completed 10-01-PLAN.md
+Last session: 2026-03-10T23:42:07.186Z
+Stopped at: Completed 10-02-PLAN.md
 Resume file: None
