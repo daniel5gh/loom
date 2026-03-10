@@ -102,8 +102,6 @@ const mapData = JSON.stringify(enriched);
       if (prevId) selectedDot = dotPositions.find(d => d.doc.id === prevId) || null;
     }
 
-    initCanvas();
-
     // Filter state — all start as "no filter active"
     let selectedTags = new Set();
     let anyAllMode = 'ANY';
@@ -111,6 +109,8 @@ const mapData = JSON.stringify(enriched);
     let timelineDate = null;      // Date | null
     let matchingDocIds = null;    // Set<string> | null (null = no search filter)
     let selectedDot = null;       // currently clicked dot | null
+
+    initCanvas();
 
     const DIM_OPACITY = 0.2;
     const SIGMA_DAYS = 5;         // tuned for current corpus date spread (~6 days)
