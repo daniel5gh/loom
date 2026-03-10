@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Visualization
 status: planning
-stopped_at: Completed 05-02-PLAN.md
-last_updated: "2026-03-10T16:01:19.574Z"
+stopped_at: Completed 05-03-PLAN.md
+last_updated: "2026-03-10T16:14:30.080Z"
 last_activity: 2026-03-10 — v1.1 roadmap created, 31 requirements mapped to phases 5-10
 progress:
   total_phases: 10
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 17
-  completed_plans: 16
+  completed_plans: 17
   percent: 40
 ---
 
@@ -48,6 +48,7 @@ Progress: [████░░░░░░] 40% (4 of 10 phases complete)
 *Updated after each plan completion*
 | Phase 05-embedding-pipeline P01 | 2 | 3 tasks | 4 files |
 | Phase 05-embedding-pipeline P02 | 5min | 1 tasks | 1 files |
+| Phase 05-embedding-pipeline P03 | 30 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,8 @@ Recent decisions affecting current work:
 - [Phase 05-embedding-pipeline]: .cache/ gitignored — raw 768-dim vector cache is local-only, never committed
 - [Phase 05-embedding-pipeline]: getVectors returns { vectors, allCached } tuple — main() branches to fast path without re-iterating docs
 - [Phase 05-embedding-pipeline]: atomicWriteJSON creates parent dirs with mkdirSync recursive — avoids ENOENT on first run when .cache/ missing
+- [Phase 05-embedding-pipeline]: Ollama host set to http://10.0.1.3:11434 — project uses remote LAN Ollama instance, not localhost
+- [Phase 05-embedding-pipeline]: embeddings.json committed to git with real UMAP coordinates — EMBED-04 closed
 
 ### Pending Todos
 
@@ -79,6 +82,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-10T16:01:19.570Z
-Stopped at: Completed 05-02-PLAN.md
+Last session: 2026-03-10T16:14:30.077Z
+Stopped at: Completed 05-03-PLAN.md
 Resume file: None
