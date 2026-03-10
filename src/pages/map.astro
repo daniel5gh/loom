@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import embeddingsData from '../data/embeddings.json';
+const mapData = JSON.stringify(embeddingsData);
+---
+
+<Base title="Map">
+  <div class="map-page">
+    <div id="map-canvas-wrap" class="map-canvas-wrap">
+      <canvas id="map-canvas"></canvas>
+      <div id="map-tooltip" class="map-tooltip"></div>
+    </div>
+  </div>
+
+  <!-- Data island: pass build-time embeddings to client script -->
+  <script type="application/json" id="map-data" set:html={mapData}></script>
+
+  <!-- Canvas rendering: is:inline + type="module" avoids SSR execution -->
+  <script is:inline type="module">
+    const data = JSON.parse(document.getElementById('map-data').textContent);
+    const docs = data.documents;
+
+    // Category color map — reuse graph page neon palette
+    const CATEGORY_COLORS = {
+      'ai-tools-and-services': '#00E5FF',
+      'cloud-ai-platforms':    '#FF2D78',
+      'companies':             '#39FF14',
+    };
+    const FALLBACK_COLOR = '#8888AA';
+
+    // HiDPI canvas setup — read dimensions from CSS layout, not hardcoded
+    const canvas = document.getElementById('map-canvas');
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+    const W = rect.width, H = rect.height;
+
+    // Coordinate normalization — map UMAP coords to canvas pixels
+    const xs = docs.map(d => d.x), ys = docs.map(d => d.y);
+    const xMin = Math.min(...xs), xMax = Math.max(...xs);
+    const yMin = Math.min(...ys), yMax = Math.max(...ys);
+    const PAD = 40;
+    const scaleX = xMax === xMin ? () => W / 2 : v => PAD + (v - xMin) / (xMax - xMin) * (W - 2 * PAD);
+    const scaleY = yMax === yMin ? () => H / 2 : v => PAD + (v - yMin) / (yMax - yMin) * (H - 2 * PAD);
+
+    // Build dotPositions and draw neon dots with glow
+    const HIT_RADIUS = 8;
+    const dotPositions = [];
+    ctx.clearRect(0, 0, W, H);
+    for (const doc of docs) {
+      const cx = scaleX(doc.x), cy = scaleY(doc.y);
+      dotPositions.push({ doc, cx, cy });
+      const color = CATEGORY_COLORS[doc.category] || FALLBACK_COLOR;
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, 5, 0, 2 * Math.PI);
+      ctx.fillStyle = color;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // Tooltip hover logic
+    const tooltip = document.getElementById('map-tooltip');
+    canvas.addEventListener('mousemove', (event) => {
+      const r = canvas.getBoundingClientRect();
+      const mx = event.clientX - r.left, my = event.clientY - r.top;
+      let hit = null;
+      for (const dot of dotPositions) {
+        const dx = dot.cx - mx, dy = dot.cy - my;
+        if (Math.sqrt(dx * dx + dy * dy) < HIT_RADIUS) { hit = dot; break; }
+      }
+      if (hit) {
+        tooltip.style.display = 'block';
+        tooltip.style.left = (mx + 12) + 'px';
+        tooltip.style.top = (my + 12) + 'px';
+        tooltip.innerHTML = '<strong>' + hit.doc.title + '</strong><br>' + hit.doc.tags.join(', ');
+      } else {
+        tooltip.style.display = 'none';
+      }
+    });
+    canvas.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+  </script>
+</Base>
