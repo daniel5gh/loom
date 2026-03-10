@@ -1,6 +1,45 @@
 ---
+import { getCollection } from 'astro:content';
+
 interface Props { title: string; }
 const { title } = Astro.props;
+
+const aiTools = await getCollection('aiTools');
+const cloudPlatforms = await getCollection('cloudPlatforms');
+const companies = await getCollection('companies');
+
+const shellData = JSON.stringify([
+  ...aiTools.map(doc => {
+    const summaryMatch = (doc.body || '').match(/## Summary\n\n([\s\S]*?)(\n##|$)/);
+    return {
+      slug: doc.id,
+      category: 'ai-tools-and-services',
+      title: doc.data.title,
+      tags: doc.data.tags,
+      summary: summaryMatch ? summaryMatch[1].trim().slice(0, 200) : '',
+    };
+  }),
+  ...cloudPlatforms.map(doc => {
+    const summaryMatch = (doc.body || '').match(/## Summary\n\n([\s\S]*?)(\n##|$)/);
+    return {
+      slug: doc.id,
+      category: 'cloud-ai-platforms',
+      title: doc.data.title,
+      tags: doc.data.tags,
+      summary: summaryMatch ? summaryMatch[1].trim().slice(0, 200) : '',
+    };
+  }),
+  ...companies.map(doc => {
+    const summaryMatch = (doc.body || '').match(/## Summary\n\n([\s\S]*?)(\n##|$)/);
+    return {
+      slug: doc.id,
+      category: 'companies',
+      title: doc.data.title,
+      tags: doc.data.tags,
+      summary: summaryMatch ? summaryMatch[1].trim().slice(0, 200) : '',
+    };
+  }),
+]);
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -20,5 +59,170 @@ const { title } = Astro.props;
     <main>
       <slot />
     </main>
+
+    <script type="application/json" id="shell-data" set:html={shellData}></script>
+
+    <div id="shell-overlay" class="shell-overlay" aria-modal="true" role="dialog" aria-label="Search" hidden>
+      <div class="shell-inner">
+        <div class="shell-prompt">
+          <span class="shell-prompt-label">loom&gt;</span>
+          <input id="shell-input" class="shell-input" type="text" autocomplete="off" spellcheck="false" placeholder="" />
+          <span class="shell-cursor" aria-hidden="true">_</span>
+        </div>
+        <ul id="shell-results" class="shell-results" role="listbox" aria-label="Search results"></ul>
+      </div>
+    </div>
+
+    <script>
+      import Fuse from 'fuse.js';
+
+      const rawData = document.getElementById('shell-data')?.textContent ?? '[]';
+      const searchData = JSON.parse(rawData);
+
+      const fuse = new Fuse(searchData, {
+        keys: [
+          { name: 'title',   weight: 0.6 },
+          { name: 'tags',    weight: 0.3 },
+          { name: 'summary', weight: 0.1 },
+        ],
+        threshold: 0.35,
+        includeScore: false,
+      });
+
+      const overlay = document.getElementById('shell-overlay');
+      const input = document.getElementById('shell-input');
+      const resultsList = document.getElementById('shell-results');
+
+      let overlayOpen = false;
+      let selectedIndex = -1;
+      let previousFocus = null;
+
+      function isTypingContext() {
+        const el = document.activeElement;
+        return el && (
+          el.tagName === 'INPUT' ||
+          el.tagName === 'TEXTAREA' ||
+          el.tagName === 'SELECT' ||
+          el.isContentEditable
+        );
+      }
+
+      function openOverlay() {
+        overlayOpen = true;
+        previousFocus = document.activeElement;
+        overlay.removeAttribute('hidden');
+        input.value = '';
+        renderResults([]);
+        input.focus();
+      }
+
+      function closeOverlay() {
+        overlayOpen = false;
+        overlay.setAttribute('hidden', '');
+        if (previousFocus && typeof previousFocus.focus === 'function') {
+          previousFocus.focus();
+        }
+      }
+
+      function renderResults(results) {
+        resultsList.innerHTML = '';
+        selectedIndex = results.length > 0 ? 0 : -1;
+
+        if (results.length === 0 && input.value.trim() !== '') {
+          const li = document.createElement('li');
+          li.className = 'shell-no-results';
+          li.textContent = 'no results';
+          resultsList.appendChild(li);
+          return;
+        }
+
+        results.forEach((r, i) => {
+          const doc = r.item;
+          const li = document.createElement('li');
+          li.className = 'shell-result-item' + (i === 0 ? ' selected' : '');
+          li.setAttribute('role', 'option');
+          li.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+          li.dataset.href = `/${doc.category}/${doc.slug}/`;
+
+          const titleEl = document.createElement('div');
+          titleEl.className = 'shell-result-title';
+          titleEl.textContent = doc.title;
+
+          const tagsEl = document.createElement('div');
+          tagsEl.className = 'shell-result-tags';
+          tagsEl.textContent = doc.tags.join(', ');
+
+          li.appendChild(titleEl);
+          li.appendChild(tagsEl);
+
+          li.addEventListener('click', () => {
+            window.location.href = li.dataset.href;
+          });
+
+          resultsList.appendChild(li);
+        });
+      }
+
+      function updateSelection(newIndex) {
+        const items = resultsList.querySelectorAll('.shell-result-item');
+        if (!items.length) return;
+        items.forEach((el, i) => {
+          el.classList.toggle('selected', i === newIndex);
+          el.setAttribute('aria-selected', i === newIndex ? 'true' : 'false');
+        });
+        selectedIndex = newIndex;
+        items[newIndex]?.scrollIntoView({ block: 'nearest' });
+      }
+
+      function openSelected() {
+        const items = resultsList.querySelectorAll('.shell-result-item');
+        const item = items[selectedIndex];
+        if (item?.dataset.href) {
+          window.location.href = item.dataset.href;
+        }
+      }
+
+      input.addEventListener('input', () => {
+        const query = input.value.trim();
+        if (!query) {
+          renderResults([]);
+          return;
+        }
+        const results = fuse.search(query).slice(0, 8);
+        renderResults(results);
+      });
+
+      // Arrow key / Enter navigation inside overlay
+      input.addEventListener('keydown', (e) => {
+        const items = resultsList.querySelectorAll('.shell-result-item');
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          updateSelection(Math.min(selectedIndex + 1, items.length - 1));
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          updateSelection(Math.max(selectedIndex - 1, 0));
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          openSelected();
+        }
+      });
+
+      // Close on backdrop click (outside .shell-inner)
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeOverlay();
+      });
+
+      // Global keydown — open overlay with /, close with Esc
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlayOpen) {
+          closeOverlay();
+          return;
+        }
+        if (e.key === '/' && !overlayOpen && !isTypingContext()) {
+          e.preventDefault();
+          openOverlay();
+        }
+      });
+    </script>
   </body>
 </html>
