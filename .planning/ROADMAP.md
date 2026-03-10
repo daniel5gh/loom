@@ -91,7 +91,7 @@ Plans:
 - [x] **Phase 6: Map Page Skeleton** - `/map` route renders documents as 2D dots from embeddings.json; validates data island, HiDPI canvas, and SSR boundary before any interactions are added (completed 2026-03-10)
 - [ ] **Phase 7: Map Interactions** - Filter lenses (tag + search + ANY/ALL), Gaussian timeline slider with play button, side panel, and nearest-neighbor lines wire together via CustomEvent bus
 - [x] **Phase 8: Global Shell** - Terminal search overlay, vim-style keyboard navigation, and cyberpunk CSS layer (scanlines, CRT vignette, typewriter headings) all land in Base.astro together (completed 2026-03-10)
-- [ ] **Phase 9: Home Page** - Redesigned home page uses the shell's search overlay as its primary entry point and surfaces the 10 most recently added articles
+- [x] **Phase 9: Home Page** - Redesigned home page uses the shell's search overlay as its primary entry point and surfaces the 10 most recently added articles (completed 2026-03-10)
 - [ ] **Phase 10: Claude Code Skills** - Four new slash commands wrap the fully functioning system: add, deploy, retag, and gaps
 
 ## Phase Details
@@ -218,7 +218,7 @@ Every v1.1 requirement maps to exactly one phase. No orphans.
 | AESTH-02 | Headings use typewriter animation on load | 8 |
 | AESTH-03 | ASCII-art dividers in page layouts | 8 |
 | AESTH-04 | All aesthetic effects maintain WCAG AA on body text | 8 |
-| HOME-01 | Home page shows terminal search prompt as primary entry point | 9 | 2/3 | In Progress|  | 9 |
+| HOME-01 | Home page shows terminal search prompt as primary entry point | 9 | 3/3 | Complete   | 2026-03-10 | 9 |
 | SKILL-01 | /loom:add — fetch URL, create document with inferred tags | 10 |
 | SKILL-02 | /loom:deploy — validate + re-embed + commit + push | 10 |
 | SKILL-03 | /loom:deploy refuses to deploy if validation fails | 10 |
