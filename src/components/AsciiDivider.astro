@@ -1,0 +1,15 @@
+---
+interface Props {
+  variant?: 'single' | 'double' | 'block';
+}
+const { variant = 'single' } = Astro.props;
+const chars = {
+  single: '─',
+  double: '═',
+  block:  '░',
+};
+const char = chars[variant];
+---
+<div class="ascii-divider" aria-hidden="true" data-variant={variant}>
+  {char.repeat(40)}
+</div>
