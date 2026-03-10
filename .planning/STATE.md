@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Visualization
 status: planning
-stopped_at: Completed 07-04-PLAN.md
-last_updated: "2026-03-10T17:43:01.724Z"
+stopped_at: Completed 07-05-PLAN.md
+last_updated: "2026-03-10T18:55:00.000Z"
 last_activity: 2026-03-10 — v1.1 roadmap created, 31 requirements mapped to phases 5-10
 progress:
   total_phases: 10
@@ -25,10 +25,10 @@ See: .planning/PROJECT.md (updated 2026-03-10)
 
 ## Current Position
 
-Phase: 5 of 10 (Embedding Pipeline)
-Plan: — (not yet planned)
-Status: Ready to plan
-Last activity: 2026-03-10 — v1.1 roadmap created, 31 requirements mapped to phases 5-10
+Phase: 7 of 10 (Map Interactions)
+Plan: 05 of 05 (complete)
+Status: Phase 7 complete — ready to plan Phase 8
+Last activity: 2026-03-10 — Phase 7 map interactions complete; all MAP-03 through MAP-10 verified by human
 
 Progress: [████░░░░░░] 40% (4 of 10 phases complete)
 
@@ -55,6 +55,7 @@ Progress: [████░░░░░░] 40% (4 of 10 phases complete)
 | Phase 07-map-interactions P02 | 2min | 2 tasks | 2 files |
 | Phase 07-map-interactions P03 | 2min | 2 tasks | 2 files |
 | Phase 07-map-interactions P04 | 3min | 2 tasks | 2 files |
+| Phase 07-map-interactions P05 | checkpoint | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -90,6 +91,10 @@ Recent decisions affecting current work:
 - [Phase 07-map-interactions]: Timeline slider position 0 on initial load leaves timelineDate=null (no filter); activates only on first drag
 - [Phase 07-map-interactions]: Play tick fires slider.dispatchEvent(new Event('input')) to reuse input handler — avoids duplicate redraw logic
 - [Phase 07-map-interactions]: pagehide listener calls stopPlay() to clear interval and prevent memory leak on SPA navigation
+- [Phase 07-map-interactions]: Fuse.js CDN ESM import replaced with local npm install (fuse.js@7.1.0) — CDN failed to load reliably in dev environment
+- [Phase 07-map-interactions]: Side panel restructured from position:absolute overlay to flex sibling — canvas shrinks correctly with min-width:0 when panel opens
+- [Phase 07-map-interactions]: initCanvas calls getBoundingClientRect each time and is re-called on panel open/close — correct HiDPI sizing after layout reflow
+- [Phase 07-map-interactions]: selectedDot reattached by slug match after each initCanvas call — preserves neighbor lines and panel state across resize/panel-toggle
 
 ### Pending Todos
 
@@ -103,6 +108,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-10T17:42:55.231Z
-Stopped at: Completed 07-04-PLAN.md
+Last session: 2026-03-10T18:55:00.000Z
+Stopped at: Completed 07-05-PLAN.md
 Resume file: None

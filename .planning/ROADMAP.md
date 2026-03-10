@@ -141,11 +141,11 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 07-01-PLAN.md — Pure function exports (gaussianOpacity, kNearest, composedOpacity), tests, data island enrichment with date+summary
-- [ ] 07-02-PLAN.md — Refactor map.astro to redraw() loop; add side panel and nearest-neighbor lines (MAP-03, MAP-04)
-- [ ] 07-03-PLAN.md — Tag filter buttons, ANY/ALL toggle, Fuse.js search wired to redraw() (MAP-05, MAP-06, MAP-07)
-- [ ] 07-04-PLAN.md — Timeline slider, play button, Gaussian opacity, filter composition complete (MAP-08, MAP-09, MAP-10)
-- [ ] 07-05-PLAN.md — Human visual checkpoint for all 6 interactions
+- [x] 07-01-PLAN.md — Pure function exports (gaussianOpacity, kNearest, composedOpacity), tests, data island enrichment with date+summary
+- [x] 07-02-PLAN.md — Refactor map.astro to redraw() loop; add side panel and nearest-neighbor lines (MAP-03, MAP-04)
+- [x] 07-03-PLAN.md — Tag filter buttons, ANY/ALL toggle, Fuse.js search wired to redraw() (MAP-05, MAP-06, MAP-07)
+- [x] 07-04-PLAN.md — Timeline slider, play button, Gaussian opacity, filter composition complete (MAP-08, MAP-09, MAP-10)
+- [x] 07-05-PLAN.md — Human visual checkpoint for all 6 interactions
 
 ### Phase 8: Global Shell
 **Goal**: A terminal-style search overlay and vim-style keyboard navigation mount once in Base.astro and work across every page; a cyberpunk CSS layer adds scanlines, CRT vignette, typewriter headings, and ASCII dividers to the site-wide aesthetic
@@ -190,13 +190,13 @@ Every v1.1 requirement maps to exactly one phase. No orphans.
 | EMBED-03 | Fail loudly if Ollama not running; atomic file write | 5 |
 | EMBED-04 | embeddings.json committed to git, consumed at Astro build time | 5 |
 | MAP-01 | View all documents as dots on 2D semantic map at /map | 6 | 2/2 | Complete   | 2026-03-10 | 6 |
-| MAP-03 | Click dot opens side panel with title, tags, summary, link | 7 | 4/5 | In Progress|  | 7 |
-| MAP-05 | Filter by tag — matching dots glow, others dim to ~20% | 7 |
-| MAP-06 | Filter by search term — matching dots glow, others dim | 7 |
-| MAP-07 | Toggle ANY (union) / ALL (intersection) tag matching | 7 |
-| MAP-08 | Timeline slider applies Gaussian opacity by document date | 7 |
-| MAP-09 | Play button auto-scrubs timeline forward through time | 7 |
-| MAP-10 | Tag filter, search filter, timeline compose simultaneously | 7 |
+| MAP-03 | Click dot opens side panel with title, tags, summary, link | 7 | 5/5 | Complete | 2026-03-10 | 7 |
+| MAP-05 | Filter by tag — matching dots glow, others dim to ~20% | 7 | 5/5 | Complete | 2026-03-10 | 7 |
+| MAP-06 | Filter by search term — matching dots glow, others dim | 7 | 5/5 | Complete | 2026-03-10 | 7 |
+| MAP-07 | Toggle ANY (union) / ALL (intersection) tag matching | 7 | 5/5 | Complete | 2026-03-10 | 7 |
+| MAP-08 | Timeline slider applies Gaussian opacity by document date | 7 | 5/5 | Complete | 2026-03-10 | 7 |
+| MAP-09 | Play button auto-scrubs timeline forward through time | 7 | 5/5 | Complete | 2026-03-10 | 7 |
+| MAP-10 | Tag filter, search filter, timeline compose simultaneously | 7 | 5/5 | Complete | 2026-03-10 | 7 |
 | SHELL-01 | Press `/` from any page to open terminal search overlay | 8 |
 | SHELL-02 | Search overlay fuzzy-matches title, tag, and keyword | 8 |
 | SHELL-03 | Arrow keys navigate results; Enter opens selected result | 8 |
@@ -227,9 +227,9 @@ Every v1.1 requirement maps to exactly one phase. No orphans.
 | 2. Graph Visualization and Relationship Engine | v1.0 | 5/5 | Complete | 2026-03-09 |
 | 3. Claude Code Skills and Polish | v1.0 | 3/3 | Complete | 2026-03-09 |
 | 4. Cleanup and Polish | v1.0 | 1/1 | Complete | 2026-03-09 |
-| 5. Embedding Pipeline | v1.1 | 0/3 | Planned | - |
-| 6. Map Page Skeleton | v1.1 | 0/2 | Planned | - |
-| 7. Map Interactions | v1.1 | 0/5 | Planned | - |
+| 5. Embedding Pipeline | v1.1 | 3/3 | Complete | 2026-03-10 |
+| 6. Map Page Skeleton | v1.1 | 2/2 | Complete | 2026-03-10 |
+| 7. Map Interactions | v1.1 | 5/5 | Complete | 2026-03-10 |
 | 8. Global Shell | v1.1 | 0/TBD | Not started | - |
 | 9. Home Page | v1.1 | 0/TBD | Not started | - |
 | 10. Claude Code Skills | v1.1 | 0/TBD | Not started | - |
