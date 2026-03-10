@@ -88,7 +88,7 @@ Plans:
 **Milestone Goal:** Transform the site into an immersive cyberpunk knowledge terminal — semantic embedding map, terminal-style search and keyboard navigation, timeline scrubbing, and AI-powered content management skills.
 
 - [x] **Phase 5: Embedding Pipeline** - Offline script embeds all documents via Ollama + UMAP and commits coordinates as a static JSON artifact consumed at build time (completed 2026-03-10)
-- [ ] **Phase 6: Map Page Skeleton** - `/map` route renders documents as 2D dots from embeddings.json; validates data island, HiDPI canvas, and SSR boundary before any interactions are added
+- [x] **Phase 6: Map Page Skeleton** - `/map` route renders documents as 2D dots from embeddings.json; validates data island, HiDPI canvas, and SSR boundary before any interactions are added (completed 2026-03-10)
 - [ ] **Phase 7: Map Interactions** - Filter lenses (tag + search + ANY/ALL), Gaussian timeline slider with play button, side panel, and nearest-neighbor lines wire together via CustomEvent bus
 - [ ] **Phase 8: Global Shell** - Terminal search overlay, vim-style keyboard navigation, and cyberpunk CSS layer (scanlines, CRT vignette, typewriter headings) all land in Base.astro together
 - [ ] **Phase 9: Home Page** - Redesigned home page uses the shell's search overlay as its primary entry point and surfaces the 10 most recently added articles
@@ -182,7 +182,7 @@ Every v1.1 requirement maps to exactly one phase. No orphans.
 | EMBED-01 | Run embed.mjs to generate 2D coordinates via Ollama + UMAP | 5 | 3/3 | Complete   | 2026-03-10 | 5 |
 | EMBED-03 | Fail loudly if Ollama not running; atomic file write | 5 |
 | EMBED-04 | embeddings.json committed to git, consumed at Astro build time | 5 |
-| MAP-01 | View all documents as dots on 2D semantic map at /map | 6 | 1/2 | In Progress|  | 6 |
+| MAP-01 | View all documents as dots on 2D semantic map at /map | 6 | 2/2 | Complete   | 2026-03-10 | 6 |
 | MAP-03 | Click dot opens side panel with title, tags, summary, link | 7 |
 | MAP-04 | Click dot draws lines to 5 nearest neighbors | 7 |
 | MAP-05 | Filter by tag — matching dots glow, others dim to ~20% | 7 |
