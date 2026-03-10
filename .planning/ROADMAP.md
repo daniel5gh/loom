@@ -138,7 +138,14 @@ Plans:
   4. Dragging the timeline slider applies a Gaussian opacity curve centered on the selected date — dots far from that date fade without disappearing entirely
   5. Tag filter, search filter, and timeline slider compose: a dot's final opacity reflects all three applied simultaneously
   6. The play button auto-advances the timeline through the document corpus from earliest to latest date
-**Plans**: TBD
+**Plans**: 5 plans
+
+Plans:
+- [ ] 07-01-PLAN.md — Pure function exports (gaussianOpacity, kNearest, composedOpacity), tests, data island enrichment with date+summary
+- [ ] 07-02-PLAN.md — Refactor map.astro to redraw() loop; add side panel and nearest-neighbor lines (MAP-03, MAP-04)
+- [ ] 07-03-PLAN.md — Tag filter buttons, ANY/ALL toggle, Fuse.js search wired to redraw() (MAP-05, MAP-06, MAP-07)
+- [ ] 07-04-PLAN.md — Timeline slider, play button, Gaussian opacity, filter composition complete (MAP-08, MAP-09, MAP-10)
+- [ ] 07-05-PLAN.md — Human visual checkpoint for all 6 interactions
 
 ### Phase 8: Global Shell
 **Goal**: A terminal-style search overlay and vim-style keyboard navigation mount once in Base.astro and work across every page; a cyberpunk CSS layer adds scanlines, CRT vignette, typewriter headings, and ASCII dividers to the site-wide aesthetic
@@ -223,7 +230,7 @@ Every v1.1 requirement maps to exactly one phase. No orphans.
 | 4. Cleanup and Polish | v1.0 | 1/1 | Complete | 2026-03-09 |
 | 5. Embedding Pipeline | v1.1 | 0/3 | Planned | - |
 | 6. Map Page Skeleton | v1.1 | 0/2 | Planned | - |
-| 7. Map Interactions | v1.1 | 0/TBD | Not started | - |
+| 7. Map Interactions | v1.1 | 0/5 | Planned | - |
 | 8. Global Shell | v1.1 | 0/TBD | Not started | - |
 | 9. Home Page | v1.1 | 0/TBD | Not started | - |
 | 10. Claude Code Skills | v1.1 | 0/TBD | Not started | - |
