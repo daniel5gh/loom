@@ -33,6 +33,11 @@ const mapData = JSON.stringify(enriched);
 
 <Base title="Map">
   <div class="map-page">
+    <div class="map-controls">
+      <input id="map-search" type="text" placeholder="search…" class="map-search-input" autocomplete="off" />
+      <div id="map-tag-filter" class="map-tag-filter"></div>
+      <button id="map-anyall-btn" class="map-anyall-btn any-mode">ANY</button>
+    </div>
     <div id="map-canvas-wrap" class="map-canvas-wrap">
       <canvas id="map-canvas"></canvas>
       <div id="map-tooltip" class="map-tooltip"></div>
