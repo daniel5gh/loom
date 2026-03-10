@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "embed": "node scripts/embed.mjs"
   },
   "dependencies": {
     "@fontsource/fira-code": "^5.0.0",
