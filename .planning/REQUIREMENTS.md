@@ -49,7 +49,7 @@ All v1.0 requirements validated and shipped. See ROADMAP.md phases 1-4.
 ### Home Page
 
 - [ ] **HOME-01**: Home page shows terminal search prompt (`loom> _`) as primary entry point
-- [ ] **HOME-02**: Home page shows recently added articles (last 10 by date)
+- [x] **HOME-02**: Home page shows recently added articles (last 10 by date)
 
 ### Cyberpunk Aesthetic
 
@@ -114,7 +114,7 @@ Deferred to future release.
 | AESTH-03 | Phase 8 | Complete |
 | AESTH-04 | Phase 8 | Complete |
 | HOME-01 | Phase 9 | Pending |
-| HOME-02 | Phase 9 | Pending |
+| HOME-02 | Phase 9 | Complete |
 | SKILL-01 | Phase 10 | Pending |
 | SKILL-02 | Phase 10 | Pending |
 | SKILL-03 | Phase 10 | Pending |
