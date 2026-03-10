@@ -9,8 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource/fira-code": "^5.0.0",
     "astro": "^5.18.0",
-    "@fontsource/fira-code": "^5.0.0"
+    "gray-matter": "^4.0.3",
+    "ollama": "^0.6.3",
+    "umap-js": "^1.4.0"
   },
   "devDependencies": {
     "wrangler": "^3.0.0"

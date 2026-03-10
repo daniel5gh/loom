@@ -24,3 +24,6 @@ Thumbs.db
 
 # Wrangler
 .wrangler/
+
+# Embedding pipeline cache (local performance cache — never commit)
+.cache/
