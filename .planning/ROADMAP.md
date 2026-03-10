@@ -105,7 +105,12 @@ Plans:
   2. Running the script a second time with no document changes completes without calling Ollama (incremental cache hit verified in console output)
   3. Running the script with Ollama stopped prints an explicit error and exits non-zero — no partial or stale output file is written
   4. `npm run build` succeeds using the committed embeddings.json — Cloudflare Pages build log shows no missing-file errors
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 05-01-PLAN.md — Test scaffold, npm deps (ollama, umap-js, gray-matter), placeholder embeddings.json, .gitignore .cache/
+- [ ] 05-02-PLAN.md — Implement scripts/embed.mjs with exported functions, incremental cache, UMAP reduction, atomic write
+- [ ] 05-03-PLAN.md — Run against live Ollama, verify all EMBED behaviors, commit real embeddings.json artifact
 
 ### Phase 6: Map Page Skeleton
 **Goal**: The `/map` route renders every document as a dot at its 2D embedding coordinate on an HiDPI-correct canvas, with a hover tooltip showing title and tags — no filter interactions yet, just verified data flow
@@ -214,7 +219,7 @@ Every v1.1 requirement maps to exactly one phase. No orphans.
 | 2. Graph Visualization and Relationship Engine | v1.0 | 5/5 | Complete | 2026-03-09 |
 | 3. Claude Code Skills and Polish | v1.0 | 3/3 | Complete | 2026-03-09 |
 | 4. Cleanup and Polish | v1.0 | 1/1 | Complete | 2026-03-09 |
-| 5. Embedding Pipeline | v1.1 | 0/TBD | Not started | - |
+| 5. Embedding Pipeline | v1.1 | 0/3 | Planned | - |
 | 6. Map Page Skeleton | v1.1 | 0/TBD | Not started | - |
 | 7. Map Interactions | v1.1 | 0/TBD | Not started | - |
 | 8. Global Shell | v1.1 | 0/TBD | Not started | - |
