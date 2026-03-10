@@ -43,9 +43,11 @@ const mapData = JSON.stringify(enriched);
         <button id="map-play" class="map-play-btn" aria-label="Play timeline">&#x25B6;</button>
       </div>
     </div>
-    <div id="map-canvas-wrap" class="map-canvas-wrap">
-      <canvas id="map-canvas"></canvas>
-      <div id="map-tooltip" class="map-tooltip"></div>
+    <div class="map-body">
+      <div id="map-canvas-wrap" class="map-canvas-wrap">
+        <canvas id="map-canvas"></canvas>
+        <div id="map-tooltip" class="map-tooltip"></div>
+      </div>
       <div id="map-panel" class="map-panel" aria-label="Document details">
         <button id="map-panel-close" class="map-panel-close" aria-label="Close panel">×</button>
         <div id="map-panel-content" class="map-panel-content"></div>
@@ -56,9 +58,9 @@ const mapData = JSON.stringify(enriched);
   <!-- Data island: pass build-time embeddings to client script -->
   <script type="application/json" id="map-data" set:html={mapData}></script>
 
-  <!-- Canvas rendering: is:inline + type="module" avoids SSR execution -->
-  <script is:inline type="module">
-    import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@7.1.0/dist/fuse.esm.min.js';
+  <!-- Canvas rendering: Astro-bundled module script (Fuse.js bundled locally) -->
+  <script>
+    import Fuse from 'fuse.js';
     const data = JSON.parse(document.getElementById('map-data').textContent);
     const docs = data.documents;
 
@@ -70,33 +72,34 @@ const mapData = JSON.stringify(enriched);
     };
     const FALLBACK_COLOR = '#8888AA';
 
-    // HiDPI canvas setup — read dimensions from CSS layout, not hardcoded
+    // Canvas state — mutable so panel open/close can resize
     const canvas = document.getElementById('map-canvas');
     const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    canvas.style.width = rect.width + 'px';
-    canvas.style.height = rect.height + 'px';
     const ctx = canvas.getContext('2d');
-    ctx.scale(dpr, dpr);
-    const W = rect.width, H = rect.height;
+    const HIT_RADIUS = 8;
+    const PAD = 40;
 
-    // Coordinate normalization — map UMAP coords to canvas pixels
     const xs = docs.map(d => d.x), ys = docs.map(d => d.y);
     const xMin = Math.min(...xs), xMax = Math.max(...xs);
     const yMin = Math.min(...ys), yMax = Math.max(...ys);
-    const PAD = 40;
-    const scaleX = xMax === xMin ? () => W / 2 : v => PAD + (v - xMin) / (xMax - xMin) * (W - 2 * PAD);
-    const scaleY = yMax === yMin ? () => H / 2 : v => PAD + (v - yMin) / (yMax - yMin) * (H - 2 * PAD);
 
-    // Build dotPositions array
-    const HIT_RADIUS = 8;
-    const dotPositions = [];
-    for (const doc of docs) {
-      const cx = scaleX(doc.x), cy = scaleY(doc.y);
-      dotPositions.push({ doc, cx, cy });
+    let W, H, dotPositions = [];
+
+    function initCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = rect.height + 'px';
+      ctx.scale(dpr, dpr);
+      W = rect.width;
+      H = rect.height;
+      const scaleX = xMax === xMin ? () => W / 2 : v => PAD + (v - xMin) / (xMax - xMin) * (W - 2 * PAD);
+      const scaleY = yMax === yMin ? () => H / 2 : v => PAD + (v - yMin) / (yMax - yMin) * (H - 2 * PAD);
+      dotPositions = docs.map(doc => ({ doc, cx: scaleX(doc.x), cy: scaleY(doc.y) }));
     }
+
+    initCanvas();
 
     // Filter state — all start as "no filter active"
     let selectedTags = new Set();
@@ -313,9 +316,11 @@ const mapData = JSON.stringify(enriched);
         <a href="/${doc.category}/${doc.id}/" class="map-panel-link">Open article →</a>
       `;
       panel.classList.add('open');
+      setTimeout(() => { initCanvas(); redraw(); }, 210);
     }
     function closePanel() {
       document.getElementById('map-panel').classList.remove('open');
+      setTimeout(() => { initCanvas(); redraw(); }, 210);
     }
 
     // Click: select dot, draw neighbors, open panel; second click on same dot = deselect

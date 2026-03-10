@@ -535,6 +535,12 @@ main:has(.map-page) {
   height: calc(100vh - 3rem); /* 3rem = nav height */
 }
 
+.map-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
 .map-canvas-wrap {
   position: relative;
   flex: 1;
@@ -564,23 +570,20 @@ main:has(.map-page) {
   box-shadow: 0 0 8px var(--neon-cyan, #00E5FF);
 }
 
-/* Side panel */
+/* Side panel — flex sibling of canvas-wrap, pushes canvas aside instead of overlapping */
 .map-panel {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 280px;
+  box-sizing: border-box;
+  width: 0;
+  overflow: hidden;
+  flex-shrink: 0;
   background: var(--bg-surface, #0D0D1A);
-  border-left: 1px solid var(--neon-cyan, #00E5FF);
-  padding: 1rem;
-  transform: translateX(100%);
-  transition: transform 0.2s ease;
-  overflow-y: auto;
-  z-index: 20;
+  transition: width 0.2s ease;
 }
 .map-panel.open {
-  transform: translateX(0);
+  width: 280px;
+  overflow-y: auto;
+  border-left: 1px solid var(--neon-cyan, #00E5FF);
+  padding: 1rem;
 }
 .map-panel-close {
   background: none;
