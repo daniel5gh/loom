@@ -97,7 +97,9 @@ const mapData = JSON.stringify(enriched);
       H = rect.height;
       const scaleX = xMax === xMin ? () => W / 2 : v => PAD + (v - xMin) / (xMax - xMin) * (W - 2 * PAD);
       const scaleY = yMax === yMin ? () => H / 2 : v => PAD + (v - yMin) / (yMax - yMin) * (H - 2 * PAD);
+      const prevId = selectedDot ? selectedDot.doc.id : null;
       dotPositions = docs.map(doc => ({ doc, cx: scaleX(doc.x), cy: scaleY(doc.y) }));
+      if (prevId) selectedDot = dotPositions.find(d => d.doc.id === prevId) || null;
     }
 
     initCanvas();
