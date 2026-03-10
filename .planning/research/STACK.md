@@ -1,186 +1,282 @@
-# Technology Stack
+# Stack Research
 
-**Project:** Loom - Static Knowledge Base with Graph Visualization
-**Researched:** 2026-03-09
-**Verification note:** Web search and Context7 were unavailable during research. Recommendations are based on training data (cutoff May 2025). Version numbers should be verified against npm/official docs before installing.
+**Domain:** Personal knowledge base — embedding pipeline, canvas map, terminal UX (v1.1 additions)
+**Researched:** 2026-03-10
+**Confidence:** HIGH (all new library versions verified against npm registry via web search)
 
-## Recommended Stack
+---
 
-### Static Site Generator
+## Existing Stack (v1.0 — Validated, Do Not Re-Research)
 
-| Technology | Version | Purpose | Why | Confidence |
-|------------|---------|---------|-----|------------|
-| Astro | ^5.x | Static site generation from markdown | Purpose-built for content-driven static sites. Ships zero JS by default (critical for performance), has first-class markdown/MDX support via Content Collections, handles YAML frontmatter natively (including `title`, `date`, `tags`), and has an official Cloudflare Pages adapter. Unlike Next.js or Gatsby, Astro does not impose a heavy client-side framework -- you opt into interactivity only where needed (graph viz) via "islands architecture." | MEDIUM -- Astro 5 was releasing around late 2024/early 2025; verify current stable version |
+Already in production. Listed here as integration context for new additions.
 
-**Why not alternatives:**
+| Technology | Version | Status |
+|------------|---------|--------|
+| Astro | ^5.18.0 | In use |
+| D3.js v7 | CDN ESM | In use for force graph (page being replaced) |
+| Vanilla CSS | — | Dark/neon theme established |
+| Shiki | via Astro | Syntax highlighting at build time |
+| Cloudflare Pages | — | Auto-deploy on push |
+| @fontsource/fira-code | ^5.0.0 | Installed |
+| Wrangler | ^3.x | Dev/deploy CLI |
 
-| Rejected | Reason |
-|----------|--------|
-| Next.js | Overkill. Server-side rendering capabilities are wasted on a static knowledge base. Heavier build output, more complex configuration, ships more client JS than needed. |
-| Gatsby | Ecosystem has been declining since 2023. Plugin ecosystem is stale. GraphQL data layer adds unnecessary complexity for simple markdown processing. |
-| Hugo | Extremely fast builds but templating language (Go templates) is painful for interactive components. Poor story for embedding D3/JS visualizations. No component model. |
-| 11ty (Eleventy) | Good static generator but lacks Astro's component model and island architecture. Harder to integrate interactive JS components cleanly. Less opinionated about content structure. |
-| VitePress | Designed for documentation sites, not knowledge bases. Limited layout flexibility. Vue-only component model. |
-| Obsidian Publish | Proprietary, no custom graph visualization control, limited theming. |
+---
 
-### Graph Visualization
+## New Stack Additions for v1.1
 
-| Technology | Version | Purpose | Why | Confidence |
-|------------|---------|---------|-----|------------|
-| D3.js | ^7.x | Interactive force-directed graph of document relationships | Industry standard for data visualization. Force-directed layouts are ideal for showing tag-based document clusters. Full control over styling (essential for the neon/hacker aesthetic). Massive ecosystem of examples. Works purely client-side. | HIGH -- D3 v7 has been stable since 2021, unlikely to have breaking changes |
-| d3-force | (included in D3) | Force simulation for node-link diagrams | Submodule of D3 specifically for force-directed graphs. Handles physics simulation, collision detection, link forces. | HIGH |
+### Core Technologies
 
-**Why not alternatives:**
-
-| Rejected | Reason |
-|----------|--------|
-| vis.js / vis-network | Simpler API but far less customizable. Cannot achieve the specific neon aesthetic without fighting the library. Less maintained. |
-| Cytoscape.js | Better for biological/scientific networks. Heavier than needed for ~50-200 node graphs. API is more complex than raw D3 for this scale. |
-| Sigma.js | Optimized for large graphs (10K+ nodes). Overkill and harder to style for small knowledge bases. WebGL rendering makes custom styling harder. |
-| React Flow | Designed for node-based editors (flowcharts, pipelines), not knowledge graphs. Wrong mental model. Also imposes React dependency. |
-| Force Graph (force-graph npm) | Nice D3 wrapper but abstracts away the control needed for custom neon styling. If you want full aesthetic control, use D3 directly. |
-
-### CSS & Styling
-
-| Technology | Version | Purpose | Why | Confidence |
-|------------|---------|---------|-----|------------|
-| Vanilla CSS with CSS custom properties | N/A | All styling | For a static site with a specific aesthetic, utility-class frameworks like Tailwind add build complexity without proportional value. CSS custom properties (variables) provide theming (neon color palette) cleanly. The site has ~5-8 page templates max -- not enough to justify a framework. | HIGH |
-| CSS `@layer` | N/A | Style organization | Native CSS cascade layers for organizing base/component/utility styles without specificity wars. | HIGH |
-
-**Why not Tailwind:** The hacker/neon aesthetic requires custom animations (glow effects, scanline overlays, pulsing nodes), custom color blending, and precise control over graph SVG styling. Tailwind's utility classes do not help with SVG styling or complex CSS animations. For a small site (< 10 templates), Tailwind adds config overhead without saving time.
-
-### Markdown Processing
-
-| Technology | Version | Purpose | Why | Confidence |
-|------------|---------|---------|-----|------------|
-| Astro Content Collections | (built-in) | Markdown + frontmatter processing | Astro's content layer handles markdown parsing, YAML frontmatter extraction, and schema validation natively. Defines a typed schema for frontmatter fields (`title: string`, `date: date`, `tags: string[]`), catches errors at build time. No additional markdown libraries needed. | MEDIUM |
-| gray-matter | ^4.x | Frontmatter parsing (if needed outside Astro) | Only needed for standalone scripts (like Claude Code slash commands that process markdown outside the Astro build). Astro handles this internally for the site build. | HIGH -- very stable, version 4 has been current for years |
-| remark / rehype | (Astro built-in) | Markdown-to-HTML pipeline | Astro uses remark/rehype internally. Extend with plugins for syntax highlighting, custom components, etc. | HIGH |
-
-### Syntax Highlighting
-
-| Technology | Version | Purpose | Why | Confidence |
-|------------|---------|---------|-----|------------|
-| Shiki | ^1.x | Code block syntax highlighting | Built into Astro by default. Generates highlighted HTML at build time (no client-side JS). Supports custom themes -- essential for matching the neon aesthetic. Much better than Prism for custom theming. | MEDIUM -- Shiki 1.x was current as of early 2025 |
-
-### Build & Development
-
-| Technology | Version | Purpose | Why | Confidence |
-|------------|---------|---------|-----|------------|
-| Node.js | ^22.x LTS | Runtime for build tooling | Required by Astro. Use current LTS version. | MEDIUM -- verify current LTS |
-| Vite | (Astro built-in) | Dev server & bundler | Astro uses Vite internally. Fast HMR, handles asset processing. No separate config needed. | HIGH |
-
-### Deployment
-
-| Technology | Version | Purpose | Why | Confidence |
-|------------|---------|---------|-----|------------|
-| @astrojs/cloudflare | latest | Cloudflare Pages adapter | Official Astro adapter for Cloudflare Pages deployment. For a fully static site, you can also use `output: 'static'` mode which needs no adapter (just deploy the `dist/` folder). The adapter is only needed if you want SSR on Cloudflare Workers. For this project, **static output mode is sufficient**. | MEDIUM |
-| Wrangler | ^3.x | Cloudflare CLI for local preview and deployment | `wrangler pages dev` for local testing against Cloudflare runtime. `wrangler pages deploy` for manual deployments. Can also configure git-based auto-deploy from Cloudflare dashboard. | MEDIUM |
-
-### Claude Code Slash Commands
-
-| Technology | Version | Purpose | Why | Confidence |
-|------------|---------|---------|-----|------------|
-| Claude Code slash commands | N/A | AI-powered document management | Defined as `.claude/commands/*.md` files. These are prompt templates, not code -- they instruct Claude Code to perform document operations (research new topics, write documents from template, organize/retag, validate frontmatter). No additional libraries needed. | HIGH |
+| Technology | Version | Purpose | Why Recommended |
+|------------|---------|---------|-----------------|
+| `regl-scatterplot` | ^1.15.0 | WebGL dot map for the similarity map | Purpose-built for exactly this use case: 2D scatter plot with pan/zoom, hover, click, opacity encoding, and category color encoding. Scales to 20M points (hardware permitting). Actively maintained — v1.15.0 released January 2026. Uses instanced WebGL rendering, which is the correct approach for 1000+ nodes. Provides built-in hit testing, lasso selection, and point opacity — all features needed for the timeline/filter lenses. Ships as ESM, works with Vite/Astro out of the box. |
+| `fuse.js` | ^7.1.0 | Fuzzy client-side search for the `/` terminal overlay | Zero dependencies, 7.1KB gzipped. Builds index from plain JSON at runtime — no build step. Searches title, tags, summary with configurable key weights and threshold. The Fuse.js + Astro static site pattern is extensively documented with community guides. v7.1.0 published ~10 months ago. |
+| `ollama` (npm) | ^0.6.3 | Node.js client for local Ollama REST API | Official SDK from the Ollama team. Used in the embed pipeline script to call `nomic-embed-text`. API: `await ollama.embed({ model: 'nomic-embed-text', input: text })`. Runs against local Ollama process — no external network. v0.6.3 last published 4 months ago, actively maintained. |
+| `umap-js` | ^1.4.0 | UMAP dimensionality reduction: 768d embeddings → 2D coordinates | Google PAIR's official JavaScript port of UMAP. The only mature, maintained JS implementation. Synchronous `umap.fit(data)` returns 2D coordinate array. Run in the offline embed script, not in the browser. Last published 2 years ago — the API is stable and the UMAP algorithm is not changing. Suitable for hundreds to low-thousands of documents. |
 
 ### Supporting Libraries
 
 | Library | Version | Purpose | When to Use |
 |---------|---------|---------|-------------|
-| sharp | ^0.33.x | Image optimization at build time | Only if documents include images. Astro integrates sharp for `<Image>` component optimization. Install only when needed. |
-| fuse.js | ^7.x | Client-side fuzzy search | If simple tag filtering is insufficient and you want search-as-you-type across document titles/tags. Lightweight (~5KB gzipped). Defer to phase 2+. |
-| @fontsource/fira-code | latest | Monospace font for hacker aesthetic | Self-hosted font loading, no Google Fonts dependency. Fira Code has programming ligatures that enhance the hacker feel. |
-| @fontsource/share-tech-mono | latest | Alternative mono font | Slightly more "terminal" feeling than Fira Code. Pick one. |
+| `gray-matter` | ^4.x | Frontmatter parsing in the embed script | The embed pipeline script (`scripts/embed.mjs`) reads markdown files outside Astro's build context. gray-matter parses YAML frontmatter to extract `title`, `date`, `tags`, and body text for embedding. Already a common utility in the Node.js ecosystem — version 4 has been stable for years. |
 
-## Explicitly NOT Using
+### Development Tools
 
-| Technology | Why Not |
-|------------|---------|
-| React / Vue / Svelte (as full framework) | No SPA needed. Astro islands handle the D3 graph component. Adding a full framework increases bundle size and build complexity for zero benefit on a content site. |
-| Tailwind CSS | See detailed rationale above. Vanilla CSS is better for this project's needs. |
-| TypeScript (for site code) | The site has minimal JS -- just the D3 graph visualization and maybe a tag filter. TypeScript overhead is not justified for ~200 lines of client JS. Astro config and content schemas use TS-like validation natively. |
-| Database / CMS | Content lives in git as markdown files. No database. No headless CMS. |
-| Prettier / ESLint | Minimal JS in the project. Not worth configuring for a few script files. Claude Code handles formatting. |
-| Testing framework | No application logic to test. The "tests" are visual (does the site look right?) and build-time (does Astro build succeed?). |
+| Tool | Purpose | Notes |
+|------|---------|-------|
+| `scripts/embed.mjs` | Offline pipeline: read docs → Ollama embed → UMAP → write `public/embeddings.json` | New Node.js script, not an npm package. Run via `node scripts/embed.mjs` from `/loom:deploy` skill. Must not run during Cloudflare build (Ollama not available there). |
+| `.claude/commands/loom-add.md` | `/loom:add <url>` skill | Uses Claude's `WebFetch` + `Write` tools. No new npm packages. |
+| `.claude/commands/loom-deploy.md` | `/loom:deploy` skill | Uses Claude's `Bash` tool to run embed script then `git push`. |
+| `.claude/commands/loom-retag.md` | `/loom:retag` skill | Uses Claude's `Read`/`Write` tools across all `.md` files. |
+| `.claude/commands/loom-gaps.md` | `/loom:gaps` skill | Uses Claude's `Read` + analysis prompt. |
 
-## Architecture Decision: Astro Islands for D3
-
-The key architectural decision is how to embed an interactive D3 graph in an otherwise static site. Astro's **islands architecture** solves this cleanly:
-
-1. The entire site is static HTML/CSS (zero JS) by default
-2. The graph component is marked with `client:load` or `client:visible` directive
-3. Only the graph island ships JavaScript to the browser
-4. The graph receives document/tag data as props (computed at build time)
-
-This means the D3 visualization code lives in a single `.astro` component (or a vanilla JS `<script>` tag within an Astro page), and the rest of the site remains pure static HTML. No framework needed for the island -- Astro supports vanilla JS scripts with `is:inline` or as module scripts.
-
-**Recommended approach:** Write the D3 graph as a vanilla JS module loaded via `<script>` in the graph page. Astro will serialize the document/tag data into a `<script type="application/json">` block at build time. The D3 script reads this data and renders the force-directed graph. This avoids any framework dependency entirely.
+---
 
 ## Installation
 
 ```bash
-# Initialize Astro project (run from repo root)
-npm create astro@latest . -- --template minimal
+# Embedding pipeline (Node.js script only — NOT bundled for browser)
+npm install ollama umap-js gray-matter
 
-# Core (Astro handles most dependencies internally)
-npm install d3
-
-# Fonts
-npm install @fontsource/fira-code
-
-# Dev tooling
-npm install -D wrangler
-
-# Optional (add when needed)
-# npm install sharp          # image optimization
-# npm install fuse.js        # client-side search
-# npm install gray-matter    # frontmatter parsing for CLI scripts
+# Canvas map rendering + search (client-side, bundled by Astro/Vite)
+npm install regl-scatterplot fuse.js
 ```
 
-## Project Structure (Astro Convention)
+No new dev dependencies needed for these additions.
 
-```
-loom/
-  src/
-    content/                  # Astro Content Collections
-      config.ts               # Schema definition for frontmatter
-      docs/                   # Symlink or copy of markdown documents
-    layouts/
-      Base.astro              # Base HTML layout (dark theme, fonts)
-      Document.astro          # Single document page layout
-    pages/
-      index.astro             # Landing page (graph or document list)
-      tags/
-        [tag].astro           # Dynamic tag pages
-      docs/
-        [...slug].astro       # Document pages from content collection
-    components/
-      Graph.astro             # D3 force-directed graph island
-      TagCloud.astro          # Tag navigation component
-      DocCard.astro           # Document preview card
-    styles/
-      global.css              # CSS custom properties, neon theme
-      graph.css               # Graph-specific styles (glow, nodes)
-  public/                     # Static assets
-  astro.config.mjs            # Astro configuration
-  # Existing content directories remain at repo root:
-  ai-tools-and-services/
-  cloud-ai-platforms/
-  companies/
+---
+
+## Integration Patterns with Existing Astro 5 Stack
+
+### Pattern 1: Embedding JSON as data source
+
+The embed script writes `public/embeddings.json`. Astro copies `public/` to `dist/` verbatim. The map page fetches it client-side:
+
+```javascript
+// In <script> block inside map.astro
+const response = await fetch('/embeddings.json');
+const docs = await response.json();
 ```
 
-**Important note on content location:** The existing markdown files live at the repo root (`ai-tools-and-services/`, etc.). Astro Content Collections expect content in `src/content/`. Two approaches:
+Do NOT import the JSON into the Astro frontmatter bundle — it would bloat the initial HTML. Fetch it asynchronously on the client after page load.
 
-1. **Move documents into `src/content/docs/`** -- cleaner, but changes repo structure
-2. **Configure Astro's content directory** -- Astro 5 allows configuring content collection sources to point at arbitrary directories
+**Output schema for `public/embeddings.json`:**
+```json
+[
+  {
+    "id": "ai-tools-and-services/langchain",
+    "title": "LangChain",
+    "date": "2024-01-15",
+    "tags": ["llm", "orchestration"],
+    "category": "ai-tools-and-services",
+    "summary": "First paragraph of body text, truncated to ~200 chars",
+    "x": 0.423,
+    "y": -0.187
+  }
+]
+```
 
-Recommend option 2 to avoid disrupting the existing repo structure. The Astro content config can reference the root-level directories directly.
+Note: 768d vectors are NOT stored in this file. Only 2D coords. At 1000 docs, the full JSON is ~200KB — acceptable.
+
+### Pattern 2: regl-scatterplot in an Astro page
+
+```astro
+<!-- src/pages/map.astro -->
+<canvas id="scatter" style="width:100%;height:100vh;"></canvas>
+<script>
+  import createScatterplot from 'regl-scatterplot';
+
+  const canvas = document.getElementById('scatter');
+  const scatterplot = createScatterplot({ canvas, pointSize: 6 });
+
+  const docs = await fetch('/embeddings.json').then(r => r.json());
+
+  // Build category color index (auto-assign from set of categories)
+  const categories = [...new Set(docs.map(d => d.category))];
+  const points = docs.map(d => [d.x, d.y, categories.indexOf(d.category)]);
+
+  await scatterplot.draw(points);
+
+  // Hover tooltip, click for side panel, opacity for timeline/filters
+  // handled via scatterplot.subscribe('pointover', ...) and 'select' events
+</script>
+```
+
+Astro will bundle this `<script>` via Vite. `regl-scatterplot` is an ESM package and Vite handles it natively.
+
+### Pattern 3: Fuse.js search overlay
+
+```astro
+<!-- In Base.astro layout or a global component -->
+<div id="search-overlay" hidden>
+  <div class="terminal-prompt">loom&gt; <input id="search-input" /></div>
+  <ul id="search-results"></ul>
+</div>
+<script>
+  import Fuse from 'fuse.js';
+  let fuse = null;
+
+  document.addEventListener('keydown', async (e) => {
+    if (e.key === '/') {
+      e.preventDefault();
+      if (!fuse) {
+        const docs = await fetch('/embeddings.json').then(r => r.json());
+        fuse = new Fuse(docs, { keys: ['title', 'tags', 'summary'], threshold: 0.4 });
+      }
+      document.getElementById('search-overlay').removeAttribute('hidden');
+      document.getElementById('search-input').focus();
+    }
+  });
+</script>
+```
+
+The search index is built lazily on first `/` press, reusing the same JSON file the map already fetched.
+
+### Pattern 4: Vim keyboard navigation (no npm package)
+
+```javascript
+// Global keydown handler in Base.astro <script>
+const items = Array.from(document.querySelectorAll('[data-nav-item]'));
+let cursor = 0;
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'j') { cursor = Math.min(cursor + 1, items.length - 1); items[cursor].focus(); }
+  if (e.key === 'k') { cursor = Math.max(cursor - 1, 0); items[cursor].focus(); }
+  if (e.key === 'Enter') { items[cursor].click(); }
+  if (e.key === 'Escape') { history.back(); }
+});
+```
+
+No library — ~20 lines of vanilla JS.
+
+### Pattern 5: Cyberpunk CSS effects (no new dependencies)
+
+All effects are pure CSS applied in the existing `global.css`:
+
+```css
+/* Scanlines overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+}
+
+/* Typewriter on headings */
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid var(--neon-green);
+  white-space: nowrap;
+  animation: typing 1.5s steps(30) forwards, blink 0.5s step-end infinite alternate;
+}
+```
+
+No JavaScript required for static text typewriter effects.
+
+---
+
+## Alternatives Considered
+
+| Recommended | Alternative | When to Use Alternative |
+|-------------|-------------|-------------------------|
+| `regl-scatterplot` | PixiJS v8 (^8.16.0) | When you need a general-purpose WebGL scene graph (sprites, textures, complex transforms). For a dot map, PixiJS forces you to build hit testing and opacity encoding from scratch — regl-scatterplot provides these built-in. |
+| `regl-scatterplot` | Plain Canvas 2D with `arc()` loop | Acceptable at <500 documents. Will degrade noticeably at 1000+ and require a rewrite. Given US01.md explicitly calls for 1000+ node support, start with WebGL. |
+| `umap-js` | Python `umap-learn` via `child_process` subprocess | Prefer Python umap-learn if you want spectral initialization (better cluster separation), parametric UMAP (stable positions when adding new docs), or >5K documents. For this project, umap-js in Node.js keeps the pipeline in a single language with no Python dependency requirement. |
+| `fuse.js` | FlexSearch | FlexSearch is 3-10x faster at very large indices (10K+ docs). API is more complex. For <1K docs, Fuse.js is imperceptibly slower and far simpler. Revisit if collection grows past 5K. |
+| `fuse.js` | Lunr.js | Lunr.js requires a pre-built index exported at Astro build time. Fuse.js builds from plain JSON at runtime, fitting the single-JSON-file architecture of this project. Lunr.js is also less actively maintained. |
+| Vanilla JS keyboard nav | Hotkeys.js / Mousetrap | Only if keyboard shortcut complexity grows to 20+ shortcuts with modifier key combinations. Current requirements (j/k/Enter/Esc//) are ~15 lines of vanilla code. |
+
+---
+
+## What NOT to Use
+
+| Avoid | Why | Use Instead |
+|-------|-----|-------------|
+| D3-force for the new map | D3-force positions are arbitrary (physics simulation) — the entire value of the embedding map is semantically meaningful positions. D3-force would discard the UMAP layout. Also SVG won't scale past ~500 nodes. | `regl-scatterplot` with pre-computed UMAP coordinates |
+| Three.js | 3D library, ~600KB bundle. Building a flat 2D dot map in Three.js is using a jackhammer as a hammer. | `regl-scatterplot` (~80KB, purpose-built 2D) |
+| `tsne-js` (t-SNE in JS) | Last commit 2018, unmaintained. t-SNE is also slower than UMAP and less stable. | `umap-js` |
+| `@astrojs/react` or any framework adapter | Adding React/Vue/Svelte to render a search overlay and keyboard handler is importing 40KB+ of framework for <100 lines of DOM manipulation. Astro `<script>` islands handle this cleanly. | Vanilla JS in Astro `<script>` blocks |
+| Server-side search (Astro Actions + Cloudflare Workers) | Violates the static-only constraint. Adds deployment complexity with no benefit for a single-user tool where the entire content set fits in a small JSON file. | Fuse.js client-side |
+| Storing 768d vectors in `embeddings.json` | At 1000 docs, storing full embeddings = 1000 × 768 × 8 bytes = ~6MB JSON. Unnecessary — UMAP reduction is done offline, only 2D coords needed at runtime. | Store only `x`, `y`, metadata in the JSON |
+| Running embed pipeline during Cloudflare build | Ollama is not available on Cloudflare build workers. The pipeline must run locally before `git push`. | Run `node scripts/embed.mjs` in `/loom:deploy` before pushing |
+
+---
+
+## Stack Patterns by Variant
+
+**If collection grows past 2,000 documents:**
+- `embeddings.json` still acceptable (2K × ~200 bytes = ~400KB)
+- Consider lazy-loading: fetch only the metadata initially, defer summary fields
+- Fuse.js stays fast to ~5K docs; switch to FlexSearch beyond that
+- `umap-js` re-runs may take 30+ seconds at 2K docs; consider Python `umap-learn` for faster computation
+
+**If position stability becomes a requirement (currently resolved as "not required" in US01.md):**
+- `umap-js` does not support parametric UMAP or `transform()` on existing embeddings
+- Switch to Python `umap-learn` with `transform()` which maps new points into an existing projection without moving existing ones
+- This is a future concern, not a v1.1 concern
+
+**For incremental embedding (only re-embed new/changed docs):**
+- Keep a `embeddings-raw.json` alongside `embeddings.json` (internal format with IDs and modification timestamps)
+- On each `/loom:deploy`, compare git diff to identify changed files, only call Ollama for those
+- Re-run UMAP on the full set (fast at this scale) to produce updated 2D coords
+- This is the `/loom:deploy` script's responsibility, not an npm package concern
+
+---
+
+## Version Compatibility
+
+| Package | Compatible With | Notes |
+|---------|-----------------|-------|
+| `regl-scatterplot@^1.15.0` | Astro 5 / Vite | Ships as ESM. Vite handles it without special config. Use `import createScatterplot from 'regl-scatterplot'` in a `<script>` block. |
+| `fuse.js@^7.1.0` | Astro 5 / Vite | Ships CJS + ESM. Use ESM import path. Works with Astro's default Vite bundler. |
+| `ollama@^0.6.3` | Node.js >= 18 | Uses native `fetch()` internally — requires Node 18+. Embed script only, never bundled for browser. |
+| `umap-js@^1.4.0` | Node.js >= 14 | Embed script only. Pure computation, no I/O — no compatibility concerns. |
+| `gray-matter@^4.x` | Node.js >= 12 | Embed script only. Rock-solid stability, version 4 current for years. |
+| All browser packages | Astro 5 `<script>` | Vite bundles these. No framework adapter needed (no `client:*` directive needed for vanilla JS scripts). |
+
+---
 
 ## Sources
 
-- Astro documentation (astro.build) -- Content Collections, Islands Architecture, Cloudflare deployment
-- D3.js documentation (d3js.org) -- Force simulation API
-- Cloudflare Pages documentation (developers.cloudflare.com) -- Framework guides for Astro
-- Training data knowledge (May 2025 cutoff) -- all version numbers should be verified
+- [regl-scatterplot on npm](https://www.npmjs.com/package/regl-scatterplot) — v1.15.0, published January 2026 (HIGH confidence)
+- [GitHub: flekschas/regl-scatterplot](https://github.com/flekschas/regl-scatterplot) — actively maintained, 20M point scale confirmed
+- [fuse.js on npm](https://www.npmjs.com/package/fuse.js) — v7.1.0, published ~10 months ago (HIGH confidence)
+- [ollama on npm](https://www.npmjs.com/package/ollama) — v0.6.3, official Ollama JS SDK (HIGH confidence)
+- [umap-js on npm](https://www.npmjs.com/package/umap-js) — v1.4.0, Google PAIR (MEDIUM confidence — stable but last published 2 years ago)
+- [pixi.js on npm](https://www.npmjs.com/package/pixi.js) — v8.16.0, evaluated and rejected in favor of regl-scatterplot
+- WebSearch: Canvas 2D vs WebGL performance benchmarks — Canvas drops to 22 FPS at 50K scatter, WebGL maintains 58 FPS (MEDIUM confidence — benchmark source: svggenie.com)
+- WebSearch: Astro 5 client-side script patterns — JSON island, `fetch()` in `<script>` blocks (HIGH confidence — from Astro official docs)
+- WebSearch: Cyberpunk CSS scanlines via `repeating-linear-gradient` — confirmed pattern across multiple independent implementations (HIGH confidence)
+- Ollama official docs — `nomic-embed-text` embed API, `search_document: ` prefix for improved retrieval quality (HIGH confidence)
 
-**Confidence caveat:** All version recommendations are based on training data with a May 2025 cutoff. Before installing, run `npm info astro version` and `npm info d3 version` to confirm current stable versions. The architectural recommendations (Astro for content sites, D3 for custom graph viz, vanilla CSS for small sites) are high-confidence patterns unlikely to have changed.
+---
+
+*Stack research for: Loom v1.1 — embedding pipeline, canvas map, terminal UX*
+*Researched: 2026-03-10*
