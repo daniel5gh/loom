@@ -175,7 +175,7 @@ Every v1.1 requirement maps to exactly one phase. No orphans.
 
 | Requirement | Description (abbreviated) | Phase |
 |-------------|---------------------------|-------|
-| EMBED-01 | Run embed.mjs to generate 2D coordinates via Ollama + UMAP | 5 | 1/3 | In Progress|  | 5 |
+| EMBED-01 | Run embed.mjs to generate 2D coordinates via Ollama + UMAP | 5 | 2/3 | In Progress|  | 5 |
 | EMBED-03 | Fail loudly if Ollama not running; atomic file write | 5 |
 | EMBED-04 | embeddings.json committed to git, consumed at Astro build time | 5 |
 | MAP-01 | View all documents as dots on 2D semantic map at /map | 6 |

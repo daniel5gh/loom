@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Visualization
 status: planning
-stopped_at: Completed 05-01-PLAN.md
-last_updated: "2026-03-10T15:58:36.533Z"
+stopped_at: Completed 05-02-PLAN.md
+last_updated: "2026-03-10T16:01:19.574Z"
 last_activity: 2026-03-10 — v1.1 roadmap created, 31 requirements mapped to phases 5-10
 progress:
   total_phases: 10
   completed_phases: 4
   total_plans: 17
-  completed_plans: 15
+  completed_plans: 16
   percent: 40
 ---
 
@@ -47,6 +47,7 @@ Progress: [████░░░░░░] 40% (4 of 10 phases complete)
 
 *Updated after each plan completion*
 | Phase 05-embedding-pipeline P01 | 2 | 3 tasks | 4 files |
+| Phase 05-embedding-pipeline P02 | 5min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -63,6 +64,8 @@ Recent decisions affecting current work:
 - [Phase 05-embedding-pipeline]: embed.mjs deps installed to production dependencies (not devDeps) — runs in deploy context
 - [Phase 05-embedding-pipeline]: embeddings.json committed to git (not gitignored) so Cloudflare Pages builds succeed before pipeline runs
 - [Phase 05-embedding-pipeline]: .cache/ gitignored — raw 768-dim vector cache is local-only, never committed
+- [Phase 05-embedding-pipeline]: getVectors returns { vectors, allCached } tuple — main() branches to fast path without re-iterating docs
+- [Phase 05-embedding-pipeline]: atomicWriteJSON creates parent dirs with mkdirSync recursive — avoids ENOENT on first run when .cache/ missing
 
 ### Pending Todos
 
@@ -76,6 +79,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-10T15:58:36.530Z
-Stopped at: Completed 05-01-PLAN.md
+Last session: 2026-03-10T16:01:19.570Z
+Stopped at: Completed 05-02-PLAN.md
 Resume file: None
