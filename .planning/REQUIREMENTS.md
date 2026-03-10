@@ -63,8 +63,8 @@ All v1.0 requirements validated and shipped. See ROADMAP.md phases 1-4.
 - [x] **SKILL-01**: `/loom:add <url>` fetches a URL, summarizes content, and creates a properly formatted markdown document with inferred tags and category (file created, not committed)
 - [x] **SKILL-02**: `/loom:deploy` validates all documents, re-embeds changed docs via Ollama, commits, and pushes to trigger Cloudflare build
 - [x] **SKILL-03**: `/loom:deploy` refuses to deploy if validation fails
-- [ ] **SKILL-04**: `/loom:retag` merges duplicate tags or splits overly broad ones across all documents
-- [ ] **SKILL-05**: `/loom:gaps` identifies tags with thin coverage (1-2 documents) and suggests research topics
+- [x] **SKILL-04**: `/loom:retag` merges duplicate tags or splits overly broad ones across all documents
+- [x] **SKILL-05**: `/loom:gaps` identifies tags with thin coverage (1-2 documents) and suggests research topics
 
 ## v2 Requirements
 
@@ -118,8 +118,8 @@ Deferred to future release.
 | SKILL-01 | Phase 10 | Complete |
 | SKILL-02 | Phase 10 | Complete |
 | SKILL-03 | Phase 10 | Complete |
-| SKILL-04 | Phase 10 | Pending |
-| SKILL-05 | Phase 10 | Pending |
+| SKILL-04 | Phase 10 | Complete |
+| SKILL-05 | Phase 10 | Complete |
 
 **Coverage:**
 - v1.1 requirements: 31 total
