@@ -8,6 +8,20 @@ A personal knowledge management system that combines a tagged markdown document 
 
 Turn a flat collection of tagged markdown documents into a navigable, visual knowledge graph — making connections between research topics discoverable at a glance.
 
+## Current Milestone: v1.1 Visualization
+
+**Goal:** Transform the site into an immersive cyberpunk knowledge terminal — semantic embedding map, terminal-style search and keyboard navigation, timeline scrubbing, and AI-powered content management skills.
+
+**Target features:**
+- Embedding similarity map (Ollama + nomic-embed-text + UMAP/t-SNE) replacing force-directed graph
+- Tag/search filter lenses with ANY/ALL toggle, composable with timeline
+- Timeline slider with gaussian opacity and play button
+- Terminal-style `/` search from anywhere
+- Home page with search prompt and recently added articles
+- Vim-style keyboard navigation (j/k, Enter, /, Esc) with status bar
+- Cyberpunk aesthetic: scanlines, CRT overlay, typewriter effects, ASCII dividers
+- New skills: `/loom:add` (URL → article), `/loom:deploy` (validate + embed + push), `/loom:retag`, `/loom:gaps`
+
 ## Requirements
 
 ### Validated
@@ -16,16 +30,27 @@ Turn a flat collection of tagged markdown documents into a navigable, visual kno
 - Logical directory organization by topic category — existing
 - Document template (`TEMPLATE.md`) defining standard structure — existing
 - 15 research documents across 3 categories — existing
+- ✓ Static site generation from markdown documents — v1.0 Phase 1
+- ✓ Tag-based filtering and navigation — v1.0 Phase 1
+- ✓ Interactive force-directed graph showing document relationships — v1.0 Phase 2
+- ✓ Dark/neon hacker aesthetic — v1.0 Phases 1-3
+- ✓ Cloudflare Pages deployment with auto-deploy — v1.0 Phase 1
+- ✓ Claude Code skills: /loom:research, /loom:organize, /loom:validate — v1.0 Phase 3
+- ✓ Frontmatter processing pipeline (tags, index, relationships) — v1.0 Phases 1-2
 
 ### Active
 
-- [ ] Static site generation from markdown documents
-- [ ] Tag-based filtering and navigation
-- [ ] Interactive graph visualization showing document relationships via shared tags
-- [ ] Dark/neon hacker aesthetic (rich visualizations, not just terminal cosplay)
-- [ ] Cloudflare Pages deployment
-- [ ] Claude Code slash commands for document management (research, write, organize, tag)
-- [ ] Frontmatter processing pipeline (parse tags, build tag index, generate relationships)
+- [ ] Embedding similarity map (Ollama + nomic-embed-text + UMAP/t-SNE, offline pipeline)
+- [ ] Map filter lenses: tag filter + search filter, ANY/ALL toggle, composable
+- [ ] Timeline slider with gaussian opacity curve, play button, composable with filters
+- [ ] Terminal-style `/` search overlay from any page
+- [ ] Home page with search prompt and recently added articles
+- [ ] Vim-style keyboard navigation across all pages with status bar
+- [ ] Cyberpunk aesthetic enhancements: scanlines, CRT overlay, typewriter effects, ASCII dividers
+- [ ] /loom:add skill: fetch URL, summarize, create document with inferred tags/category
+- [ ] /loom:deploy skill: validate + re-embed changed docs + commit + push
+- [ ] /loom:retag skill: merge or split tags across all documents
+- [ ] /loom:gaps skill: identify thin-coverage tags, suggest research topics
 
 ### Out of Scope
 
@@ -69,4 +94,4 @@ Known issues from codebase mapping:
 | Claude Code skills for AI | Already using Claude Code for development, natural fit for document management | — Pending |
 
 ---
-*Last updated: 2026-03-09 after initialization*
+*Last updated: 2026-03-10 after v1.1 milestone start*
