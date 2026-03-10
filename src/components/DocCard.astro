@@ -4,7 +4,7 @@ interface Props { title: string; slug: string; category: string; date: Date; tag
 const { title, slug, category, date, tags } = Astro.props;
 const dateStr = date.toISOString().slice(0, 10);
 ---
-<article class="doc-card">
+<article class="doc-card" data-vim-item>
   <a href={`/${category}/${slug}/`} class="doc-card-link">
     <h3 class="doc-card-title">{title}</h3>
   </a>

@@ -20,20 +20,22 @@ const categories = [
     <p class="index-subtitle">AI research knowledge graph — {aiTools.length + cloudPlatforms.length + companies.length} documents</p>
   </section>
   <AsciiDivider />
-  {categories.map(({ label, slug, docs }) => (
-    <section class="category-section">
-      <h2 class="category-heading">{label}</h2>
-      <div class="doc-grid">
-        {docs.map(doc => (
-          <DocCard
-            title={doc.data.title}
-            slug={doc.id}
-            category={slug}
-            date={doc.data.date}
-            tags={doc.data.tags}
-          />
-        ))}
-      </div>
-    </section>
-  ))}
+  <div data-vim-list>
+    {categories.map(({ label, slug, docs }) => (
+      <section class="category-section">
+        <h2 class="category-heading">{label}</h2>
+        <div class="doc-grid">
+          {docs.map(doc => (
+            <DocCard
+              title={doc.data.title}
+              slug={doc.id}
+              category={slug}
+              date={doc.data.date}
+              tags={doc.data.tags}
+            />
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
 </Base>

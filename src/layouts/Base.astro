@@ -62,6 +62,11 @@ const shellData = JSON.stringify([
 
     <script type="application/json" id="shell-data" set:html={shellData}></script>
 
+    <div id="vim-status-bar" class="vim-status-bar" aria-live="polite" aria-atomic="true">
+      <span id="vim-mode-label">NORMAL</span>
+      <span id="vim-context-label"></span>
+    </div>
+
     <div id="shell-overlay" class="shell-overlay" aria-modal="true" role="dialog" aria-label="Search" hidden>
       <div class="shell-inner">
         <div class="shell-prompt">
@@ -221,6 +226,90 @@ const shellData = JSON.stringify([
         if (e.key === '/' && !overlayOpen && !isTypingContext()) {
           e.preventDefault();
           openOverlay();
+        }
+      });
+
+      // Vim navigation state
+      let lastGKey = 0;
+      const modeLabel = document.getElementById('vim-mode-label');
+      const contextLabel = document.getElementById('vim-context-label');
+
+      function updateStatusBar(mode, context) {
+        if (modeLabel) modeLabel.textContent = mode;
+        if (contextLabel) contextLabel.textContent = context || '';
+      }
+
+      function selectVimItem(items, newIndex) {
+        items.forEach(el => el.classList.remove('vim-selected'));
+        if (newIndex < 0 || newIndex >= items.length) return;
+        items[newIndex].classList.add('vim-selected');
+        items[newIndex].scrollIntoView({ block: 'nearest' });
+        updateStatusBar('NORMAL', `${newIndex + 1}/${items.length}`);
+      }
+
+      function getVimItems() {
+        const list = document.querySelector('[data-vim-list]');
+        if (!list) return [];
+        return [...list.querySelectorAll('[data-vim-item]')];
+      }
+
+      function currentVimIndex(items) {
+        return items.findIndex(el => el.classList.contains('vim-selected'));
+      }
+
+      function handleVimKey(e) {
+        // Only act on list pages; no-op on canvas pages (graph, map)
+        const items = getVimItems();
+        if (!items.length) return;
+
+        let idx = currentVimIndex(items);
+        if (idx === -1) idx = 0;
+
+        if (e.key === 'g') {
+          const now = Date.now();
+          if (now - lastGKey < 500) {
+            // gg — go to top
+            selectVimItem(items, 0);
+            lastGKey = 0;
+          } else {
+            lastGKey = now;
+          }
+          return;
+        }
+
+        // Any key other than 'g' resets the gg timer
+        lastGKey = 0;
+
+        if (e.key === 'j') {
+          e.preventDefault();
+          selectVimItem(items, Math.min(idx + 1, items.length - 1));
+        } else if (e.key === 'k') {
+          e.preventDefault();
+          selectVimItem(items, Math.max(idx - 1, 0));
+        } else if (e.key === 'G') {
+          e.preventDefault();
+          selectVimItem(items, items.length - 1);
+        } else if (e.key === 'Enter') {
+          const selectedItem = items.find(el => el.classList.contains('vim-selected'));
+          const link = selectedItem?.querySelector('a');
+          if (link) {
+            window.location.href = link.href;
+          }
+        }
+      }
+
+      // Vim keydown handler — fires when overlay is closed and not typing
+      document.addEventListener('keydown', (e) => {
+        if (overlayOpen) return;
+        if (isTypingContext()) return;
+        handleVimKey(e);
+      });
+
+      // Initialize status bar on page load for list pages
+      document.addEventListener('DOMContentLoaded', () => {
+        const items = getVimItems();
+        if (items.length > 0) {
+          updateStatusBar('NORMAL', `0/${items.length}`);
         }
       });
     </script>

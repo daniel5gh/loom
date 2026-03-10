@@ -21,9 +21,9 @@ const sortedTags = Object.entries(tagCounts).sort(([a], [b]) => a.localeCompare(
 <Base title="All Tags">
   <h1>All Tags</h1>
   <AsciiDivider variant="double" />
-  <ul class="tag-list">
+  <ul class="tag-list" data-vim-list>
     {sortedTags.map(([tag, count]) => (
-      <li>
+      <li data-vim-item>
         <a href={`/tags/${tag}/`} class="tag-pill">{tag}</a>
         <span class="tag-count">({count})</span>
       </li>

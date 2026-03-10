@@ -35,7 +35,7 @@ const { tag, docs } = Astro.props;
 <Base title={`Tag: ${tag}`}>
   <h1>#{tag}</h1>
   <p>{docs.length} document{docs.length !== 1 ? 's' : ''}</p>
-  <div class="doc-grid">
+  <div class="doc-grid" data-vim-list>
     {docs.map(doc => (
       <DocCard
         title={doc.data.title}
