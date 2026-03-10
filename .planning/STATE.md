@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Visualization
 status: planning
-stopped_at: Completed 07-05-PLAN.md
-last_updated: "2026-03-10T19:37:18.212Z"
+stopped_at: Completed 08-01-PLAN.md
+last_updated: "2026-03-10T20:02:16.405Z"
 last_activity: 2026-03-10 — Phase 7 map interactions complete; all MAP-03 through MAP-10 verified by human
 progress:
   total_phases: 10
   completed_phases: 7
-  total_plans: 24
-  completed_plans: 24
+  total_plans: 29
+  completed_plans: 25
   percent: 40
 ---
 
@@ -56,6 +56,7 @@ Progress: [████░░░░░░] 40% (4 of 10 phases complete)
 | Phase 07-map-interactions P03 | 2min | 2 tasks | 2 files |
 | Phase 07-map-interactions P04 | 3min | 2 tasks | 2 files |
 | Phase 07-map-interactions P05 | checkpoint | 2 tasks | 3 files |
+| Phase 08-global-shell P01 | 4min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -95,6 +96,9 @@ Recent decisions affecting current work:
 - [Phase 07-map-interactions]: Side panel restructured from position:absolute overlay to flex sibling — canvas shrinks correctly with min-width:0 when panel opens
 - [Phase 07-map-interactions]: initCanvas calls getBoundingClientRect each time and is re-called on panel open/close — correct HiDPI sizing after layout reflow
 - [Phase 07-map-interactions]: selectedDot reattached by slug match after each initCanvas call — preserves neighbor lines and panel state across resize/panel-toggle
+- [Phase 08-global-shell]: node:test (built-in) used exclusively — no external test framework installed
+- [Phase 08-global-shell]: [Phase 08-global-shell]: contrastRatio() hardcodes hex values from global.css — no runtime CSS parsing
+- [Phase 08-global-shell]: [Phase 08-global-shell]: --text-secondary tested at >= 3.0:1 (large text AA) not 4.5:1 — metadata labels, not body copy
 
 ### Pending Todos
 
@@ -108,6 +112,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-10T18:55:00.000Z
-Stopped at: Completed 07-05-PLAN.md
+Last session: 2026-03-10T20:02:16.402Z
+Stopped at: Completed 08-01-PLAN.md
 Resume file: None

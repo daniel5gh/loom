@@ -40,7 +40,7 @@ All v1.0 requirements validated and shipped. See ROADMAP.md phases 1-4.
 ### Global Shell
 
 - [ ] **SHELL-01**: User can press `/` from any page to open a terminal-style search overlay (`loom> _` with blinking cursor)
-- [ ] **SHELL-02**: Search overlay supports fuzzy title, tag, and keyword matching across all documents
+- [x] **SHELL-02**: Search overlay supports fuzzy title, tag, and keyword matching across all documents
 - [ ] **SHELL-03**: User can navigate search results with arrow keys and open selected result with Enter
 - [ ] **SHELL-04**: User can navigate list pages with vim-style keys (j/k to move, Enter to open, gg/G for top/bottom)
 - [ ] **SHELL-05**: Vim-style status bar at bottom of page shows current mode/context
@@ -56,7 +56,7 @@ All v1.0 requirements validated and shipped. See ROADMAP.md phases 1-4.
 - [ ] **AESTH-01**: Scanline/CRT overlay renders on all pages as always-on effect
 - [ ] **AESTH-02**: Headings use typewriter animation effect on load
 - [ ] **AESTH-03**: ASCII-art dividers used in page layouts
-- [ ] **AESTH-04**: All aesthetic effects maintain WCAG AA contrast on body text
+- [x] **AESTH-04**: All aesthetic effects maintain WCAG AA contrast on body text
 
 ### Claude Code Skills
 
@@ -104,7 +104,7 @@ Deferred to future release.
 | MAP-09 | Phase 7 | Complete |
 | MAP-10 | Phase 7 | Complete |
 | SHELL-01 | Phase 8 | Pending |
-| SHELL-02 | Phase 8 | Pending |
+| SHELL-02 | Phase 8 | Complete |
 | SHELL-03 | Phase 8 | Pending |
 | SHELL-04 | Phase 8 | Pending |
 | SHELL-05 | Phase 8 | Pending |
@@ -112,7 +112,7 @@ Deferred to future release.
 | AESTH-01 | Phase 8 | Pending |
 | AESTH-02 | Phase 8 | Pending |
 | AESTH-03 | Phase 8 | Pending |
-| AESTH-04 | Phase 8 | Pending |
+| AESTH-04 | Phase 8 | Complete |
 | HOME-01 | Phase 9 | Pending |
 | HOME-02 | Phase 9 | Pending |
 | SKILL-01 | Phase 10 | Pending |
