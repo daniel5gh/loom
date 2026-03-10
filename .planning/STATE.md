@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Visualization
 status: planning
-stopped_at: Completed 08-02-PLAN.md
-last_updated: "2026-03-10T20:05:07.262Z"
+stopped_at: Completed 08-03-PLAN.md
+last_updated: "2026-03-10T20:08:05.866Z"
 last_activity: 2026-03-10 — Phase 7 map interactions complete; all MAP-03 through MAP-10 verified by human
 progress:
   total_phases: 10
   completed_phases: 7
   total_plans: 29
-  completed_plans: 26
+  completed_plans: 27
   percent: 40
 ---
 
@@ -58,6 +58,7 @@ Progress: [████░░░░░░] 40% (4 of 10 phases complete)
 | Phase 07-map-interactions P05 | checkpoint | 2 tasks | 3 files |
 | Phase 08-global-shell P01 | 4min | 2 tasks | 2 files |
 | Phase 08-global-shell P02 | 5min | 2 tasks | 4 files |
+| Phase 08-global-shell P03 | 3min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -102,6 +103,9 @@ Recent decisions affecting current work:
 - [Phase 08-global-shell]: [Phase 08-global-shell]: --text-secondary tested at >= 3.0:1 (large text AA) not 4.5:1 — metadata labels, not body copy
 - [Phase 08-global-shell]: heading-appear uses fade+translateY not white-space:nowrap typewriter — document titles are long and would overflow
 - [Phase 08-global-shell]: AsciiDivider not placed in Base.astro — graph/map use full-viewport layouts that don't benefit from dividers
+- [Phase 08-global-shell]: Bundled <script> (no is:inline) used so import Fuse from fuse.js resolves via Astro bundler
+- [Phase 08-global-shell]: JSON data island pattern: serialize build-time collection data as application/json for client script consumption in shell overlay
+- [Phase 08-global-shell]: isTypingContext() guards / shortcut — overlay won't fire inside map-search input, tag filter, or any form element
 
 ### Pending Todos
 
@@ -115,6 +119,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-10T20:05:07.258Z
-Stopped at: Completed 08-02-PLAN.md
+Last session: 2026-03-10T20:08:00.404Z
+Stopped at: Completed 08-03-PLAN.md
 Resume file: None

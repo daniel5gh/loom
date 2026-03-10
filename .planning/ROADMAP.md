@@ -204,7 +204,7 @@ Every v1.1 requirement maps to exactly one phase. No orphans.
 | MAP-08 | Timeline slider applies Gaussian opacity by document date | 7 | 5/5 | Complete | 2026-03-10 | 7 |
 | MAP-09 | Play button auto-scrubs timeline forward through time | 7 | 5/5 | Complete | 2026-03-10 | 7 |
 | MAP-10 | Tag filter, search filter, timeline compose simultaneously | 7 | 5/5 | Complete | 2026-03-10 | 7 |
-| SHELL-01 | Press `/` from any page to open terminal search overlay | 8 | 2/5 | In Progress|  | 8 |
+| SHELL-01 | Press `/` from any page to open terminal search overlay | 8 | 3/5 | In Progress|  | 8 |
 | SHELL-03 | Arrow keys navigate results; Enter opens selected result | 8 |
 | SHELL-04 | Vim-style j/k/gg/G/Enter navigation on list pages | 8 |
 | SHELL-05 | Status bar at bottom shows current mode/context | 8 |
