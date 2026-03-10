@@ -36,6 +36,10 @@ const mapData = JSON.stringify(enriched);
     <div id="map-canvas-wrap" class="map-canvas-wrap">
       <canvas id="map-canvas"></canvas>
       <div id="map-tooltip" class="map-tooltip"></div>
+      <div id="map-panel" class="map-panel" aria-label="Document details">
+        <button id="map-panel-close" class="map-panel-close" aria-label="Close panel">×</button>
+        <div id="map-panel-content" class="map-panel-content"></div>
+      </div>
     </div>
   </div>
 
@@ -118,6 +122,15 @@ const mapData = JSON.stringify(enriched);
       return Math.min(tagOpacity(doc), searchOpacity(doc), gaussianOp(doc));
     }
 
+    // hitTest inline (map.mjs not importable from is:inline)
+    function hitTestInline(mx, my) {
+      for (const dot of dotPositions) {
+        const dx = dot.cx - mx, dy = dot.cy - my;
+        if (Math.sqrt(dx * dx + dy * dy) < HIT_RADIUS) return dot;
+      }
+      return null;
+    }
+
     // kNearest inline (map.mjs is not importable in is:inline; duplicate the logic)
     function kNearest(dot, k) {
       return dotPositions
@@ -168,6 +181,45 @@ const mapData = JSON.stringify(enriched);
 
     // Initial draw
     redraw();
+
+    // Side panel open/close
+    function openPanel(doc) {
+      const panel = document.getElementById('map-panel');
+      const content = document.getElementById('map-panel-content');
+      const tagPills = doc.tags.map(t => `<span class="tag-pill">${t}</span>`).join(' ');
+      content.innerHTML = `
+        <h2 class="map-panel-title">${doc.title}</h2>
+        <div class="map-panel-tags">${tagPills}</div>
+        <p class="map-panel-summary">${doc.summary || '<em>No summary available.</em>'}</p>
+        <a href="/${doc.category}/${doc.id}/" class="map-panel-link">Open article →</a>
+      `;
+      panel.classList.add('open');
+    }
+    function closePanel() {
+      document.getElementById('map-panel').classList.remove('open');
+    }
+
+    // Click: select dot, draw neighbors, open panel; second click on same dot = deselect
+    canvas.addEventListener('click', (event) => {
+      const r = canvas.getBoundingClientRect();
+      const mx = event.clientX - r.left, my = event.clientY - r.top;
+      const hit = hitTestInline(mx, my);
+      if (!hit) { return; }
+      if (selectedDot === hit) {
+        selectedDot = null;
+        closePanel();
+      } else {
+        selectedDot = hit;
+        openPanel(hit.doc);
+      }
+      redraw();
+    });
+
+    document.getElementById('map-panel-close').addEventListener('click', () => {
+      selectedDot = null;
+      closePanel();
+      redraw();
+    });
 
     // Tooltip hover logic (unchanged from Phase 6)
     const tooltip = document.getElementById('map-tooltip');
