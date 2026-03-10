@@ -1,17 +1,14 @@
 # Roadmap: Loom
 
-## Overview
+## Milestones
 
-Loom evolves a flat collection of 15 tagged markdown research documents into a navigable, visual knowledge graph. Phase 1 fixes existing content issues and ships a fully deployed static site with dark/neon aesthetic. Phase 2 adds the flagship D3 force-directed graph visualization and the relationship engine that powers it. Phase 3 delivers the Claude Code slash commands for AI-assisted document management and any remaining polish.
+- ✅ **v1.0 MVP** - Phases 1-4 (shipped 2026-03-09)
+- 🚧 **v1.1 Visualization** - Phases 5-10 (in progress)
 
 ## Phases
 
-- [x] **Phase 1: Content Pipeline and Site Foundation** - Fix frontmatter bugs, build Astro site with dark/neon theme, tag navigation, deploy to Cloudflare Pages (completed 2026-03-09)
-- [x] **Phase 2: Graph Visualization and Relationship Engine** - Interactive D3 force-directed graph, tag-based edges with weight thresholds, related documents (completed 2026-03-09)
-- [x] **Phase 3: Claude Code Skills and Polish** - AI document management slash commands, glow effects, tag filtering, syntax highlighting (completed 2026-03-09)
-- [x] **Phase 4: Cleanup and Polish** - Close minor tech debt items from v1.0 audit: validator coverage, layout fix, Wrangler config (completed 2026-03-09)
-
-## Phase Details
+<details>
+<summary>✅ v1.0 MVP (Phases 1-4) - SHIPPED 2026-03-09</summary>
 
 ### Phase 1: Content Pipeline and Site Foundation
 **Goal**: A working static site with all 15 documents rendered, tag navigation functional, dark/neon aesthetic established, and live on Cloudflare Pages
@@ -26,11 +23,11 @@ Loom evolves a flat collection of 15 tagged markdown research documents into a n
 **Plans**: 5 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Fix frontmatter bugs and normalize tags in source files
-- [ ] 01-02-PLAN.md — Initialize Astro project and configure content collections
-- [ ] 01-03-PLAN.md — Build page routes, layouts, components, and output validator
-- [ ] 01-04-PLAN.md — Create dark/neon CSS theme
-- [ ] 01-05-PLAN.md — Deploy to Cloudflare Pages and verify live site
+- [x] 01-01-PLAN.md — Fix frontmatter bugs and normalize tags in source files
+- [x] 01-02-PLAN.md — Initialize Astro project and configure content collections
+- [x] 01-03-PLAN.md — Build page routes, layouts, components, and output validator
+- [x] 01-04-PLAN.md — Create dark/neon CSS theme
+- [x] 01-05-PLAN.md — Deploy to Cloudflare Pages and verify live site
 
 ### Phase 2: Graph Visualization and Relationship Engine
 **Goal**: An interactive force-directed graph shows all documents as nodes with edges representing shared tag relationships; each document page surfaces its most-related documents
@@ -45,11 +42,11 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Build-time graph data library (buildGraphData + getRelatedDocs in src/lib/graph.js)
-- [ ] 02-02-PLAN.md — Related Documents sidebar component and two-column document layout
-- [ ] 02-03-PLAN.md — Graph page scaffold with D3 force simulation, zoom/pan, neon styling
-- [ ] 02-04-PLAN.md — Graph page interactions: hover highlight, click navigation, tag filter
-- [ ] 02-05-PLAN.md — Human visual checkpoint for all interactive behaviors
+- [x] 02-01-PLAN.md — Build-time graph data library (buildGraphData + getRelatedDocs in src/lib/graph.js)
+- [x] 02-02-PLAN.md — Related Documents sidebar component and two-column document layout
+- [x] 02-03-PLAN.md — Graph page scaffold with D3 force simulation, zoom/pan, neon styling
+- [x] 02-04-PLAN.md — Graph page interactions: hover highlight, click navigation, tag filter
+- [x] 02-05-PLAN.md — Human visual checkpoint for all interactive behaviors
 
 ### Phase 3: Claude Code Skills and Polish
 **Goal**: Three working Claude Code slash commands enable AI-assisted document creation, organization, and validation; visual polish completes the neon aesthetic
@@ -80,56 +77,146 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 04-01-PLAN.md — Validator graph check, layout padding fix, wrangler.toml pages_build_output_dir
+- [x] 04-01-PLAN.md — Validator graph check, layout padding fix, wrangler.toml pages_build_output_dir
+
+</details>
+
+---
+
+### 🚧 v1.1 Visualization (In Progress)
+
+**Milestone Goal:** Transform the site into an immersive cyberpunk knowledge terminal — semantic embedding map, terminal-style search and keyboard navigation, timeline scrubbing, and AI-powered content management skills.
+
+- [ ] **Phase 5: Embedding Pipeline** - Offline script embeds all documents via Ollama + UMAP and commits coordinates as a static JSON artifact consumed at build time
+- [ ] **Phase 6: Map Page Skeleton** - `/map` route renders documents as 2D dots from embeddings.json; validates data island, HiDPI canvas, and SSR boundary before any interactions are added
+- [ ] **Phase 7: Map Interactions** - Filter lenses (tag + search + ANY/ALL), Gaussian timeline slider with play button, side panel, and nearest-neighbor lines wire together via CustomEvent bus
+- [ ] **Phase 8: Global Shell** - Terminal search overlay, vim-style keyboard navigation, and cyberpunk CSS layer (scanlines, CRT vignette, typewriter headings) all land in Base.astro together
+- [ ] **Phase 9: Home Page** - Redesigned home page uses the shell's search overlay as its primary entry point and surfaces the 10 most recently added articles
+- [ ] **Phase 10: Claude Code Skills** - Four new slash commands wrap the fully functioning system: add, deploy, retag, and gaps
+
+## Phase Details
+
+### Phase 5: Embedding Pipeline
+**Goal**: The operator can run a single offline script that embeds all documents, reduces them to 2D coordinates, and writes a committed JSON artifact the Astro build reads at compile time — with incremental caching and loud failure on bad state
+**Depends on**: Phase 4
+**Requirements**: EMBED-01, EMBED-02, EMBED-03, EMBED-04
+**Success Criteria** (what must be TRUE):
+  1. Operator runs `node scripts/embed.mjs` and `src/data/embeddings.json` is produced with 2D x/y coordinates for every document
+  2. Running the script a second time with no document changes completes without calling Ollama (incremental cache hit verified in console output)
+  3. Running the script with Ollama stopped prints an explicit error and exits non-zero — no partial or stale output file is written
+  4. `npm run build` succeeds using the committed embeddings.json — Cloudflare Pages build log shows no missing-file errors
+**Plans**: TBD
+
+### Phase 6: Map Page Skeleton
+**Goal**: The `/map` route renders every document as a dot at its 2D embedding coordinate on an HiDPI-correct canvas, with a hover tooltip showing title and tags — no filter interactions yet, just verified data flow
+**Depends on**: Phase 5
+**Requirements**: MAP-01, MAP-02
+**Success Criteria** (what must be TRUE):
+  1. Visiting `/map` shows a canvas with one dot per document positioned according to semantic similarity (no overlapping all-at-origin dots)
+  2. Hovering a dot shows a tooltip with the document's title and its tags
+  3. Dots are sharp on a Retina/HiDPI display — no blurriness from missing devicePixelRatio scaling
+  4. `npm run build` completes without SSR errors referencing `window` or `document`
+**Plans**: TBD
+
+### Phase 7: Map Interactions
+**Goal**: Users can filter the map by tags and search terms with ANY/ALL composition, scrub a timeline that applies Gaussian opacity by date, and click any dot to open a side panel and draw nearest-neighbor lines — all filters compose simultaneously
+**Depends on**: Phase 6
+**Requirements**: MAP-03, MAP-04, MAP-05, MAP-06, MAP-07, MAP-08, MAP-09, MAP-10
+**Success Criteria** (what must be TRUE):
+  1. Clicking a dot slides in a side panel with the document's title, tags, summary, and a link to the full article; clicking a second dot draws lines to its 5 nearest neighbors
+  2. Selecting tags in the filter bar causes matching dots to glow and non-matching dots to dim to ~20% opacity; toggling ANY/ALL changes which dots glow for multi-tag selections
+  3. Typing in the search box dims non-matching dots to ~20% opacity in real time
+  4. Dragging the timeline slider applies a Gaussian opacity curve centered on the selected date — dots far from that date fade without disappearing entirely
+  5. Tag filter, search filter, and timeline slider compose: a dot's final opacity reflects all three applied simultaneously
+  6. The play button auto-advances the timeline through the document corpus from earliest to latest date
+**Plans**: TBD
+
+### Phase 8: Global Shell
+**Goal**: A terminal-style search overlay and vim-style keyboard navigation mount once in Base.astro and work across every page; a cyberpunk CSS layer adds scanlines, CRT vignette, typewriter headings, and ASCII dividers to the site-wide aesthetic
+**Depends on**: Phase 6 (map route must exist for nav link); Phase 7 (keyboard/canvas conflict resolution)
+**Requirements**: SHELL-01, SHELL-02, SHELL-03, SHELL-04, SHELL-05, SHELL-06, AESTH-01, AESTH-02, AESTH-03, AESTH-04
+**Success Criteria** (what must be TRUE):
+  1. Pressing `/` from any page opens a `loom> _` overlay with a blinking cursor; Esc closes it and returns focus to the previous context
+  2. Typing in the search overlay returns fuzzy-matched results by title, tag, and keyword; arrow keys navigate results; Enter opens the selected document
+  3. On any list page, pressing `j`/`k` moves the selection down/up, `gg`/`G` jumps to top/bottom, and Enter opens the selected item; a status bar at the bottom shows current mode
+  4. A scanline/CRT overlay is visible on every page as an always-on static effect (not animated)
+  5. Headings animate with a typewriter effect on page load; body text maintains WCAG AA contrast against the dark background
+**Plans**: TBD
+
+### Phase 9: Home Page
+**Goal**: The home page is rebuilt around the search overlay as the primary entry point and a list of the 10 most recently added articles — replacing the current category-grid landing page
+**Depends on**: Phase 8 (SearchOverlay must exist in Base.astro before index.astro can invoke it)
+**Requirements**: HOME-01, HOME-02
+**Success Criteria** (what must be TRUE):
+  1. The home page displays a `loom> _` terminal prompt; clicking or pressing `/` opens the global search overlay
+  2. Below the search prompt, the 10 most recently added articles are listed in reverse-chronological order with title, date, and tags visible
+**Plans**: TBD
+
+### Phase 10: Claude Code Skills
+**Goal**: Four Claude Code slash commands wrap the fully functioning system — capturing new content from URLs, deploying with validation and re-embedding, reshaping the tag taxonomy, and surfacing research gaps
+**Depends on**: Phase 5 (deploy calls embed script), Phase 9 (wraps a fully functioning site)
+**Requirements**: SKILL-01, SKILL-02, SKILL-03, SKILL-04, SKILL-05
+**Success Criteria** (what must be TRUE):
+  1. `/loom:add <url>` fetches a URL, produces a correctly formatted markdown document in the appropriate category directory with title, date, inferred tags drawn from the existing tag vocabulary, and a summary — file is created but not committed
+  2. `/loom:deploy` runs validation, re-embeds any changed documents via Ollama, commits the updated embeddings.json, and pushes — triggering a Cloudflare Pages build
+  3. `/loom:deploy` refuses to proceed and prints validation errors if any document fails the frontmatter check; no commit is made
+  4. `/loom:retag <old> <new>` updates every document that uses the old tag to use the new tag, or splits one tag into two across the corpus
+  5. `/loom:gaps` lists tags with only 1-2 documents and outputs suggested research topics for each thin-coverage area
+**Plans**: TBD
 
 ## Coverage Validation
 
-Every v1 requirement maps to exactly one phase. No orphans.
+Every v1.1 requirement maps to exactly one phase. No orphans.
 
 | Requirement | Description (abbreviated) | Phase |
 |-------------|---------------------------|-------|
-| REQ-001 | Parse markdown with YAML frontmatter | 1 | 5/5 | Complete   | 2026-03-09 | 1 |
-| REQ-003 | Validate frontmatter at build time — fail on missing fields | 1 |
-| REQ-004 | Normalize tags at build time | 1 |
-| REQ-005 | Generate build-time tag index | 1 |
-| REQ-006 | Generate build-time relationship graph (nodes, edges, weights) | 2 |
-| REQ-007 | Serialize graph data to static JSON | 2 |
-| REQ-010 | Render each document as an individual HTML page | 1 |
-| REQ-011 | Generate document index/listing page | 1 |
-| REQ-012 | Generate per-tag pages | 1 |
-| REQ-013 | Display tags as clickable links on document pages | 1 |
-| REQ-014 | Show related documents section (tag overlap) | 2 |
-| REQ-015 | Site structure navigable from directory categories | 1 |
-| REQ-016 | Syntax highlighting (Shiki, build-time) | 3 | 3/3 | Complete   | 2026-03-09 | 2 |
-| REQ-021 | Clicking a node navigates to that document | 2 |
-| REQ-022 | Hovering a node highlights it and direct connections | 2 |
-| REQ-023 | Graph supports zoom and pan | 2 |
-| REQ-024 | Edge rendering controlled by weight threshold | 2 |
-| REQ-025 | Graph styled with neon/dark aesthetic | 2 |
-| REQ-026 | Tag-based filtering on graph | 2 |
-| REQ-030 | Dark background with high-contrast typography | 1 |
-| REQ-031 | Neon accent colors throughout | 1 |
-| REQ-032 | Monospace font for primary UI chrome | 1 |
-| REQ-033 | Glow/bloom effects on graph and accent elements | 3 |
-| REQ-034 | WCAG AA contrast on body text | 1 |
-| REQ-040 | Static output deployable to Cloudflare Pages | 1 |
-| REQ-041 | Git-based auto-deploy to Cloudflare Pages | 1 |
-| REQ-042 | .gitignore covering OS, editor, build output | 1 |
-| REQ-043 | Local preview via Wrangler | 3 |
-| REQ-050 | /loom:research skill: create new document from topic | 3 |
-| REQ-051 | /loom:organize skill: audit tags and suggest fixes | 3 |
-| REQ-052 | /loom:validate skill: check frontmatter and template conformance | 3 |
-| REQ-053 | Skills enforce tag normalization | 3 |
+| EMBED-01 | Run embed.mjs to generate 2D coordinates via Ollama + UMAP | 5 |
+| EMBED-02 | Incremental caching — only re-embed new/changed docs | 5 |
+| EMBED-03 | Fail loudly if Ollama not running; atomic file write | 5 |
+| EMBED-04 | embeddings.json committed to git, consumed at Astro build time | 5 |
+| MAP-01 | View all documents as dots on 2D semantic map at /map | 6 |
+| MAP-02 | Hover dot shows tooltip with title and tags | 6 |
+| MAP-03 | Click dot opens side panel with title, tags, summary, link | 7 |
+| MAP-04 | Click dot draws lines to 5 nearest neighbors | 7 |
+| MAP-05 | Filter by tag — matching dots glow, others dim to ~20% | 7 |
+| MAP-06 | Filter by search term — matching dots glow, others dim | 7 |
+| MAP-07 | Toggle ANY (union) / ALL (intersection) tag matching | 7 |
+| MAP-08 | Timeline slider applies Gaussian opacity by document date | 7 |
+| MAP-09 | Play button auto-scrubs timeline forward through time | 7 |
+| MAP-10 | Tag filter, search filter, timeline compose simultaneously | 7 |
+| SHELL-01 | Press `/` from any page to open terminal search overlay | 8 |
+| SHELL-02 | Search overlay fuzzy-matches title, tag, and keyword | 8 |
+| SHELL-03 | Arrow keys navigate results; Enter opens selected result | 8 |
+| SHELL-04 | Vim-style j/k/gg/G/Enter navigation on list pages | 8 |
+| SHELL-05 | Status bar at bottom shows current mode/context | 8 |
+| SHELL-06 | Esc dismisses overlays and returns to previous context | 8 |
+| AESTH-01 | Scanline/CRT overlay on all pages as always-on effect | 8 |
+| AESTH-02 | Headings use typewriter animation on load | 8 |
+| AESTH-03 | ASCII-art dividers in page layouts | 8 |
+| AESTH-04 | All aesthetic effects maintain WCAG AA on body text | 8 |
+| HOME-01 | Home page shows terminal search prompt as primary entry point | 9 |
+| HOME-02 | Home page shows 10 most recently added articles | 9 |
+| SKILL-01 | /loom:add — fetch URL, create document with inferred tags | 10 |
+| SKILL-02 | /loom:deploy — validate + re-embed + commit + push | 10 |
+| SKILL-03 | /loom:deploy refuses to deploy if validation fails | 10 |
+| SKILL-04 | /loom:retag — merge or split tags across all documents | 10 |
+| SKILL-05 | /loom:gaps — identify thin-coverage tags, suggest topics | 10 |
 
-**Total v1 requirements:** 33
-**Mapped:** 33/33
+**Total v1.1 requirements:** 31
+**Mapped:** 31/31
 **Orphaned:** 0
 
 ## Progress
 
-| Phase | Plans Complete | Status | Completed |
-|-------|----------------|--------|-----------|
-| 1. Content Pipeline and Site Foundation | 5/5 | Complete | 2026-03-09 |
-| 2. Graph Visualization and Relationship Engine | 5/5 | Complete | 2026-03-09 |
-| 3. Claude Code Skills and Polish | 3/3 | Complete | 2026-03-09 |
-| 4. Cleanup and Polish | 1/1 | Complete   | 2026-03-09 |
+| Phase | Milestone | Plans Complete | Status | Completed |
+|-------|-----------|----------------|--------|-----------|
+| 1. Content Pipeline and Site Foundation | v1.0 | 5/5 | Complete | 2026-03-09 |
+| 2. Graph Visualization and Relationship Engine | v1.0 | 5/5 | Complete | 2026-03-09 |
+| 3. Claude Code Skills and Polish | v1.0 | 3/3 | Complete | 2026-03-09 |
+| 4. Cleanup and Polish | v1.0 | 1/1 | Complete | 2026-03-09 |
+| 5. Embedding Pipeline | v1.1 | 0/TBD | Not started | - |
+| 6. Map Page Skeleton | v1.1 | 0/TBD | Not started | - |
+| 7. Map Interactions | v1.1 | 0/TBD | Not started | - |
+| 8. Global Shell | v1.1 | 0/TBD | Not started | - |
+| 9. Home Page | v1.1 | 0/TBD | Not started | - |
+| 10. Claude Code Skills | v1.1 | 0/TBD | Not started | - |

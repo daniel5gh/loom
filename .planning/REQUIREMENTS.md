@@ -87,47 +87,45 @@ Deferred to future release.
 
 ## Traceability
 
-To be filled by roadmapper.
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| EMBED-01 | — | Pending |
-| EMBED-02 | — | Pending |
-| EMBED-03 | — | Pending |
-| EMBED-04 | — | Pending |
-| MAP-01 | — | Pending |
-| MAP-02 | — | Pending |
-| MAP-03 | — | Pending |
-| MAP-04 | — | Pending |
-| MAP-05 | — | Pending |
-| MAP-06 | — | Pending |
-| MAP-07 | — | Pending |
-| MAP-08 | — | Pending |
-| MAP-09 | — | Pending |
-| MAP-10 | — | Pending |
-| SHELL-01 | — | Pending |
-| SHELL-02 | — | Pending |
-| SHELL-03 | — | Pending |
-| SHELL-04 | — | Pending |
-| SHELL-05 | — | Pending |
-| SHELL-06 | — | Pending |
-| HOME-01 | — | Pending |
-| HOME-02 | — | Pending |
-| AESTH-01 | — | Pending |
-| AESTH-02 | — | Pending |
-| AESTH-03 | — | Pending |
-| AESTH-04 | — | Pending |
-| SKILL-01 | — | Pending |
-| SKILL-02 | — | Pending |
-| SKILL-03 | — | Pending |
-| SKILL-04 | — | Pending |
-| SKILL-05 | — | Pending |
+| EMBED-01 | Phase 5 | Pending |
+| EMBED-02 | Phase 5 | Pending |
+| EMBED-03 | Phase 5 | Pending |
+| EMBED-04 | Phase 5 | Pending |
+| MAP-01 | Phase 6 | Pending |
+| MAP-02 | Phase 6 | Pending |
+| MAP-03 | Phase 7 | Pending |
+| MAP-04 | Phase 7 | Pending |
+| MAP-05 | Phase 7 | Pending |
+| MAP-06 | Phase 7 | Pending |
+| MAP-07 | Phase 7 | Pending |
+| MAP-08 | Phase 7 | Pending |
+| MAP-09 | Phase 7 | Pending |
+| MAP-10 | Phase 7 | Pending |
+| SHELL-01 | Phase 8 | Pending |
+| SHELL-02 | Phase 8 | Pending |
+| SHELL-03 | Phase 8 | Pending |
+| SHELL-04 | Phase 8 | Pending |
+| SHELL-05 | Phase 8 | Pending |
+| SHELL-06 | Phase 8 | Pending |
+| AESTH-01 | Phase 8 | Pending |
+| AESTH-02 | Phase 8 | Pending |
+| AESTH-03 | Phase 8 | Pending |
+| AESTH-04 | Phase 8 | Pending |
+| HOME-01 | Phase 9 | Pending |
+| HOME-02 | Phase 9 | Pending |
+| SKILL-01 | Phase 10 | Pending |
+| SKILL-02 | Phase 10 | Pending |
+| SKILL-03 | Phase 10 | Pending |
+| SKILL-04 | Phase 10 | Pending |
+| SKILL-05 | Phase 10 | Pending |
 
 **Coverage:**
 - v1.1 requirements: 31 total
-- Mapped to phases: 0
-- Unmapped: 31 (pending roadmap)
+- Mapped to phases: 31
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-10*
-*Last updated: 2026-03-10 after v1.1 milestone definition*
+*Last updated: 2026-03-10 — v1.1 traceability complete, all 31 requirements mapped to phases 5-10*
