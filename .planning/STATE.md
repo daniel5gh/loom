@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Visualization
 status: planning
-stopped_at: Completed 07-01-PLAN.md
-last_updated: "2026-03-10T17:32:21.793Z"
+stopped_at: Completed 07-02-PLAN.md
+last_updated: "2026-03-10T17:36:25.293Z"
 last_activity: 2026-03-10 — v1.1 roadmap created, 31 requirements mapped to phases 5-10
 progress:
   total_phases: 10
   completed_phases: 6
   total_plans: 24
-  completed_plans: 20
+  completed_plans: 21
   percent: 40
 ---
 
@@ -52,6 +52,7 @@ Progress: [████░░░░░░] 40% (4 of 10 phases complete)
 | Phase 06-map-page-skeleton P01 | 2min | 3 tasks | 5 files |
 | Phase 06-map-page-skeleton P02 | 5min | 2 tasks | 0 files |
 | Phase 07-map-interactions P01 | 2 | 3 tasks | 3 files |
+| Phase 07-map-interactions P02 | 2min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -80,6 +81,8 @@ Recent decisions affecting current work:
 - [Phase 07-map-interactions]: composedOpacity does no clamping — pure Math.min; callers apply DIM_OPACITY floor themselves
 - [Phase 07-map-interactions]: kNearest uses reference equality (d !== dot) to exclude self from results
 - [Phase 07-map-interactions]: Astro collection enrichment at build time via getCollection + regex to extract ## Summary section
+- [Phase 07-map-interactions]: hitTestInline inlined in map.astro — is:inline type=module cannot resolve bare specifiers; map.mjs is Node-only
+- [Phase 07-map-interactions]: .map-panel .tag-pill overrides global tag-pill with subdued styling — panel tags are metadata labels, not interactive filters
 
 ### Pending Todos
 
@@ -93,6 +96,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-10T17:32:21.790Z
-Stopped at: Completed 07-01-PLAN.md
+Last session: 2026-03-10T17:36:25.289Z
+Stopped at: Completed 07-02-PLAN.md
 Resume file: None

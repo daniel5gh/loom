@@ -29,7 +29,7 @@ All v1.0 requirements validated and shipped. See ROADMAP.md phases 1-4.
 - [x] **MAP-01**: User can view all documents as dots on a 2D semantic similarity map at `/map`
 - [x] **MAP-02**: Hovering a dot shows tooltip with title and tags
 - [x] **MAP-03**: Clicking a dot opens a side panel with title, tags, summary, and link to full article
-- [ ] **MAP-04**: Clicking a dot draws lines to 5 nearest neighbors
+- [x] **MAP-04**: Clicking a dot draws lines to 5 nearest neighbors
 - [ ] **MAP-05**: User can filter map by selecting one or more tags (matching dots glow, others dim to ~20% opacity)
 - [ ] **MAP-06**: User can filter map by typing a search term (matching dots glow, others dim)
 - [ ] **MAP-07**: User can toggle ANY (union) / ALL (intersection) tag matching mode
@@ -96,7 +96,7 @@ Deferred to future release.
 | MAP-01 | Phase 6 | Complete |
 | MAP-02 | Phase 6 | Complete |
 | MAP-03 | Phase 7 | Complete |
-| MAP-04 | Phase 7 | Pending |
+| MAP-04 | Phase 7 | Complete |
 | MAP-05 | Phase 7 | Pending |
 | MAP-06 | Phase 7 | Pending |
 | MAP-07 | Phase 7 | Pending |
