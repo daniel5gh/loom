@@ -190,7 +190,14 @@ Plans:
   3. `/loom:deploy` refuses to proceed and prints validation errors if any document fails the frontmatter check; no commit is made
   4. `/loom:retag <old> <new>` updates every document that uses the old tag to use the new tag, or splits one tag into two across the corpus
   5. `/loom:gaps` lists tags with only 1-2 documents and outputs suggested research topics for each thin-coverage area
-**Plans**: TBD
+**Plans**: 5 plans
+
+Plans:
+- [ ] 10-01-PLAN.md — validate-docs.mjs script + tests (TDD, supports deploy skill)
+- [ ] 10-02-PLAN.md — /loom:add skill (fetch URL, create document)
+- [ ] 10-03-PLAN.md — /loom:deploy skill (validate + embed + commit + push)
+- [ ] 10-04-PLAN.md — /loom:retag and /loom:gaps skills
+- [ ] 10-05-PLAN.md — Human verification checkpoint for all four skills
 
 ## Coverage Validation
 
