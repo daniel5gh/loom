@@ -1,5 +1,210 @@
 {
   "version": 1,
-  "generated": "2026-03-10T00:00:00.000Z",
-  "documents": []
+  "generated": "2026-03-10T16:11:03.973Z",
+  "documents": [
+    {
+      "id": "airllm",
+      "title": "AirLLM",
+      "category": "ai-tools-and-services",
+      "tags": [
+        "ai",
+        "llm",
+        "inference",
+        "optimization",
+        "open-source"
+      ],
+      "x": -2.6713697492684356,
+      "y": 4.6740523048815845
+    },
+    {
+      "id": "langchain",
+      "title": "LangChain Overview",
+      "category": "ai-tools-and-services",
+      "tags": [
+        "langchain",
+        "ai",
+        "framework",
+        "agents"
+      ],
+      "x": -4.145862796936638,
+      "y": 4.253656734375107
+    },
+    {
+      "id": "langflow",
+      "title": "Langflow",
+      "category": "ai-tools-and-services",
+      "tags": [
+        "ai",
+        "orchestration",
+        "workflow",
+        "llm",
+        "open-source"
+      ],
+      "x": -2.817996857145918,
+      "y": 3.936535484178851
+    },
+    {
+      "id": "litellm",
+      "title": "LiteLLM Overview",
+      "category": "ai-tools-and-services",
+      "tags": [
+        "litellm",
+        "ai",
+        "llm",
+        "gateway"
+      ],
+      "x": -3.3568722071647015,
+      "y": 4.42913195959578
+    },
+    {
+      "id": "llamaindex",
+      "title": "LlamaIndex Overview",
+      "category": "ai-tools-and-services",
+      "tags": [
+        "llamaindex",
+        "ai",
+        "document",
+        "agent",
+        "ocr"
+      ],
+      "x": -3.174043801632641,
+      "y": 6.798762446720656
+    },
+    {
+      "id": "lovable",
+      "title": "Lovable",
+      "category": "ai-tools-and-services",
+      "tags": [
+        "ai",
+        "app-builder",
+        "website-builder",
+        "no-code",
+        "chat",
+        "saas"
+      ],
+      "x": -4.537517370696593,
+      "y": 5.063907436509398
+    },
+    {
+      "id": "n8n",
+      "title": "n8n Overview",
+      "category": "ai-tools-and-services",
+      "tags": [
+        "n8n",
+        "automation",
+        "workflow",
+        "integration"
+      ],
+      "x": -3.3301104244662088,
+      "y": 5.168190064150219
+    },
+    {
+      "id": "openrouter",
+      "title": "OpenRouter Overview",
+      "category": "ai-tools-and-services",
+      "tags": [
+        "openrouter",
+        "ai",
+        "llm",
+        "routing"
+      ],
+      "x": -3.3380162544294802,
+      "y": 3.8235240713089786
+    },
+    {
+      "id": "pageindex",
+      "title": "PageIndex",
+      "category": "ai-tools-and-services",
+      "tags": [
+        "ai",
+        "rag",
+        "retrieval",
+        "llm",
+        "document-analysis",
+        "open-source"
+      ],
+      "x": -3.777918422820013,
+      "y": 6.644080017500487
+    },
+    {
+      "id": "weaviate",
+      "title": "Weaviate Overview",
+      "category": "ai-tools-and-services",
+      "tags": [
+        "weaviate",
+        "ai",
+        "vector",
+        "database",
+        "rag"
+      ],
+      "x": -4.5549187745329975,
+      "y": 6.664702345893115
+    },
+    {
+      "id": "aws-sagemaker-ai",
+      "title": "AWS SageMaker AI Overview",
+      "category": "cloud-ai-platforms",
+      "tags": [
+        "aws",
+        "ai",
+        "cloud",
+        "sagemaker"
+      ],
+      "x": -4.76652421579494,
+      "y": 5.791851439619932
+    },
+    {
+      "id": "azure-foundry-ai",
+      "title": "Azure Foundry AI Overview",
+      "category": "cloud-ai-platforms",
+      "tags": [
+        "azure",
+        "ai",
+        "cloud",
+        "agent-factory"
+      ],
+      "x": -5.17387019091714,
+      "y": 4.974956423677681
+    },
+    {
+      "id": "cloud-ai-platforms-comparison",
+      "title": "Cloud AI Platforms Comparison",
+      "category": "cloud-ai-platforms",
+      "tags": [
+        "cloud",
+        "ai",
+        "comparison",
+        "azure",
+        "aws",
+        "gcp"
+      ],
+      "x": -3.5229504052234852,
+      "y": 6.00405441959255
+    },
+    {
+      "id": "google-vertex-ai",
+      "title": "Google Vertex AI Overview",
+      "category": "cloud-ai-platforms",
+      "tags": [
+        "google",
+        "ai",
+        "cloud",
+        "vertex-ai"
+      ],
+      "x": -5.381844407252641,
+      "y": 5.610206672726293
+    },
+    {
+      "id": "ai-foundry",
+      "title": "AI Foundry Overview",
+      "category": "companies",
+      "tags": [
+        "ai",
+        "document-processing",
+        "business"
+      ],
+      "x": -4.155084459359952,
+      "y": 5.642631988209424
+    }
+  ]
 }

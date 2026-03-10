@@ -43,7 +43,7 @@ const CONTENT_DIRS = [
  * Assert Ollama is running at the given host.
  * Exits process with code 1 and an actionable error message if not.
  */
-export async function assertOllamaRunning(host = 'http://localhost:11434') {
+export async function assertOllamaRunning(host = 'http://10.0.1.3:11434') {
   try {
     const res = await fetch(host, { signal: AbortSignal.timeout(3000) });
     const text = await res.text();
@@ -178,7 +178,7 @@ export function atomicWriteJSON(targetPath, data) {
 // --- Main orchestration (not exported) ---
 
 async function main() {
-  const ollama = new Ollama({ host: 'http://localhost:11434' });
+  const ollama = new Ollama({ host: 'http://10.0.1.3:11434' });
 
   console.log('embed.mjs: checking Ollama…');
   await assertOllamaRunning();
