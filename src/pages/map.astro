@@ -75,25 +75,101 @@ const mapData = JSON.stringify(enriched);
     const scaleX = xMax === xMin ? () => W / 2 : v => PAD + (v - xMin) / (xMax - xMin) * (W - 2 * PAD);
     const scaleY = yMax === yMin ? () => H / 2 : v => PAD + (v - yMin) / (yMax - yMin) * (H - 2 * PAD);
 
-    // Build dotPositions and draw neon dots with glow
+    // Build dotPositions array
     const HIT_RADIUS = 8;
     const dotPositions = [];
-    ctx.clearRect(0, 0, W, H);
     for (const doc of docs) {
       const cx = scaleX(doc.x), cy = scaleY(doc.y);
       dotPositions.push({ doc, cx, cy });
-      const color = CATEGORY_COLORS[doc.category] || FALLBACK_COLOR;
+    }
+
+    // Filter state — all start as "no filter active"
+    let selectedTags = new Set();
+    let anyAllMode = 'ANY';
+    let searchQuery = '';
+    let timelineDate = null;      // Date | null
+    let matchingDocIds = null;    // Set<string> | null (null = no search filter)
+    let selectedDot = null;       // currently clicked dot | null
+
+    const DIM_OPACITY = 0.2;
+    const SIGMA_DAYS = 5;         // tuned for current corpus date spread (~6 days)
+    const NEIGHBOR_COUNT = 5;
+
+    // Pure opacity functions (inline — map.mjs is Node-testable; is:inline cannot import bare specifiers)
+    function tagOpacity(doc) {
+      if (selectedTags.size === 0) return 1.0;
+      const match = anyAllMode === 'ANY'
+        ? doc.tags.some(t => selectedTags.has(t))
+        : [...selectedTags].every(t => doc.tags.includes(t));
+      return match ? 1.0 : DIM_OPACITY;
+    }
+    function searchOpacity(doc) {
+      if (matchingDocIds === null) return 1.0;
+      return matchingDocIds.has(doc.id) ? 1.0 : DIM_OPACITY;
+    }
+    function gaussianOp(doc) {
+      if (!timelineDate || !doc.date) return 1.0;
+      const docMs = new Date(doc.date).getTime();
+      const selMs = timelineDate.getTime();
+      const deltaDays = Math.abs(docMs - selMs) / 86400000;
+      return Math.exp(-(deltaDays * deltaDays) / (2 * SIGMA_DAYS * SIGMA_DAYS));
+    }
+    function composedOp(doc) {
+      return Math.min(tagOpacity(doc), searchOpacity(doc), gaussianOp(doc));
+    }
+
+    // kNearest inline (map.mjs is not importable in is:inline; duplicate the logic)
+    function kNearest(dot, k) {
+      return dotPositions
+        .filter(d => d !== dot)
+        .map(d => ({ d, dist: Math.sqrt((d.cx - dot.cx) ** 2 + (d.cy - dot.cy) ** 2) }))
+        .sort((a, b) => a.dist - b.dist)
+        .slice(0, k)
+        .map(e => e.d);
+    }
+
+    function drawDot(cx, cy, color, opacity) {
       ctx.save();
+      ctx.globalAlpha = opacity;
       ctx.beginPath();
       ctx.arc(cx, cy, 5, 0, 2 * Math.PI);
       ctx.fillStyle = color;
       ctx.shadowColor = color;
-      ctx.shadowBlur = 8;
+      ctx.shadowBlur = opacity < 0.5 ? 4 : 8; // reduce glow for dimmed dots
       ctx.fill();
       ctx.restore();
     }
 
-    // Tooltip hover logic
+    function drawNeighborLines(dot) {
+      const neighbors = kNearest(dot, NEIGHBOR_COUNT);
+      ctx.save();
+      ctx.strokeStyle = '#8888AA';
+      ctx.lineWidth = 1;
+      ctx.globalAlpha = 0.4;
+      for (const n of neighbors) {
+        ctx.beginPath();
+        ctx.moveTo(dot.cx, dot.cy);
+        ctx.lineTo(n.cx, n.cy);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    // Central redraw() — repaint canvas on every state change
+    function redraw() {
+      ctx.clearRect(0, 0, W, H);
+      if (selectedDot) drawNeighborLines(selectedDot);
+      for (const dot of dotPositions) {
+        const opacity = composedOp(dot.doc);
+        const color = CATEGORY_COLORS[dot.doc.category] || FALLBACK_COLOR;
+        drawDot(dot.cx, dot.cy, color, opacity);
+      }
+    }
+
+    // Initial draw
+    redraw();
+
+    // Tooltip hover logic (unchanged from Phase 6)
     const tooltip = document.getElementById('map-tooltip');
     canvas.addEventListener('mousemove', (event) => {
       const r = canvas.getBoundingClientRect();
