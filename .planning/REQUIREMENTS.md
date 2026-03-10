@@ -53,9 +53,9 @@ All v1.0 requirements validated and shipped. See ROADMAP.md phases 1-4.
 
 ### Cyberpunk Aesthetic
 
-- [ ] **AESTH-01**: Scanline/CRT overlay renders on all pages as always-on effect
-- [ ] **AESTH-02**: Headings use typewriter animation effect on load
-- [ ] **AESTH-03**: ASCII-art dividers used in page layouts
+- [x] **AESTH-01**: Scanline/CRT overlay renders on all pages as always-on effect
+- [x] **AESTH-02**: Headings use typewriter animation effect on load
+- [x] **AESTH-03**: ASCII-art dividers used in page layouts
 - [x] **AESTH-04**: All aesthetic effects maintain WCAG AA contrast on body text
 
 ### Claude Code Skills
@@ -109,9 +109,9 @@ Deferred to future release.
 | SHELL-04 | Phase 8 | Pending |
 | SHELL-05 | Phase 8 | Pending |
 | SHELL-06 | Phase 8 | Pending |
-| AESTH-01 | Phase 8 | Pending |
-| AESTH-02 | Phase 8 | Pending |
-| AESTH-03 | Phase 8 | Pending |
+| AESTH-01 | Phase 8 | Complete |
+| AESTH-02 | Phase 8 | Complete |
+| AESTH-03 | Phase 8 | Complete |
 | AESTH-04 | Phase 8 | Complete |
 | HOME-01 | Phase 9 | Pending |
 | HOME-02 | Phase 9 | Pending |
