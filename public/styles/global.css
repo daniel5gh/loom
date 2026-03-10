@@ -900,3 +900,31 @@ body {
   padding: 0.5rem;
   text-align: center;
 }
+
+/* Vim status bar */
+.vim-status-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--bg-elevated);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.2rem 1rem;
+  display: flex;
+  gap: 1rem;
+  z-index: 100;
+}
+
+#vim-mode-label {
+  color: var(--neon-cyan);
+  font-weight: 600;
+}
+
+/* Vim selected item highlight */
+[data-vim-item].vim-selected {
+  outline: 1px solid var(--neon-cyan);
+  box-shadow: 0 0 6px rgba(0, 229, 255, 0.2);
+}
