@@ -238,6 +238,66 @@ const mapData = JSON.stringify(enriched);
       redraw();
     });
 
+    // Build sorted unique date strings from corpus and configure slider
+    const uniqueDates = [...new Set(docs.filter(d => d.date).map(d => d.date))].sort();
+    const slider = document.getElementById('map-timeline');
+    slider.max = uniqueDates.length > 0 ? String(uniqueDates.length - 1) : '0';
+    slider.value = '0';
+    // timelineDate starts as null — filter only activates once user drags
+
+    // Slider input handler
+    let timelineActive = false;
+    slider.addEventListener('input', () => {
+      timelineActive = true;
+      const idx = parseInt(slider.value, 10);
+      timelineDate = uniqueDates.length > 0 ? new Date(uniqueDates[idx]) : null;
+      redraw();
+    });
+
+    // Play/pause button
+    let playInterval = null;
+    const playBtn = document.getElementById('map-play');
+
+    function stopPlay() {
+      if (playInterval) {
+        clearInterval(playInterval);
+        playInterval = null;
+      }
+      playBtn.innerHTML = '&#x25B6;'; // ▶
+      playBtn.classList.remove('playing');
+    }
+
+    function tick() {
+      const max = parseInt(slider.max, 10);
+      const val = parseInt(slider.value, 10);
+      if (val >= max) {
+        stopPlay();
+        // Reset filter after play completes
+        timelineDate = null;
+        redraw();
+        return;
+      }
+      slider.value = String(val + 1);
+      slider.dispatchEvent(new Event('input')); // triggers input handler → redraw()
+    }
+
+    playBtn.addEventListener('click', () => {
+      if (playInterval) {
+        stopPlay();
+      } else {
+        // Reset slider to start before playing
+        slider.value = '0';
+        timelineDate = null;
+        playInterval = setInterval(tick, 100); // 100ms per step ≈ 10fps scrub
+        playBtn.innerHTML = '&#x23F8;'; // ⏸
+        playBtn.classList.add('playing');
+        tick(); // fire first step immediately
+      }
+    });
+
+    // Cleanup on page navigation (avoids memory leak)
+    window.addEventListener('pagehide', stopPlay);
+
     // Initial draw
     redraw();
 
