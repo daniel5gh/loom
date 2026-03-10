@@ -53,6 +53,7 @@ const mapData = JSON.stringify(enriched);
 
   <!-- Canvas rendering: is:inline + type="module" avoids SSR execution -->
   <script is:inline type="module">
+    import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@7.1.0/dist/fuse.esm.min.js';
     const data = JSON.parse(document.getElementById('map-data').textContent);
     const docs = data.documents;
 
@@ -183,6 +184,54 @@ const mapData = JSON.stringify(enriched);
         drawDot(dot.cx, dot.cy, color, opacity);
       }
     }
+
+    // Build tag filter buttons from all unique tags in corpus
+    const allTags = [...new Set(docs.flatMap(d => d.tags))].sort();
+    const tagContainer = document.getElementById('map-tag-filter');
+    for (const tag of allTags) {
+      const btn = document.createElement('button');
+      btn.className = 'tag-filter-btn';
+      btn.textContent = tag;
+      btn.addEventListener('click', () => {
+        if (selectedTags.has(tag)) {
+          selectedTags.delete(tag);
+          btn.classList.remove('active');
+        } else {
+          selectedTags.add(tag);
+          btn.classList.add('active');
+        }
+        redraw();
+      });
+      tagContainer.appendChild(btn);
+    }
+
+    // ANY/ALL toggle
+    const anyAllBtn = document.getElementById('map-anyall-btn');
+    anyAllBtn.addEventListener('click', () => {
+      anyAllMode = anyAllMode === 'ANY' ? 'ALL' : 'ANY';
+      anyAllBtn.textContent = anyAllMode;
+      anyAllBtn.classList.toggle('any-mode', anyAllMode === 'ANY');
+      anyAllBtn.classList.toggle('all-mode', anyAllMode === 'ALL');
+      redraw();
+    });
+
+    // Initialize Fuse index once — search on input
+    const fuse = new Fuse(docs, {
+      keys: ['title', 'tags'],
+      threshold: 0.35,
+      includeScore: false,
+    });
+
+    document.getElementById('map-search').addEventListener('input', (e) => {
+      const q = e.target.value.trim();
+      searchQuery = q;
+      if (!q) {
+        matchingDocIds = null; // null = no filter active (all pass)
+      } else {
+        matchingDocIds = new Set(fuse.search(q).map(r => r.item.id));
+      }
+      redraw();
+    });
 
     // Initial draw
     redraw();
