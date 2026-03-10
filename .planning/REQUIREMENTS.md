@@ -19,10 +19,10 @@ All v1.0 requirements validated and shipped. See ROADMAP.md phases 1-4.
 
 ### Embedding Pipeline
 
-- [ ] **EMBED-01**: Operator can run `scripts/embed.mjs` to generate 2D coordinates for all documents via Ollama + nomic-embed-text + UMAP
-- [ ] **EMBED-02**: Pipeline only re-embeds new/changed documents (content-hash incremental caching)
-- [ ] **EMBED-03**: Pipeline fails loudly if Ollama is not running (explicit health check + atomic file write)
-- [ ] **EMBED-04**: `src/data/embeddings.json` is committed to git and consumed by Astro at build time
+- [x] **EMBED-01**: Operator can run `scripts/embed.mjs` to generate 2D coordinates for all documents via Ollama + nomic-embed-text + UMAP
+- [x] **EMBED-02**: Pipeline only re-embeds new/changed documents (content-hash incremental caching)
+- [x] **EMBED-03**: Pipeline fails loudly if Ollama is not running (explicit health check + atomic file write)
+- [x] **EMBED-04**: `src/data/embeddings.json` is committed to git and consumed by Astro at build time
 
 ### Map Visualization
 
@@ -89,10 +89,10 @@ Deferred to future release.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| EMBED-01 | Phase 5 | Pending |
-| EMBED-02 | Phase 5 | Pending |
-| EMBED-03 | Phase 5 | Pending |
-| EMBED-04 | Phase 5 | Pending |
+| EMBED-01 | Phase 5 | Complete |
+| EMBED-02 | Phase 5 | Complete |
+| EMBED-03 | Phase 5 | Complete |
+| EMBED-04 | Phase 5 | Complete |
 | MAP-01 | Phase 6 | Pending |
 | MAP-02 | Phase 6 | Pending |
 | MAP-03 | Phase 7 | Pending |

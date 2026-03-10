@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Visualization
 status: planning
-stopped_at: Roadmap created for v1.1 — phases 5-10 defined
-last_updated: "2026-03-10T00:00:00.000Z"
-last_activity: 2026-03-10 — v1.1 roadmap created, ready to plan Phase 5
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-03-10T15:58:36.533Z"
+last_activity: 2026-03-10 — v1.1 roadmap created, 31 requirements mapped to phases 5-10
 progress:
   total_phases: 10
   completed_phases: 4
-  total_plans: 14
-  completed_plans: 14
-  percent: 20
+  total_plans: 17
+  completed_plans: 15
+  percent: 40
 ---
 
 # Project State
@@ -46,6 +46,7 @@ Progress: [████░░░░░░] 40% (4 of 10 phases complete)
 | v1.0 phases 1-4 | 14 | - | - |
 
 *Updated after each plan completion*
+| Phase 05-embedding-pipeline P01 | 2 | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -59,6 +60,9 @@ Recent decisions affecting current work:
 - v1.1 stack additions: ollama@^0.6.3, umap-js@^1.4.0, gray-matter@^4.x (offline only); regl-scatterplot@^1.15.0, fuse.js@^7.1.0 (browser)
 - Canvas vs regl-scatterplot decision deferred to Phase 6 planning (depends on projected corpus size)
 - embeddings.json location (src/data/ vs public/) deferred to Phase 6 planning
+- [Phase 05-embedding-pipeline]: embed.mjs deps installed to production dependencies (not devDeps) — runs in deploy context
+- [Phase 05-embedding-pipeline]: embeddings.json committed to git (not gitignored) so Cloudflare Pages builds succeed before pipeline runs
+- [Phase 05-embedding-pipeline]: .cache/ gitignored — raw 768-dim vector cache is local-only, never committed
 
 ### Pending Todos
 
@@ -72,6 +76,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-10
-Stopped at: v1.1 roadmap written — ROADMAP.md, STATE.md, REQUIREMENTS.md traceability updated
+Last session: 2026-03-10T15:58:36.530Z
+Stopped at: Completed 05-01-PLAN.md
 Resume file: None
