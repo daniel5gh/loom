@@ -120,6 +120,7 @@ const shellData = JSON.stringify([
         renderResults([]);
         input.focus();
       }
+      document.addEventListener('loom:open-search', () => openOverlay());
 
       function closeOverlay() {
         overlayOpen = false;
