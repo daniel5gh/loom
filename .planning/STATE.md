@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-03-09)
 Phase: 1 of 3 (Content Pipeline and Site Foundation)
 Plan: 0 of TBD in current phase
 Status: Ready to plan
-Last activity: 2026-03-09 — Roadmap created
+Last activity: 2026-03-10 - Completed quick task 1: add a project level README.md
 
 Progress: [██░░░░░░░░] 20%
 
@@ -101,6 +101,12 @@ Recent decisions affecting current work:
 ### Pending Todos
 
 None yet.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 1 | add a project level README.md | 2026-03-10 | 9c347f4 | [1-add-a-project-level-readme-md](./quick/1-add-a-project-level-readme-md/) |
 
 ### Blockers/Concerns
 
