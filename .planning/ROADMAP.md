@@ -226,7 +226,7 @@ Every v1.1 requirement maps to exactly one phase. No orphans.
 | AESTH-03 | ASCII-art dividers in page layouts | 8 |
 | AESTH-04 | All aesthetic effects maintain WCAG AA on body text | 8 |
 | HOME-01 | Home page shows terminal search prompt as primary entry point | 9 | 3/3 | Complete   | 2026-03-10 | 9 |
-| SKILL-01 | /loom:add — fetch URL, create document with inferred tags | 10 | 3/5 | In Progress|  | 10 |
+| SKILL-01 | /loom:add — fetch URL, create document with inferred tags | 10 | 4/5 | In Progress|  | 10 |
 | SKILL-03 | /loom:deploy refuses to deploy if validation fails | 10 |
 | SKILL-04 | /loom:retag — merge or split tags across all documents | 10 |
 | SKILL-05 | /loom:gaps — identify thin-coverage tags, suggest topics | 10 |
