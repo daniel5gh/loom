@@ -190,8 +190,7 @@ Every v1.1 requirement maps to exactly one phase. No orphans.
 | EMBED-03 | Fail loudly if Ollama not running; atomic file write | 5 |
 | EMBED-04 | embeddings.json committed to git, consumed at Astro build time | 5 |
 | MAP-01 | View all documents as dots on 2D semantic map at /map | 6 | 2/2 | Complete   | 2026-03-10 | 6 |
-| MAP-03 | Click dot opens side panel with title, tags, summary, link | 7 |
-| MAP-04 | Click dot draws lines to 5 nearest neighbors | 7 |
+| MAP-03 | Click dot opens side panel with title, tags, summary, link | 7 | 1/5 | In Progress|  | 7 |
 | MAP-05 | Filter by tag — matching dots glow, others dim to ~20% | 7 |
 | MAP-06 | Filter by search term — matching dots glow, others dim | 7 |
 | MAP-07 | Toggle ANY (union) / ALL (intersection) tag matching | 7 |

@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Visualization
 status: planning
-stopped_at: Completed 06-02-PLAN.md
-last_updated: "2026-03-10T17:07:35.383Z"
+stopped_at: Completed 07-01-PLAN.md
+last_updated: "2026-03-10T17:32:21.793Z"
 last_activity: 2026-03-10 — v1.1 roadmap created, 31 requirements mapped to phases 5-10
 progress:
   total_phases: 10
   completed_phases: 6
-  total_plans: 19
-  completed_plans: 19
+  total_plans: 24
+  completed_plans: 20
   percent: 40
 ---
 
@@ -51,6 +51,7 @@ Progress: [████░░░░░░] 40% (4 of 10 phases complete)
 | Phase 05-embedding-pipeline P03 | 30 | 2 tasks | 3 files |
 | Phase 06-map-page-skeleton P01 | 2min | 3 tasks | 5 files |
 | Phase 06-map-page-skeleton P02 | 5min | 2 tasks | 0 files |
+| Phase 07-map-interactions P01 | 2 | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -75,6 +76,10 @@ Recent decisions affecting current work:
 - [Phase 06-map-page-skeleton]: HiDPI canvas reads layout dimensions from getBoundingClientRect at runtime — avoids hardcoded sizes
 - [Phase 06-map-page-skeleton]: embeddings.json consumed via data island at build time — no SSR globals, no window/document references in frontmatter
 - [Phase 06-map-page-skeleton]: Phase 6 visual verification passed by human inspection — automated tests cannot cover HiDPI sharpness or tooltip DOM behavior
+- [Phase 07-map-interactions]: gaussianOpacity does NOT apply DIM_OPACITY floor — timeline is continuous fade, callers handle clamping
+- [Phase 07-map-interactions]: composedOpacity does no clamping — pure Math.min; callers apply DIM_OPACITY floor themselves
+- [Phase 07-map-interactions]: kNearest uses reference equality (d !== dot) to exclude self from results
+- [Phase 07-map-interactions]: Astro collection enrichment at build time via getCollection + regex to extract ## Summary section
 
 ### Pending Todos
 
@@ -88,6 +93,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-10T17:03:53.109Z
-Stopped at: Completed 06-02-PLAN.md
+Last session: 2026-03-10T17:32:21.790Z
+Stopped at: Completed 07-01-PLAN.md
 Resume file: None
