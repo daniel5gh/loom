@@ -34,8 +34,8 @@ All v1.0 requirements validated and shipped. See ROADMAP.md phases 1-4.
 - [x] **MAP-06**: User can filter map by typing a search term (matching dots glow, others dim)
 - [x] **MAP-07**: User can toggle ANY (union) / ALL (intersection) tag matching mode
 - [x] **MAP-08**: User can scrub a timeline slider applying gaussian opacity to dots by document date
-- [ ] **MAP-09**: Timeline slider has a play button that auto-scrubs forward through time
-- [ ] **MAP-10**: Tag filter, search filter, and timeline compose and apply simultaneously
+- [x] **MAP-09**: Timeline slider has a play button that auto-scrubs forward through time
+- [x] **MAP-10**: Tag filter, search filter, and timeline compose and apply simultaneously
 
 ### Global Shell
 
@@ -101,8 +101,8 @@ Deferred to future release.
 | MAP-06 | Phase 7 | Complete |
 | MAP-07 | Phase 7 | Complete |
 | MAP-08 | Phase 7 | Complete |
-| MAP-09 | Phase 7 | Pending |
-| MAP-10 | Phase 7 | Pending |
+| MAP-09 | Phase 7 | Complete |
+| MAP-10 | Phase 7 | Complete |
 | SHELL-01 | Phase 8 | Pending |
 | SHELL-02 | Phase 8 | Pending |
 | SHELL-03 | Phase 8 | Pending |

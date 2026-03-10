@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Visualization
 status: planning
-stopped_at: Completed 07-03-PLAN.md
-last_updated: "2026-03-10T17:40:14.005Z"
+stopped_at: Completed 07-04-PLAN.md
+last_updated: "2026-03-10T17:43:01.724Z"
 last_activity: 2026-03-10 — v1.1 roadmap created, 31 requirements mapped to phases 5-10
 progress:
   total_phases: 10
   completed_phases: 6
   total_plans: 24
-  completed_plans: 22
+  completed_plans: 23
   percent: 40
 ---
 
@@ -54,6 +54,7 @@ Progress: [████░░░░░░] 40% (4 of 10 phases complete)
 | Phase 07-map-interactions P01 | 2 | 3 tasks | 3 files |
 | Phase 07-map-interactions P02 | 2min | 2 tasks | 2 files |
 | Phase 07-map-interactions P03 | 2min | 2 tasks | 2 files |
+| Phase 07-map-interactions P04 | 3min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -86,6 +87,9 @@ Recent decisions affecting current work:
 - [Phase 07-map-interactions]: .map-panel .tag-pill overrides global tag-pill with subdued styling — panel tags are metadata labels, not interactive filters
 - [Phase 07-map-interactions]: .map-controls .tag-filter-btn scoped selector used instead of bare .tag-filter-btn — global.css already defines .tag-filter-btn for graph sidebar; map controls bar needed different styling
 - [Phase 07-map-interactions]: Fuse.js CDN ESM import (fuse.js@7.1.0) added inline in is:inline type=module script — same CDN pattern as D3 in graph.astro
+- [Phase 07-map-interactions]: Timeline slider position 0 on initial load leaves timelineDate=null (no filter); activates only on first drag
+- [Phase 07-map-interactions]: Play tick fires slider.dispatchEvent(new Event('input')) to reuse input handler — avoids duplicate redraw logic
+- [Phase 07-map-interactions]: pagehide listener calls stopPlay() to clear interval and prevent memory leak on SPA navigation
 
 ### Pending Todos
 
@@ -99,6 +103,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-10T17:40:14.002Z
-Stopped at: Completed 07-03-PLAN.md
+Last session: 2026-03-10T17:42:55.231Z
+Stopped at: Completed 07-04-PLAN.md
 Resume file: None
