@@ -1,7 +1,34 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
 import embeddingsData from '../data/embeddings.json';
-const mapData = JSON.stringify(embeddingsData);
+
+// Build a lookup from doc.id (slug) → { date, summary } using Astro collections
+const aiTools = await getCollection('aiTools');
+const cloudPlatforms = await getCollection('cloudPlatforms');
+const companies = await getCollection('companies');
+const allDocs = [...aiTools, ...cloudPlatforms, ...companies];
+
+const meta = {};
+for (const doc of allDocs) {
+  const body = doc.body || '';
+  const summaryMatch = body.match(/## Summary\n\n([\s\S]*?)(\n##|$)/);
+  meta[doc.id] = {
+    date: doc.data.date ? doc.data.date.toISOString().slice(0, 10) : null,
+    summary: summaryMatch ? summaryMatch[1].trim() : null,
+  };
+}
+
+// Merge date and summary into each embeddings document entry
+const enriched = {
+  ...embeddingsData,
+  documents: embeddingsData.documents.map(d => ({
+    ...d,
+    date: meta[d.id]?.date ?? null,
+    summary: meta[d.id]?.summary ?? null,
+  })),
+};
+const mapData = JSON.stringify(enriched);
 ---
 
 <Base title="Map">
