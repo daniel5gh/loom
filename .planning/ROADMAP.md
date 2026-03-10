@@ -173,7 +173,12 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. The home page displays a `loom> _` terminal prompt; clicking or pressing `/` opens the global search overlay
   2. Below the search prompt, the 10 most recently added articles are listed in reverse-chronological order with title, date, and tags visible
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 09-01-PLAN.md — Test scaffold: sort+slice unit tests for HOME-02
+- [ ] 09-02-PLAN.md — Rewrite index.astro with terminal prompt, recent docs list, CSS, and Base.astro event listener
+- [ ] 09-03-PLAN.md — Human visual checkpoint for all home page behaviors
 
 ### Phase 10: Claude Code Skills
 **Goal**: Four Claude Code slash commands wrap the fully functioning system — capturing new content from URLs, deploying with validation and re-embedding, reshaping the tag taxonomy, and surfacing research gaps
