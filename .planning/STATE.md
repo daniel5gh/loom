@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-03-09)
 Phase: 1 of 3 (Content Pipeline and Site Foundation)
 Plan: 0 of TBD in current phase
 Status: Ready to plan
-Last activity: 2026-03-10 - Completed quick task 1: add a project level README.md
+Last activity: 2026-03-10 - Completed quick task 2: fix cloudflare pages build — add missing name field to wrangler.toml
 
 Progress: [██░░░░░░░░] 20%
 
@@ -107,6 +107,7 @@ None yet.
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 1 | add a project level README.md | 2026-03-10 | 9c347f4 | [1-add-a-project-level-readme-md](./quick/1-add-a-project-level-readme-md/) |
+| 2 | fix cloudflare pages build — add missing name field to wrangler.toml | 2026-03-10 | 0b823de | [2-fix-cloudflare-pages-build-add-missing-n](./quick/2-fix-cloudflare-pages-build-add-missing-n/) |
 
 ### Blockers/Concerns
 
