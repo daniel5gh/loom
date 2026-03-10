@@ -928,3 +928,48 @@ body {
   outline: 1px solid var(--neon-cyan);
   box-shadow: 0 0 6px rgba(0, 229, 255, 0.2);
 }
+
+/* ─── Home Page ─────────────────────────────────────────────────────────── */
+
+.home-prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid var(--neon-cyan);
+  border-radius: 4px;
+  background: var(--bg-surface);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
+  transition: box-shadow 0.15s ease;
+  margin-bottom: 2rem;
+}
+
+.home-prompt:hover {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.35);
+}
+
+.home-prompt-label {
+  color: var(--neon-cyan);
+}
+
+.home-prompt-cursor {
+  color: var(--neon-cyan);
+  animation: cursor-blink 1s step-end infinite;
+}
+
+.home-recent-heading {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.home-recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
