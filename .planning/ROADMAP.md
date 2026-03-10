@@ -121,7 +121,11 @@ Plans:
   2. Hovering a dot shows a tooltip with the document's title and its tags
   3. Dots are sharp on a Retina/HiDPI display — no blurriness from missing devicePixelRatio scaling
   4. `npm run build` completes without SSR errors referencing `window` or `document`
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 06-01-PLAN.md — Test scaffold, map.astro canvas page with HiDPI dots and tooltip, CSS and nav link
+- [ ] 06-02-PLAN.md — Human visual checkpoint: dot layout, HiDPI sharpness, hover tooltip
 
 ### Phase 7: Map Interactions
 **Goal**: Users can filter the map by tags and search terms with ANY/ALL composition, scrub a timeline that applies Gaussian opacity by date, and click any dot to open a side panel and draw nearest-neighbor lines — all filters compose simultaneously
@@ -219,7 +223,7 @@ Every v1.1 requirement maps to exactly one phase. No orphans.
 | 3. Claude Code Skills and Polish | v1.0 | 3/3 | Complete | 2026-03-09 |
 | 4. Cleanup and Polish | v1.0 | 1/1 | Complete | 2026-03-09 |
 | 5. Embedding Pipeline | v1.1 | 0/3 | Planned | - |
-| 6. Map Page Skeleton | v1.1 | 0/TBD | Not started | - |
+| 6. Map Page Skeleton | v1.1 | 0/2 | Planned | - |
 | 7. Map Interactions | v1.1 | 0/TBD | Not started | - |
 | 8. Global Shell | v1.1 | 0/TBD | Not started | - |
 | 9. Home Page | v1.1 | 0/TBD | Not started | - |
