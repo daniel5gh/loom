@@ -1,154 +1,133 @@
 # Requirements: Loom
 
-**Version:** 1.0
-**Date:** 2026-03-09
+**Defined:** 2026-03-10
+**Core Value:** Turn a flat collection of tagged markdown documents into a navigable, visual knowledge graph — making connections between research topics discoverable at a glance.
 
----
+## v1.0 Requirements (Shipped)
 
-## V1 — In Scope
+All v1.0 requirements validated and shipped. See ROADMAP.md phases 1-4.
 
-### Content Pipeline
+- ✓ Static site generation from markdown documents — v1.0 Phase 1
+- ✓ Tag-based filtering and navigation — v1.0 Phase 1
+- ✓ Interactive force-directed graph showing document relationships — v1.0 Phase 2
+- ✓ Dark/neon hacker aesthetic — v1.0 Phases 1-3
+- ✓ Cloudflare Pages deployment with auto-deploy — v1.0 Phase 1
+- ✓ Claude Code skills: /loom:research, /loom:organize, /loom:validate — v1.0 Phase 3
+- ✓ Frontmatter processing pipeline (tags, index, relationships) — v1.0 Phases 1-2
 
-| ID | Requirement | Priority |
-|----|-------------|----------|
-| REQ-001 | Parse all existing markdown documents with YAML frontmatter (title, date, tags) | Must |
-| REQ-002 | Fix malformed frontmatter in `airllm.md` and `langflow.md` (leading space on `date:`) | Must |
-| REQ-003 | Validate frontmatter at build time — fail the build on missing required fields | Must |
-| REQ-004 | Normalize tags at build time: lowercase, trim whitespace, hyphenate spaces | Must |
-| REQ-005 | Generate a build-time tag index mapping each tag to the documents that carry it | Must |
-| REQ-006 | Generate a build-time relationship graph (nodes = documents, edges = shared tags, weight = overlap count) | Must |
-| REQ-007 | Serialize graph data to static JSON consumed by client-side visualization | Must |
+## v1.1 Requirements
 
-### Static Site (Astro)
+### Embedding Pipeline
 
-| ID | Requirement | Priority |
-|----|-------------|----------|
-| REQ-010 | Render each markdown document as an individual HTML page | Must |
-| REQ-011 | Generate a document index/listing page with all documents | Must |
-| REQ-012 | Generate per-tag pages listing all documents with that tag | Must |
-| REQ-013 | Display tags on each document page as clickable links to tag pages | Must |
-| REQ-014 | Show "related documents" section on each page derived from tag overlap | Must |
-| REQ-015 | Site structure navigable from existing directory categories (ai-tools-and-services, cloud-ai-platforms, companies) | Must |
-| REQ-016 | Syntax highlighting for code blocks (Shiki, build-time) | Should |
+- [ ] **EMBED-01**: Operator can run `scripts/embed.mjs` to generate 2D coordinates for all documents via Ollama + nomic-embed-text + UMAP
+- [ ] **EMBED-02**: Pipeline only re-embeds new/changed documents (content-hash incremental caching)
+- [ ] **EMBED-03**: Pipeline fails loudly if Ollama is not running (explicit health check + atomic file write)
+- [ ] **EMBED-04**: `src/data/embeddings.json` is committed to git and consumed by Astro at build time
 
-### Graph Visualization
+### Map Visualization
 
-| ID | Requirement | Priority |
-|----|-------------|----------|
-| REQ-020 | Interactive force-directed graph showing documents as nodes, shared tags as edges | Must |
-| REQ-021 | Clicking a node navigates to that document's page | Must |
-| REQ-022 | Hovering a node highlights it and its direct connections | Must |
-| REQ-023 | Graph supports zoom and pan | Must |
-| REQ-024 | Edge rendering controlled by weight threshold (e.g., only edges with 2+ shared tags) to avoid visual noise | Should |
-| REQ-025 | Graph styled with neon/dark aesthetic consistent with site theme | Must |
-| REQ-026 | Tag-based filtering: select a tag to highlight/isolate nodes that share it | Should |
+- [ ] **MAP-01**: User can view all documents as dots on a 2D semantic similarity map at `/map`
+- [ ] **MAP-02**: Hovering a dot shows tooltip with title and tags
+- [ ] **MAP-03**: Clicking a dot opens a side panel with title, tags, summary, and link to full article
+- [ ] **MAP-04**: Clicking a dot draws lines to 5 nearest neighbors
+- [ ] **MAP-05**: User can filter map by selecting one or more tags (matching dots glow, others dim to ~20% opacity)
+- [ ] **MAP-06**: User can filter map by typing a search term (matching dots glow, others dim)
+- [ ] **MAP-07**: User can toggle ANY (union) / ALL (intersection) tag matching mode
+- [ ] **MAP-08**: User can scrub a timeline slider applying gaussian opacity to dots by document date
+- [ ] **MAP-09**: Timeline slider has a play button that auto-scrubs forward through time
+- [ ] **MAP-10**: Tag filter, search filter, and timeline compose and apply simultaneously
 
-### Aesthetic
+### Global Shell
 
-| ID | Requirement | Priority |
-|----|-------------|----------|
-| REQ-030 | Dark background with high-contrast typography for readability | Must |
-| REQ-031 | Neon accent colors applied to graph nodes, edges, tag pills, hovers, and interactive elements | Must |
-| REQ-032 | Monospace font (e.g., Fira Code) for primary UI chrome | Must |
-| REQ-033 | Glow/bloom effects on graph elements and accent highlights (CSS, not affecting text readability) | Should |
-| REQ-034 | WCAG AA contrast ratio on all body text | Must |
+- [ ] **SHELL-01**: User can press `/` from any page to open a terminal-style search overlay (`loom> _` with blinking cursor)
+- [ ] **SHELL-02**: Search overlay supports fuzzy title, tag, and keyword matching across all documents
+- [ ] **SHELL-03**: User can navigate search results with arrow keys and open selected result with Enter
+- [ ] **SHELL-04**: User can navigate list pages with vim-style keys (j/k to move, Enter to open, gg/G for top/bottom)
+- [ ] **SHELL-05**: Vim-style status bar at bottom of page shows current mode/context
+- [ ] **SHELL-06**: Esc dismisses overlays and returns to previous context
 
-### Deployment
+### Home Page
 
-| ID | Requirement | Priority |
-|----|-------------|----------|
-| REQ-040 | Static output deployable to Cloudflare Pages (no server-side adapter needed) | Must |
-| REQ-041 | Git-based auto-deploy: push to main → Cloudflare Pages builds and publishes | Must |
-| REQ-042 | `.gitignore` covering OS artifacts, editor files, and build output | Must |
-| REQ-043 | Local preview via Wrangler (`wrangler pages dev`) | Should |
+- [ ] **HOME-01**: Home page shows terminal search prompt (`loom> _`) as primary entry point
+- [ ] **HOME-02**: Home page shows recently added articles (last 10 by date)
 
-### AI Document Management (Claude Code Skills)
+### Cyberpunk Aesthetic
 
-| ID | Requirement | Priority |
-|----|-------------|----------|
-| REQ-050 | `/research` skill: given a topic, research it and create a new document following TEMPLATE.md | Must |
-| REQ-051 | `/organize` skill: audit existing documents for missing/inconsistent tags and suggest fixes | Must |
-| REQ-052 | `/validate` skill: check all documents for frontmatter errors and template non-conformance | Must |
-| REQ-053 | Skills enforce tag normalization (lowercase, hyphenated, canonical form) | Must |
+- [ ] **AESTH-01**: Scanline/CRT overlay renders on all pages as always-on effect
+- [ ] **AESTH-02**: Headings use typewriter animation effect on load
+- [ ] **AESTH-03**: ASCII-art dividers used in page layouts
+- [ ] **AESTH-04**: All aesthetic effects maintain WCAG AA contrast on body text
 
----
+### Claude Code Skills
 
-## V2 — Deferred
+- [ ] **SKILL-01**: `/loom:add <url>` fetches a URL, summarizes content, and creates a properly formatted markdown document with inferred tags and category (file created, not committed)
+- [ ] **SKILL-02**: `/loom:deploy` validates all documents, re-embeds changed docs via Ollama, commits, and pushes to trigger Cloudflare build
+- [ ] **SKILL-03**: `/loom:deploy` refuses to deploy if validation fails
+- [ ] **SKILL-04**: `/loom:retag` merges duplicate tags or splits overly broad ones across all documents
+- [ ] **SKILL-05**: `/loom:gaps` identifies tags with thin coverage (1-2 documents) and suggests research topics
 
-| ID | Requirement | Reason Deferred |
-|----|-------------|-----------------|
-| REQ-100 | Client-side full-text search (Fuse.js) | Only valuable at 50+ documents; current corpus is 15 |
-| REQ-101 | Per-document local graph view | Enhancement of Phase 2 graph; Phase 3 feature |
-| REQ-102 | Tag cloud page with weighted tag frequency visualization | Nice-to-have after graph ships |
-| REQ-103 | Page transitions / micro-interactions | Polish layer, not core |
-| REQ-104 | Mobile-optimized responsive layout | Desktop-first personal tool |
-| REQ-105 | RSS/Atom feed | Not needed for personal use |
-| REQ-106 | Theme switching (light/dark toggle) | Dark-only for v1 |
+## v2 Requirements
 
----
+Deferred to future release.
+
+- Full-text semantic search (vector similarity at query time) — server-side, not static
+- Multi-collection support beyond the 3 current categories
+- Mobile-optimized layout
+- Parametric UMAP for position stability across re-runs
 
 ## Out of Scope
 
-| What | Why |
-|------|-----|
-| Multi-user collaboration | Personal knowledge base, single owner |
-| CMS or admin interface | Documents managed via git + Claude Code |
-| Server-side processing | Static site only |
-| Wikilinks / backlinks | Existing content uses YAML tags, not wikilink syntax |
-| Database or external storage | All data lives in the git repo |
-| Comments or discussion | Not a public community site |
-| Analytics or tracking | Personal tool |
-
----
-
-## Content Standards (existing documents must comply)
-
-All documents in the repo must follow `TEMPLATE.md`:
-- YAML frontmatter with `title` (string), `date` (YYYY-MM-DD), `tags` (list)
-- H1 heading matching frontmatter title
-- Summary section
-- Content section
-- At least one external reference
-
-Existing non-conforming documents (`pageindex.md`, `lovable.md`, `airllm.md`, `langflow.md`) should be fixed during Phase 1.
-
----
+| Feature | Reason |
+|---------|--------|
+| Multi-user collaboration | Single-user personal tool |
+| Server-side processing | Static site only; Cloudflare Pages constraint |
+| Real-time sync | No backend |
+| Mobile-first layout | Desktop personal tool |
+| OAuth/authentication | No user accounts needed |
 
 ## Traceability
 
+To be filled by roadmapper.
+
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| REQ-001 | Phase 1 | Complete |
-| REQ-002 | Phase 1 | Complete |
-| REQ-003 | Phase 1 | Complete |
-| REQ-004 | Phase 1 | Complete |
-| REQ-005 | Phase 1 | Complete |
-| REQ-006 | Phase 2 | Complete |
-| REQ-007 | Phase 2 | Complete |
-| REQ-010 | Phase 1 | Complete |
-| REQ-011 | Phase 1 | Complete |
-| REQ-012 | Phase 1 | Complete |
-| REQ-013 | Phase 1 | Complete |
-| REQ-014 | Phase 2 | Complete |
-| REQ-015 | Phase 1 | Complete |
-| REQ-016 | Phase 3 | Complete |
-| REQ-020 | Phase 2 | Complete |
-| REQ-021 | Phase 2 | Complete |
-| REQ-022 | Phase 2 | Complete |
-| REQ-023 | Phase 2 | Complete |
-| REQ-024 | Phase 2 | Complete |
-| REQ-025 | Phase 2 | Complete |
-| REQ-026 | Phase 2 | Complete |
-| REQ-030 | Phase 1 | Complete |
-| REQ-031 | Phase 1 | Complete |
-| REQ-032 | Phase 1 | Complete |
-| REQ-033 | Phase 3 | Complete |
-| REQ-034 | Phase 1 | Complete |
-| REQ-040 | Phase 1 | Complete |
-| REQ-041 | Phase 1 | Complete |
-| REQ-042 | Phase 1 | Complete |
-| REQ-043 | Phase 3 | Complete |
-| REQ-050 | Phase 3 | Complete |
-| REQ-051 | Phase 3 | Complete |
-| REQ-052 | Phase 3 | Complete |
-| REQ-053 | Phase 3 | Complete |
+| EMBED-01 | — | Pending |
+| EMBED-02 | — | Pending |
+| EMBED-03 | — | Pending |
+| EMBED-04 | — | Pending |
+| MAP-01 | — | Pending |
+| MAP-02 | — | Pending |
+| MAP-03 | — | Pending |
+| MAP-04 | — | Pending |
+| MAP-05 | — | Pending |
+| MAP-06 | — | Pending |
+| MAP-07 | — | Pending |
+| MAP-08 | — | Pending |
+| MAP-09 | — | Pending |
+| MAP-10 | — | Pending |
+| SHELL-01 | — | Pending |
+| SHELL-02 | — | Pending |
+| SHELL-03 | — | Pending |
+| SHELL-04 | — | Pending |
+| SHELL-05 | — | Pending |
+| SHELL-06 | — | Pending |
+| HOME-01 | — | Pending |
+| HOME-02 | — | Pending |
+| AESTH-01 | — | Pending |
+| AESTH-02 | — | Pending |
+| AESTH-03 | — | Pending |
+| AESTH-04 | — | Pending |
+| SKILL-01 | — | Pending |
+| SKILL-02 | — | Pending |
+| SKILL-03 | — | Pending |
+| SKILL-04 | — | Pending |
+| SKILL-05 | — | Pending |
+
+**Coverage:**
+- v1.1 requirements: 31 total
+- Mapped to phases: 0
+- Unmapped: 31 (pending roadmap)
+
+---
+*Requirements defined: 2026-03-10*
+*Last updated: 2026-03-10 after v1.1 milestone definition*
