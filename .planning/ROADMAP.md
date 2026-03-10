@@ -157,7 +157,14 @@ Plans:
   3. On any list page, pressing `j`/`k` moves the selection down/up, `gg`/`G` jumps to top/bottom, and Enter opens the selected item; a status bar at the bottom shows current mode
   4. A scanline/CRT overlay is visible on every page as an always-on static effect (not animated)
   5. Headings animate with a typewriter effect on page load; body text maintains WCAG AA contrast against the dark background
-**Plans**: TBD
+**Plans**: 5 plans
+
+Plans:
+- [ ] 08-01-PLAN.md — Test scaffolds: Fuse.js search unit tests + WCAG contrast tests
+- [ ] 08-02-PLAN.md — Cyberpunk CSS layer: scanlines, typewriter animation, AsciiDivider component
+- [ ] 08-03-PLAN.md — Search overlay in Base.astro: Fuse.js integration, open/close, result navigation
+- [ ] 08-04-PLAN.md — Vim navigation + status bar: j/k/gg/G/Enter on list pages
+- [ ] 08-05-PLAN.md — Human visual checkpoint for all shell and aesthetic behaviors
 
 ### Phase 9: Home Page
 **Goal**: The home page is rebuilt around the search overlay as the primary entry point and a list of the 10 most recently added articles — replacing the current category-grid landing page
